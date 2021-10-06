@@ -75,6 +75,19 @@ body {
   font-size: 1.2rem;
 }
 
+.sex p {
+  padding: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.sex label {
+  padding: 1rem 1rem 1rem 0;
+}
+
 .form_in_continue {
   margin-top: 1.3rem;
+}
+
+input[type="radio"] {
+  margin: 1rem 0 1rem 1rem;
 }
