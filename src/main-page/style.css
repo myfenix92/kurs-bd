@@ -48,6 +48,17 @@ header {
   display: none;
 }
 
+.filter_create {
+  position: fixed;
+  background: #0008;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+  display: none;
+}
+
 .profile_setting {
   position: absolute;
   display: none;
@@ -61,6 +72,22 @@ header {
   top: 0%;
   left: 50%;
   transform:translate(-50%, 0);
+  z-index: 100;
+}
+
+.create_new_table {
+  position: absolute;
+  display: none;
+  background-color: white;
+  text-align: center;
+  width: 40vw;
+  margin: 5rem auto;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+  top: 0%;
+  left: 50%;
+  transform:translate(-50%, 100%);
   z-index: 100;
 }
 
@@ -105,7 +132,7 @@ input[type="radio"] {
   margin: 1rem 0 1rem 1rem;
 }
 
-.change_profile, .close_profile {
+.change_profile, .close_profile, .create_tbl_btn {
   font-family: 'Roboto', sans-serif;
   border: none;
   cursor: pointer;
@@ -130,7 +157,7 @@ input[type="radio"] {
   justify-content: center;
   width: 70vw;
   margin: 0 auto;
-  height: 25vw;
+  height: 26vw;
   overflow-y: scroll;
   border-radius: 5px;
   box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
@@ -160,6 +187,11 @@ input[type="radio"] {
   background-color: rgb(198, 247, 253);
 }
 
+.table:not(.create_new_table):hover {
+  transform: scale(1.1);
+  transition: transform .4s ease-in-out;
+}
+
 .name_table {
   font-weight: bold;
   overflow: hidden;
@@ -173,9 +205,21 @@ input[type="radio"] {
   text-align: left;
 }
 
-.create_table {
+.create_table_block {
   font-size: 2rem;
   font-family: 'Caveat', cursive;
   font-weight: bold;
   margin-top: 1rem;
+}
+
+.create_new_table label {
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 0 1rem;
+}
+
+.create_new_table input {
+  height: 2rem;
+  width: 20rem;
+  padding: .2rem;
 }
