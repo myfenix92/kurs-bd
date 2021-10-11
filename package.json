@@ -1,0 +1,20 @@
+{
+  "name": "kurs-bd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myfenix92/kurs-bd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myfenix92/kurs-bd/issues"
+  },
+  "homepage": "https://github.com/myfenix92/kurs-bd#readme"
+}
