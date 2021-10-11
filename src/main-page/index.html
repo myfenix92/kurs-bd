@@ -185,7 +185,21 @@
           <button class="create_tbl_btn">Create table</button>
       </div>
     </div>
-    <div class="filter_table"></div>
+    <div class="filter_table">
+      <p class="filter_tables_text">Find the tables:</p>
+      <div class="filter_input">
+        <label for="name_table">Name table:</label>
+        <input type="text" id="name_table" placeholder="Input name">
+        <label for="number_record">Number records:</label>
+        <input type="number" id="number_record" placeholder="13">
+        <label for="date_create_first">Date create:</label>
+        <span>from</span>
+        <input type="date" id="date_create_first">
+        <span>to</span>
+        <input type="date" id="date_create_second">
+      </div>
+      <button class="filter_search">Search</button>
+    </div>
   </main>
   <footer></footer>
 </body>
