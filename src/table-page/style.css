@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #c1e9f8;
+}
+
+header {
+  margin: 0 0 2rem;
+}
+
+.name_table {
+  font-size: 1.4rem;
+  padding: 1rem 1.5rem;
+}
+
+.create_column {
+  font-family: 'Roboto', sans-serif;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  background: linear-gradient(90deg, rgba(75,65,255,1) 0%, rgba(9,9,121,1) 100%);
+  color: white;
+  padding: .5rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+  margin: 0 1.5rem;
+}
+
+.create_column:hover {
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.35);
+}
+
+/* main {
+  width: 100%;
+  height: 100%;
+} */
+
+.block_columns {
+  display: flex;
+  flex-direction: row;
+  padding: .5rem;
+  overflow-x: auto; 
+  margin: 0 .3rem;
+}
+
+.block_columns::-webkit-scrollbar {
+  height: 10px;
+}
+
+.block_columns::-webkit-scrollbar-track {
+  background-color: rgb(94, 133, 216);
+  border-radius: 5px;
+}
+
+.block_columns::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, .8);
+  border-radius: 5px;
+}
+
+.column {
+  margin: 0 .6rem;
+  border-radius: 5px;
+  min-width: 13vw;
+  max-width: 13vw;
+  background-color: rgba(179, 179, 179, .7);
+  padding: 1rem 0;
+  height: 100%;
+}
+
+.title_column {
+  font-weight: bold;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.name_column {
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.menu_column {
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+.column_list {
+  max-height: 55vh;
+  overflow-y: auto;
+  margin: .2rem;
+}
+
+.column_list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.column_list::-webkit-scrollbar-track {
+  background-color: rgb(94, 133, 216);
+  border-radius: 5px;
+}
+
+.column_list::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, .8);
+  border-radius: 5px;
+}
+
+.column_list p {
+  word-wrap: break-word;
+  margin: .7rem .2rem;
+  padding: .2rem;
+  border-radius: 7px;
+  background-color: rgba(134, 240, 233, 0.5);
+  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.add_record {
+  color: white;
+  border: none;
+  font-size: 1rem;
+  background: #6f95ff;
+  text-align: center;
+  padding: .4rem;
+  margin: .5rem 0;
+  width: 80%;
+  box-shadow: 5px 10px 20px 5px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  text-transform: lowercase;
+}
