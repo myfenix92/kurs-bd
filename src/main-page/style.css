@@ -35,6 +35,7 @@ header {
 
 .profile ul li {
   margin: .5rem;
+  cursor: pointer;
 }
 
 .filter_menu {
