@@ -38,6 +38,10 @@ header {
   cursor: pointer;
 }
 
+main {
+  position: relative;
+}
+
 .filter_menu {
   position: fixed;
   background: #0008;
@@ -255,5 +259,24 @@ input[type="radio"] {
 }
 
 .filter_input input {
-  padding: .3rem;
+  padding: .6rem .3rem;
+}
+
+.calc_data {
+  position: absolute;
+  /* border: 1px solid red; */
+  top: 20%;
+  left: 1%;
+  text-align: center;
+}
+
+.avg_data,
+.percent_data {
+  font-weight: bold;
+}
+
+.avg,
+.percent {
+  margin: 1rem 1rem;
+  width: 200px;
 }
