@@ -23,7 +23,8 @@ header {
 
 .create_column,
 .delete_table,
-.change_name_table {
+.change_name_table,
+.history_btn {
   font-family: 'Roboto', sans-serif;
   border: none;
   cursor: pointer;
@@ -38,7 +39,8 @@ header {
 
 .create_column:hover,
 .delete_table:hover,
-.change_name_table:hover {
+.change_name_table:hover,
+.history_btn:hover {
   box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.35);
 }
 
@@ -276,4 +278,75 @@ input[type="radio"] {
 
 .column:hover .pop_menu_column {
   display: block;
+}
+
+.history_overlay {
+  position: fixed;
+  background: #0008;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+  display: block;
+}
+
+.h3_history {
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.history_block {
+  /* 
+  transform:translate(-50%, 0);
+ */
+  margin: 0 .6rem;
+  border-radius: 5px;
+  width: 25vw;
+  background-color: rgb(226, 226, 226);
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+  padding: .5rem;
+  height: 35vw;
+  position: absolute;
+  display: block;
+  top: 10%;
+  right: 0%;
+  z-index: 100;
+}
+
+.history_list {
+  height: 64vh;
+  overflow-y: auto;
+  margin: .2rem;
+}
+
+.history_list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.history_list::-webkit-scrollbar-track {
+  background-color: rgb(94, 133, 216);
+  border-radius: 5px;
+}
+
+.history_list::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, .8);
+  border-radius: 5px;
+}
+
+.history_list p {
+  word-wrap: break-word;
+  padding: .2rem;
+}
+
+.date_history,
+.time_history,
+.change {
+  color: #3152ac;
+}
+
+.change {
+  font-weight: bold;
+  font-style: italic;
 }
