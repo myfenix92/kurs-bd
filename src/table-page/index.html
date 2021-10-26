@@ -17,7 +17,7 @@
         <button class="delete_table">Delete table</button>
       </div>
       <button class="create_column">Create column</button>
-
+      <button class="history_btn">History changes</button>
       <ul>
         <li>About user</li>
         <li>Log out</li>
@@ -66,6 +66,7 @@
           <hr>
           <ul class="list_pop_menu">
             <li>Add record</li>
+            <li>Change sticker's name</li>
             <li>Sort by alphabet</li>
             <li>Sort by date create record (new)</li>
             <li>Sort by date create record (old)</li>
@@ -94,6 +95,7 @@
           <hr>
           <ul class="list_pop_menu">
             <li>Add record</li>
+            <li>Change sticker's name</li>
             <li>Sort by alphabet</li>
             <li>Sort by date create record (new)</li>
             <li>Sort by date create record (old)</li>
@@ -159,6 +161,7 @@
           <hr>
           <ul class="list_pop_menu">
             <li>Add record</li>
+            <li>Change sticker's name</li>
             <li>Sort by alphabet</li>
             <li>Sort by date create record (new)</li>
             <li>Sort by date create record (old)</li>
@@ -313,7 +316,114 @@
         <button class="add_record">+ Add record</button>
       </div>
     </div>
-    <div class="create_block"></div>
+    <div id="overlay" class="history_overlay">
+      <!-- <div class="header_history"> -->
+        <!-- <h3 class="h3_history">History changes</h3>
+        </div> -->
+       <!-- <div class="history_block">
+
+       </div> -->
+          <div class="history_block">
+            <h3 class="h3_history">History changes</h3>
+        </p>
+        <div class="history_list">
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">запись</span> купить продукты
+            <span class="sticker_value">в стикере Нужно сделать сегодня</span>
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:02:53</span></small>
+          </p>
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">запись</span> купить продукты
+            <span class="sticker_value">в стикере Нужно сделать сегодня</span>
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:02:53</span></small>
+          </p>
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">запись</span> купить продукты
+            <span class="sticker_value">в стикере Нужно сделать сегодня</span>
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:02:53</span></small>
+          </p>
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">запись</span> купить продукты
+            <span class="sticker_value">в стикере Нужно сделать сегодня</span>
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:02:53</span></small>
+          </p>
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">запись</span> купить продукты
+            <span class="sticker_value">в стикере Нужно сделать сегодня</span>
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:02:53</span></small>
+          </p>
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">запись</span> купить продукты
+            <span class="sticker_value">в стикере Нужно сделать сегодня</span>
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:02:53</span></small>
+          </p>
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">запись</span> купить продукты
+            <span class="sticker_value">в стикере Нужно сделать сегодня</span>
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:02:53</span></small>
+          </p>
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">запись</span> купить продукты
+            <span class="sticker_value">в стикере Нужно сделать сегодня</span>
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:02:53</span></small>
+          </p>
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">запись</span> купить продукты
+            <span class="sticker_value">в стикере Нужно сделать сегодня</span>
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:02:53</span></small>
+          </p>
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">запись</span> купить продукты
+            <span class="sticker_value">в стикере Нужно сделать сегодня</span>
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:02:53</span></small>
+          </p>
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">стикер</span> Нужно сделать сегодня
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:15:53</span></small>
+          </p>
+          <p class="record_history">
+            Вы <span class="change">создали</span>
+            <span class="change_value">таблицу</span> Таблица 11111
+            <br>
+            <small><span class="date_history">23.08.2012</span> в
+              <span class="time_history">12:02:53</span></small>
+          </p>
+        </div>
+      </div>
+      </div>
   </main>
   <footer></footer>
 </body>
