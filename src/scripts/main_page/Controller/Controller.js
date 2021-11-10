@@ -6,12 +6,13 @@ import {
 } from '../View/index';
 
 import { ModelStartPage } from "../../start_page/Model";
-
+import { ModelTablePage } from "../../table-page/Model/index";
 import { getLocalStorageData } from '../../../LocalStorage/index';
 
 const ViewMP = new ViewMainPage()
 const ModelMP = new ModelMainPage()
 const ModelSP = new ModelStartPage()
+const ModelTP = new ModelTablePage();
 const id_user = getLocalStorageData('id_user')
 
 export const ControllerMainPage = class {
@@ -106,6 +107,16 @@ export const ControllerMainPage = class {
       }
     }
   }
+
+  onclickTable(event) {
+    if (event.target.parentNode.tagName === 'DIV' && event.target.parentNode.classList.contains('table')) {
+      this.id_table = event.target.parentNode.getAttribute('data-id_table');
+     this.nameTable = event.path[1].firstChild.textContent
+      ModelTP.getStickers(this.id_table, this.nameTable)
+    }
+    
+  }
+
   onLogOutHandler(event) {
     if (event.target.classList.contains('logout') && event.target.tagName === 'LI') {
       localStorage.clear();
