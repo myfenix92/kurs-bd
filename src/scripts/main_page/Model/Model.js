@@ -6,9 +6,11 @@ import {
 } from '../../../API/index';
 
 import { getLocalStorageData } from '../../../LocalStorage';
+import { ModelStartPage } from '../../start_page/Model';
 
 const ViewMP = new ViewMainPage()
 const API = new APIClass()
+const ModelSP = new ModelStartPage()
 export const ModelMainPage = class {
 
   init() {
@@ -32,8 +34,14 @@ export const ModelMainPage = class {
 
   onGetCalcData(id_user) {
     API.getNumericData(id_user).then(data => {
-      ViewMP.viewCalcBlockAvg(parseFloat(Number(data[0].avg_tab).toFixed(2)));
-      ViewMP.viewCalcBlockPercent(data[0].percent_tab)
+      if (data.message) {
+        localStorage.clear();
+        ModelSP.init()
+      } else {
+        ViewMP.viewCalcBlockAvg(parseFloat(Number(data[0].avg_tab).toFixed(2)));
+        ViewMP.viewCalcBlockPercent(data[0].percent_tab)
+      }
+      
     })
   }
 
