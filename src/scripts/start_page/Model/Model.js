@@ -46,6 +46,7 @@ export const ModelStartPage = class {
       if (data.loginStatus) {
         localStorage.clear()
         setLocalStorageData('id_user', data.id_user);
+        setLocalStorageData('token', data.loginToken);
       } else {
         ViewSP.onErrorValue('login-value')
       }
