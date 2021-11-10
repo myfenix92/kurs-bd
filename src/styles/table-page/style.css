@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #c1e9f8;
+}
+
+header {
+  margin: 0 0 2rem;
+}
+
+.name_table {
+  font-size: 1.4rem;
+  padding: 1rem 1.5rem;
+}
+
+.create_column,
+.delete_table,
+.change_name_table,
+.history_btn {
+  font-family: 'Roboto', sans-serif;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  background: linear-gradient(90deg, rgba(75,65,255,1) 0%, rgba(9,9,121,1) 100%);
+  color: white;
+  padding: .5rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+  margin: 0 1.5rem;
+}
+
+.create_column:hover,
+.delete_table:hover,
+.change_name_table:hover,
+.history_btn:hover {
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.35);
+}
+
+
+.profile {
+  padding: 1rem .5rem 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.profile ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.profile ul li {
+  margin: .5rem;
+  cursor: pointer;
+}
+
+.change_profile, .close_profile {
+  font-family: 'Roboto', sans-serif;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  background: linear-gradient(90deg, rgba(75,65,255,1) 0%, rgba(9,9,121,1) 100%);
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+  margin: 1rem;
+}
+
+.change_profile:hover,
+.close_profile:hover {
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.35);
+}
+
+.block_columns {
+  display: flex;
+  flex-direction: row;
+  padding: .5rem;
+  overflow-x: auto; 
+  margin: 0 .3rem;
+  min-height: 20vw;
+}
+
+.block_columns::-webkit-scrollbar {
+  height: 10px;
+}
+
+.block_columns::-webkit-scrollbar-track {
+  background-color: rgb(94, 133, 216);
+  border-radius: 5px;
+}
+
+.block_columns::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, .8);
+  border-radius: 5px;
+}
+
+.column {
+  margin: 0 .6rem;
+  border-radius: 5px;
+  min-width: 13vw;
+  max-width: 13vw;
+  background-color: rgba(179, 179, 179, .7);
+  padding: 1rem 0;
+  height: 100%;
+  position: relative;
+  display: inline-block;
+}
+
+.title_column {
+  font-weight: bold;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.name_column {
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.menu_column {
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+.column_list {
+  max-height: 55vh;
+  overflow-y: auto;
+  margin: .2rem;
+}
+
+.column_list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.column_list::-webkit-scrollbar-track {
+  background-color: rgb(94, 133, 216);
+  border-radius: 5px;
+}
+
+.column_list::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, .8);
+  border-radius: 5px;
+}
+
+
+.column_list p {
+  margin: .7rem .2rem;
+  padding: .2rem;
+  border-radius: 7px;
+  background-color: rgba(134, 240, 233, 0.5);
+  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  overflow-wrap: break-word;
+}
+
+.add_record {
+  color: white;
+  border: none;
+  font-size: 1rem;
+  background: #6f95ff;
+  text-align: center;
+  padding: .4rem;
+  margin: .5rem 0;
+  width: 80%;
+  box-shadow: 5px 10px 20px 5px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  text-transform: lowercase;
+}
+
+.pop_menu_column {
+  width: 270px;
+  border-radius: 5px;
+  background-color: rgba(179, 179, 179, .9);
+  padding: .5rem;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  left: 80%;
+}
+
+.header_pop_menu {
+  display: flex;
+  justify-content: space-between;
+  padding: .4rem;
+}
+
+.list_pop_menu {
+  padding: .3rem 0 0 1rem;
+}
+
+.list_pop_menu li {
+  padding: .3rem;
+  display: block;
+}
+
+.list_pop_menu li:hover {
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* .column:hover .pop_menu_column {
+  display: block;
+} */
+
+.history_overlay {
+  position: fixed;
+  background: #0008;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+  display: none;
+}
+
+.h3_history {
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.history_block {
+  /* 
+  transform:translate(-50%, 0);
+ */
+  margin: 0 .6rem;
+  border-radius: 5px;
+  width: 25vw;
+  background-color: rgb(226, 226, 226);
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+  padding: .5rem;
+  height: 35vw;
+  position: absolute;
+  display: block;
+  top: 10%;
+  right: 0%;
+  z-index: 100;
+}
+
+.history_list {
+  height: 64vh;
+  overflow-y: auto;
+  margin: .2rem;
+}
+
+.history_list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.history_list::-webkit-scrollbar-track {
+  background-color: rgb(94, 133, 216);
+  border-radius: 5px;
+}
+
+.history_list::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, .8);
+  border-radius: 5px;
+}
+
+.history_list p {
+  word-wrap: break-word;
+  padding: .2rem;
+}
+
+.date_history,
+.time_history,
+.change {
+  color: #3152ac;
+}
+
+.change {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.show{
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  z-index: 0;
+  opacity: 0;
+  margin-top: 0.2rem;
+  margin-left: 0.17rem;
+}
+
+input[type="checkbox"]+label::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 1px solid #ffffff;
+  background-color: white;
+  border-radius: 0.25em;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+
+input[type="checkbox"]:checked+label::before {
+  border-color: #0b76ef;
+  background-color: #0b76ef;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+input[type="checkbox"]:checked~.record {
+  text-decoration: line-through;
+}
