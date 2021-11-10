@@ -1,4 +1,5 @@
 import regeneratorRuntime from 'regenerator-runtime';
+import { setLocalStorageData, getLocalStorageData } from '../LocalStorage/index';
 
 export const APIClass = class {
   constructor() {
@@ -38,7 +39,7 @@ export const APIClass = class {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(this.bodyData)
-    });
+    })
     this.data = await this.res.json();
     return this.data
   }
@@ -48,11 +49,11 @@ export const APIClass = class {
     this.res = await fetch(this.url, {
       method: 'GET',
       headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
         'Content-Type': 'application/json',
       }
     });
     this.data = await this.res.json();
-    // console.log(this.data)
     return this.data;
   }
 
@@ -61,6 +62,7 @@ export const APIClass = class {
     this.res = await fetch(this.url, {
       method: 'GET',
       headers: {
+        "Authorization": "Bearer " + getLocalStorageData('token'),
         'Content-Type': 'application/json',
       }
     });
@@ -104,10 +106,19 @@ export const APIClass = class {
   }
 
   async getAboutUser(id_user) {
+    try {
     this.url = `${this.path}/user/${id_user}`;
-    this.res = await fetch(this.url);
+    this.res = await fetch(this.url, {
+      headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
+      }
+    });
     this.data = await this.res.json();
     return this.data
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
 
   async changeProfile(id_user, password, date_birth, sex) {
@@ -128,5 +139,62 @@ export const APIClass = class {
     });
     this.data = await this.res.json();
   //  return this.data
+  }
+
+  async getUserTableData(id_table) {
+    this.url = `${this.path}/table/${id_table}`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+    return this.data;
+  }
+
+  async getStickerValue(id_sticker) {
+    this.url = `${this.path}/table/sticker/${id_sticker}`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+    return this.data;
+  }
+
+  async changeNameTable(id_table, new_name_table) {
+    this.bodyData = {
+      id_table,
+      new_name_table,
+    }
+    this.url = `${this.path}/table/${id_table}`;
+    this.res = await fetch(this.url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    });
+    this.data = await this.res.json();
+    return this.data
+  }
+
+  async isDone(id_record) {
+    this.bodyData = {
+      id_record,
+    }
+    this.url = `${this.path}/table/record/done`;
+    this.res = await fetch(this.url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    });
+    this.data = await this.res.json();
+    return this.data
   }
 }
