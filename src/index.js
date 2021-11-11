@@ -30,6 +30,12 @@ document.body.addEventListener('click', ControllerMP.onLogOutHandler)
 document.body.addEventListener('click', ControllerMP.onclickTable)
 
 document.body.addEventListener('click', ControllerTP.onChangeNameTableHandler)
+document.body.addEventListener('click', ControllerTP.onCreateStickerHandler)
+document.body.addEventListener('click', ControllerTP.onPopMenu)
+document.body.addEventListener('click', ControllerTP.onCreateRecord)
+document.body.addEventListener('click', ControllerTP.onFilterHandler)
+document.body.addEventListener('keyup', ControllerTP.onCreateRecord)
+document.body.addEventListener('keyup', ControllerTP.onCreateStickerHandler)
 document.body.addEventListener('keyup', ControllerTP.onChangeNameTableHandler)
 document.body.addEventListener('change', ControllerTP.onChangeIsDoneRecord)
 
