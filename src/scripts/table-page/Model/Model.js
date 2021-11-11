@@ -23,8 +23,7 @@ export const ModelTablePage = class {
   getStickerValue(id_sticker, i) {
     API.getStickerValue(id_sticker).then(data => {
       data.forEach((e) => {
-        console.log(e)
-        ViewTP.viewRecords(e.id_record, e.record, i, e.done);
+          ViewTP.viewRecords(e.id_record, e.record, i, e.done);
       })
     })
   }
@@ -43,5 +42,37 @@ export const ModelTablePage = class {
 
   isDone(id_record) {
     API.isDone(id_record)
+  }
+
+  createSticker(id_table, name_sticker) {
+    API.createSticker(id_table, name_sticker);
+  }
+
+  createRecord(id_sticker, record) {
+    API.createRecord(id_sticker, record);
+  }
+
+  filterByAlphabet(id_sticker, i) {
+    API.getFilterRecordAlphabet(id_sticker).then(data => {
+      data.forEach((e) => {
+        ViewTP.viewRecords(e.id_record, e.record, i, e.done);
+    })
+    })
+  }
+
+  filterByNew(id_sticker, i) {
+    API.getFilterRecordNew(id_sticker).then(data => {
+      data.forEach((e) => {
+        ViewTP.viewRecords(e.id_record, e.record, i, e.done);
+    })
+    })
+  }
+
+  filterByOld(id_sticker, i) {
+    API.getFilterRecordOld(id_sticker).then(data => {
+      data.forEach((e) => {
+        ViewTP.viewRecords(e.id_record, e.record, i, e.done);
+    })
+    })
   }
 }
