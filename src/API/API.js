@@ -197,4 +197,77 @@ export const APIClass = class {
     this.data = await this.res.json();
     return this.data
   }
+
+  async createSticker(id_table, name_sticker) {
+    this.bodyData = {
+      id_table,
+      name_sticker
+    }
+
+    this.url = `${this.path}/table/sticker`;
+    this.res = await fetch(this.url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    });
+   // this.data = this.res.json();
+   //return this.data;
+  }
+
+  async createRecord(id_sticker, record) {
+    this.bodyData = {
+      id_sticker,
+      record
+    }
+    this.url = `${this.path}/table/record`;
+    this.res = await fetch(this.url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    });
+   // this.data = this.res.json();
+   //return this.data;
+  }
+
+  async getFilterRecordAlphabet(id_sticker) {
+    this.url = `${this.path}/table/sort/alphabet/${id_sticker}`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+    return this.data;
+  }
+
+  
+  async getFilterRecordOld(id_sticker) {
+    this.url = `${this.path}/table/sort/old/${id_sticker}`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+    return this.data;
+  }
+
+  
+  async getFilterRecordNew(id_sticker) {
+    this.url = `${this.path}/table/sort/new/${id_sticker}`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+    return this.data;
+  }
 }
