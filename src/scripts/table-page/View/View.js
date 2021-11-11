@@ -57,6 +57,9 @@ export const ViewTablePage = class {
     this.titleColumn = document.createElement('p');
     this.titleColumn.classList.add('title_column');
     this.titleColumn.textContent = nameSticker;
+    this.titleColumnInput = document.createElement('input');
+    this.titleColumnInput.classList.add('title_column_input', 'hide');
+
     this.btnMenuColumn = document.createElement('button');
     this.btnMenuColumn.classList.add('menu_column');
     this.imgBtnMenu = document.createElement('img');
@@ -64,24 +67,27 @@ export const ViewTablePage = class {
 
     this.popMenu = document.createElement('div');
     this.popMenu.classList.add('pop_menu_column');
+    this.popMenu.setAttribute('id', id_sticker);
 
     this.headerPopMenu = document.createElement('div');
     this.headerPopMenu.classList.add('header_pop_menu');
     this.headerPopMenuTitle = document.createElement('p');
     this.headerPopMenuTitle.classList.add('header_pop_menu_title');
     this.headerPopMenuTitle.textContent = 'Action with column';
-    this.btnMenuClose = document.createElement('button');
-    this.btnMenuClose.classList.add('btn_pop_menu_close');
-    this.btnMenuClose.textContent = '[ X ]'
 
     this.hr = document.createElement('hr');
 
     this.listPopMenu = document.createElement('ul');
+    this.listPopMenu.classList.add('list_pop_menu');
+
     this.liArray = ['Add record', 'Change sticker name', 'Sort by alphabet', 
     'Sort by date create record (new)', 'Sort by date create record (old)', 'Delete column'];
+    this.liArrayClass = ['add_record_menu', 'change_sticker_name', 'sort_alphabet', 
+    'sort_new', 'sort_old', 'delete_sticker'];
 
     for (let i = 0; i < this.liArray.length; i++) {
       this.li = document.createElement('li');
+      this.li.classList.add(this.liArrayClass[i])
       this.li.textContent = this.liArray[i];
       this.listPopMenu.appendChild(this.li);
     }
@@ -93,10 +99,10 @@ export const ViewTablePage = class {
     this.btnAddRec.classList.add('add_record');
     this.btnAddRec.textContent = '+ Add record';
 
-    this.headerPopMenu.append(this.headerPopMenuTitle, this.btnMenuClose)
+    this.headerPopMenu.append(this.headerPopMenuTitle)
     this.popMenu.append(this.headerPopMenu, this.hr, this.listPopMenu)
     this.btnMenuColumn.append(this.imgBtnMenu)
-    this.titleColumn.append(this.btnMenuColumn)
+    this.titleColumn.append(this.titleColumnInput, this.btnMenuColumn)
     this.column.append(this.titleColumn, this.popMenu, this.columnList, this.btnAddRec)
     this.main.append(this.column);
   }
@@ -106,6 +112,8 @@ export const ViewTablePage = class {
 
     this.record = document.createElement('p');
     this.recordText = document.createElement('span');
+    this.recordTextInput = document.createElement('input');
+    this.recordTextInput.classList.add('hide');
     this.recordLabel = document.createElement('label');
     this.recordText.classList.add('record')
     this.recordInput = document.createElement('input');
@@ -119,8 +127,97 @@ export const ViewTablePage = class {
     this.recordInput.classList.add('hide');
     this.record.setAttribute('data-id_record', id_record);
     this.recordText.textContent = recordText;
-    this.record.prepend(this.isDone, this.recordLabel, this.recordText);
+    this.record.append(this.isDone, this.recordLabel, this.recordTextInput, this.recordText);
+    
     this.recordBlock[i].appendChild(this.record)
-
   }
+  
+  viewCreateStickers(/*id_sticker, nameSticker*/) {
+    this.main = document.querySelector('.block_columns');
+
+    this.column = document.createElement('div');
+    this.column.classList.add('column', 'new_column');
+
+    this.titleColumn = document.createElement('p');
+    this.titleColumn.classList.add('title_column');
+    this.titleColumnInput = document.createElement('input');
+    this.titleColumnInput.classList.add('title_column_input');
+
+    this.btnMenuColumn = document.createElement('button');
+    this.btnMenuColumn.classList.add('menu_column');
+    this.imgBtnMenu = document.createElement('img');
+    this.imgBtnMenu.src = '../../../image/more.png'
+
+    this.popMenu = document.createElement('div');
+    this.popMenu.classList.add('pop_menu_column');
+
+    this.headerPopMenu = document.createElement('div');
+    this.headerPopMenu.classList.add('header_pop_menu');
+    this.headerPopMenuTitle = document.createElement('p');
+    this.headerPopMenuTitle.classList.add('header_pop_menu_title');
+    this.headerPopMenuTitle.textContent = 'Action with column';
+
+    this.hr = document.createElement('hr');
+
+    this.listPopMenu = document.createElement('ul');
+    this.listPopMenu.classList.add('list_pop_menu');
+    this.liArray = ['Add record', 'Change sticker name', 'Sort by alphabet', 
+    'Sort by date create record (new)', 'Sort by date create record (old)', 'Delete column'];
+    this.liArrayClass = ['add_record_menu', 'change_sticker_name', 'sort_alphabet', 
+    'sort_new', 'sort_old', 'delete_sticker'];
+
+    for (let i = 0; i < this.liArray.length; i++) {
+      this.li = document.createElement('li');
+      this.li.classList.add(this.liArrayClass[i])
+      this.li.textContent = this.liArray[i];
+      this.listPopMenu.appendChild(this.li);
+    }
+
+    this.columnList = document.createElement('div');
+    this.columnList.classList.add('column_list');
+
+    this.btnAddRec = document.createElement('button');
+    this.btnAddRec.classList.add('add_record');
+    this.btnAddRec.textContent = '+ Add record';
+
+    this.headerPopMenu.append(this.headerPopMenuTitle)
+    this.popMenu.append(this.headerPopMenu, this.hr, this.listPopMenu)
+    this.btnMenuColumn.append(this.imgBtnMenu)
+    this.titleColumn.append(this.titleColumnInput, this.btnMenuColumn)
+    this.column.append(this.titleColumn, this.popMenu, this.columnList, this.btnAddRec)
+    this.main.prepend(this.column);
+    this.titleColumnInput.focus()
+  }
+
+  // viewPopMenu() {
+  //   this.popMenu = document.createElement('div');
+  //   this.popMenu.classList.add('pop_menu_column');
+
+  //   this.headerPopMenu = document.createElement('div');
+  //   this.headerPopMenu.classList.add('header_pop_menu');
+  //   this.headerPopMenuTitle = document.createElement('p');
+  //   this.headerPopMenuTitle.classList.add('header_pop_menu_title');
+  //   this.headerPopMenuTitle.textContent = 'Action with column';
+
+  //   this.hr = document.createElement('hr');
+
+  //   this.listPopMenu = document.createElement('ul');
+  //   this.liArray = ['Add record', 'Change sticker name', 'Sort by alphabet', 
+  //   'Sort by date create record (new)', 'Sort by date create record (old)', 'Delete column'];
+
+  //   for (let i = 0; i < this.liArray.length; i++) {
+  //     this.li = document.createElement('li');
+  //     this.li.textContent = this.liArray[i];
+  //     this.listPopMenu.appendChild(this.li);
+  //   }
+  // }
+
+  viewCreateRecord(i) {
+    this.addRec = document.createElement('textarea');
+    this.addRec.classList.add('input_create');
+    this.column = document.querySelectorAll('.column_list');
+    this.column[i].append(this.addRec);
+    this.addRec.focus()
+  }
+
 }
