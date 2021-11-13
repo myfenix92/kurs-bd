@@ -35,7 +35,7 @@ export const ModelTablePage = class {
       document.querySelector('.name_table_input').value = '';
      // document.querySelector('.name_table_input').setAttribute('placeholder', data.message);
      } else {
-       console.log('good')
+       return
      }
     })
   }
@@ -74,5 +74,17 @@ export const ModelTablePage = class {
         ViewTP.viewRecords(e.id_record, e.record, i, e.done);
     })
     })
+  }
+
+  deleteSticker(id_sticker) {
+    API.deleteSticker(id_sticker);
+  }
+
+  changeNameSticker(id_sticker, new_name_sticker) {
+    API.changeNameSticker(id_sticker, new_name_sticker);
+  }
+
+  changeRecord(id_record, new_record) {
+    API.changeRecord(id_record, new_record);
   }
 }
