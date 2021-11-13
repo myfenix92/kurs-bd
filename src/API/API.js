@@ -270,4 +270,48 @@ export const APIClass = class {
     this.data = await this.res.json();
     return this.data;
   }
+
+  async deleteSticker(id_sticker) {
+    this.url = `${this.path}/table/sticker/${id_sticker}`;
+    this.res = await fetch(this.url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+
+  async changeNameSticker(id_sticker, new_name_sticker) {
+    this.bodyData = {
+      id_sticker, 
+      new_name_sticker
+    }
+    this.url = `${this.path}/table/change/sticker`;
+    this.res = await fetch(this.url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    });
+  //  this.data = await this.res.json();
+  //  return this.data
+  }
+
+  async changeRecord(id_record, new_record) {
+    this.bodyData = {
+      id_record, 
+      new_record
+    }
+    this.url = `${this.path}/table/change/record`;
+    this.res = await fetch(this.url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    });
+  //  this.data = await this.res.json();
+  //  return this.data
+  }
 }
