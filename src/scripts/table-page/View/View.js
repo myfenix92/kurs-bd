@@ -204,4 +204,74 @@ export const ViewTablePage = class {
     this.addRec.focus()
   }
 
+  viewHistoryChanges() {
+    this.main = document.querySelector('main');
+    this.overlay = document.createElement('div');
+    this.overlay.classList.add('history_overlay');
+
+    this.historyBlock = document.createElement('div');
+    this.historyBlock.classList.add('history_block');
+    this.titleHistoryBlock = document.createElement('h3');
+    this.titleHistoryBlock.classList.add('h3_history');
+    this.titleHistoryBlock.textContent = 'History changes';
+
+    this.historyList = document.createElement('div');
+    this.historyList.classList.add('history_list');
+    
+    this.historyBlock.append(this.titleHistoryBlock, this.historyList);
+    this.overlay.appendChild(this.historyBlock);
+    this.main.appendChild(this.overlay);
+  }
+
+  viewCreateHistoryChanges(changes, old_value, table, sticker, id_sticker, record, date, time) {
+    this.historyList = document.querySelector('.history_list')
+      this.recordHistory = document.createElement('p');
+      this.recordHistory.classList.add('record_history');
+
+      switch(changes) {
+        case 'создали доску':
+        case 'создали стикер':
+        case 'удалили стикер':
+          this.recordHistory.insertAdjacentHTML('afterbegin',
+        `Вы <span class="change">${changes}</span> ${old_value}
+        <br>
+        <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
+        <span class="time_history">${time.slice(0, 8)}</span></small>`);
+        break;
+        case 'переименовали доску':
+          this.recordHistory.insertAdjacentHTML('afterbegin',
+          `Вы <span class="change">${changes}</span> ${old_value} <span class="change">на</span> ${table}
+          <br>
+          <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
+          <span class="time_history">${time.slice(0, 8)}</span></small>`);
+          break;
+        case 'переименовали стикер':
+          this.recordHistory.insertAdjacentHTML('afterbegin',
+          `Вы <span class="change">${changes}</span> ${old_value} <span class="change">на</span> ${sticker}
+          <br>
+          <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
+          <span class="time_history">${time.slice(0, 8)}</span></small>`);
+          break;
+        case 'новую запись':
+          this.recordHistory.insertAdjacentHTML('afterbegin',
+        `Вы добавили <span class="change">${changes}</span> ${old_value}
+        <span class="sticker_value">в стикере <strong>${id_sticker}</strong></span>
+        <br>
+        <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
+        <span class="time_history">${time.slice(0, 8)}</span></small>`)
+        break;
+        case 'изменили запись':
+          this.recordHistory.insertAdjacentHTML('afterbegin',
+        `Вы <span class="change">${changes}</span> ${old_value} <span class="change">на</span> ${record}
+        <span class="sticker_value">в стикере <strong>${id_sticker}</strong></span>
+        <br>
+        <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
+        <span class="time_history">${time.slice(0, 8)}</span></small>`)
+        break;
+        default:
+          break;
+      }
+      
+      this.historyList.append(this.recordHistory);
+  }
 }
