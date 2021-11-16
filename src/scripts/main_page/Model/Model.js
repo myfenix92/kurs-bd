@@ -17,9 +17,11 @@ export const ModelMainPage = class {
     setTimeout(() => {
       this.id_user = getLocalStorageData('id_user');
       this.getLoginUser(this.id_user);
-      this.onGetTables(this.id_user);
-      ViewMP.viewTableBlock();
-      ViewMP.viewFilterBlock();
+      setTimeout(() => {
+        this.onGetTables(this.id_user);
+        ViewMP.viewTableBlock();
+        ViewMP.viewFilterBlock();
+      }, 700)
     }, 500)
   }
 
@@ -72,7 +74,7 @@ export const ModelMainPage = class {
 
   profileData(id_user) {
     API.getAboutUser(id_user).then(data => {
-      ViewMP.viewProfile(data.date_birth.slice(0,10), data.sex)
+      ViewMP.viewProfile(data.date_birth.slice(0,10), data.all_days, data.sex)
     })
   }
 
