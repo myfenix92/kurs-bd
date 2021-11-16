@@ -11,7 +11,7 @@ export const ModelTablePage = class {
 
   getStickers( /*id_table*/ ) {
     this.number_sticker = 0
-    API.getUserTableData(144).then(data => {
+    API.getUserTableData(147).then(data => {
       data.forEach((e) => {
         ViewTP.viewStickers(e.id_sticker, e.name_sticker)
           this.getStickerValue(e.id_sticker, this.number_sticker++)
@@ -31,7 +31,7 @@ export const ModelTablePage = class {
   changeTableName(id_table, new_name_table) {
     API.changeNameTable(id_table, new_name_table)
     .then(data => {
-     if (data.message) {
+      if (data.message) {
       document.querySelector('.name_table_input').value = '';
      // document.querySelector('.name_table_input').setAttribute('placeholder', data.message);
      } else {
@@ -86,5 +86,31 @@ export const ModelTablePage = class {
 
   changeRecord(id_record, new_record) {
     API.changeRecord(id_record, new_record);
+  }
+
+  getHistoryChanges(id_table) {
+   this.name_sticker;
+   API.getUserTableData(id_table).then(data => {
+    this.name_sticker = data;
+})
+    API.getHistoryChanges(id_table).then(data => {
+      ViewTP.viewHistoryChanges()
+      data.forEach((e) => {
+        this.name_st = this.name_sticker.find(el => el.id_sticker === e.id_sticker);
+        if (this.name_st === undefined) {
+          ViewTP.viewCreateHistoryChanges(e.changes, 
+            e.old_value, e.new_tbl, e.new_stc, '', e.new_rec, e.date_change, e.time_change)
+        } else {
+          ViewTP.viewCreateHistoryChanges(e.changes, 
+            e.old_value, e.new_tbl, e.new_stc, this.name_st.name_sticker, e.new_rec, e.date_change, e.time_change)
+        }
+      })
+    })  
+  }
+
+  deleteTable(id_table) {
+    API.deleteTable(id_table);
+    document.querySelector('body').innerHTML = ''
+    console.log('delete')
   }
 }
