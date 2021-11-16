@@ -109,11 +109,11 @@ export const ControllerMainPage = class {
   }
 
   onclickTable(event) {
-    if (event.target.parentNode.tagName === 'DIV' && event.target.parentNode.classList.contains('table')) {
+    if (event.target.parentNode.classList.contains('table') && !event.target.classList.contains('create_table_block')) {
       this.id_table = event.target.parentNode.getAttribute('data-id_table');
-     this.nameTable = event.path[1].firstChild.textContent
+      this.nameTable = event.path[1].firstChild.textContent
       ModelTP.getStickers(this.id_table, this.nameTable)
-    }
+    } 
     
   }
 
