@@ -1,5 +1,3 @@
-import '../../../styles/start_page/style.css'
-
 export const ViewStartPage = class {
   constructor() {
     this.isError = true;
@@ -8,6 +6,8 @@ export const ViewStartPage = class {
 
   viewHeaderStartPage() {
     this.header = document.querySelector('header');
+    this.headerBlock = document.createElement('div');
+    this.headerBlock.classList.add('header_sp')
     this.headerTitle = document.createElement('h1');
     this.headerTitle.classList.add('header_h1');
     this.headerTitle.textContent = 'Программа управления проектами';
@@ -29,68 +29,70 @@ export const ViewStartPage = class {
     this.btnLog.textContent = 'Авторизация';
 
     this.headerBtn.append(this.btnReg, this.btnLog);
-    this.header.append(this.headerTitle, this.descript, this.headerBtn);
+    this.headerBlock.append(this.headerTitle, this.descript, this.headerBtn);
+    this.header.append(this.headerBlock)
   }
 
   viewStartPage(value) {
     this.main = document.querySelector('main');
     if (value === 'register') {
-        this.main.innerHTML = `<form class="form_in">
+        this.main.innerHTML = `<div class="main_sp"><form class="form_in form_sp">
         <p class="form_in_input login">
-          <label for="login">Login</label>
-          <input type="text" id="login" placeholder="yourLogin" maxLength="25">
+          <label for="login">Логин</label>
+          <input type="text" id="login" placeholder="ваш логин" maxLength="25">
           <p class="error_password login"></p>
         </p>
         <p class="form_in_input password">
-          <label for="password">Password</label>
+          <label for="password">Пароль</label>
           <input type="password" name="" id="password" placeholder="123456">
           <p class="error_password password"></p>
         </p>
         <p class="form_in_input form_in_password-check">
-          <label for="password_check">Password check</label>
+          <label for="password_check">Повторите пароль</label>
           <input type="password" name="" id="password_check" placeholder="123456">
           <p class="error_password password_check"></p>
         </p>
         <p class="form_in_input b-day">
-          <label for="b-day">B-day</label>
+          <label for="b-day">Дата рождения</label>
           <input type="date" name="" id="b-day">
           <p class="error_password b_day"></p>
         </p>
         <p class="form_in_input sex">
-          <p>Choose a sex:</p>
+          <span>Пол:</span>
           <input type="radio" name="sex" id="female" value="female" checked>
-          <label for="female">female</label>
+          <label for="female">женский</label>
 
           <input type="radio" name="sex" id="male" value="male">
-          <label for="male">male</label>
+          <label for="male">мужской</label>
         </p>
         <button class="form_in_continue" type="button">Продолжить</button>
-      </form>`
+      </form></div>`
     } else if (value === 'login') {
-      this.main.innerHTML = `<form class="form_in">
+      this.main.innerHTML = `<div class="main_sp"><form class="form_in form_sp">
         <p class="form_in_input login">
-          <label for="login">Login</label>
-          <input type="text" name="" id="login" placeholder="yourLogin">
+          <label for="login">Логин</label>
+          <input type="text" name="" id="login" placeholder="ваш логин">
           <p class="error_password login"></p>
         </p>
         <p class="form_in_input password">
-          <label for="password">Password</label>
+          <label for="password">Пароль</label>
           <input type="password" name="" id="password" placeholder="123456">
         </p>
         <button class="form_in_continue" type="button">Продолжить</button>
-      </form>`
+      </form></div>`
     }
   }
 
   onErrorValue(value) {
+    console.log(value)
     if (value === 'register-login') {
       this.errorPassword = document.querySelector('.error_password.login');
-      this.errorPassword.textContent = 'Login already exists';
+      this.errorPassword.textContent = 'Логин уже существует';
     }
 
     if (value === 'login-value') {
       this.errorPassword = document.querySelector('.error_password.login');
-      this.errorPassword.textContent = 'Login or password do not match';
+      this.errorPassword.textContent = 'Логин и/или пароль неверны';
       document.querySelector('#password').value = '';
     }
   }
