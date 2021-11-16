@@ -1,12 +1,18 @@
-import '../../../styles/main_page/style.css'
+//import '../../../styles/main_page/style.css'
 
 export const ViewMainPage = class {
 
   viewLoginUser(value) {
-    this.header = document.querySelector('.header');
+    this.main = document.querySelector('main');
+    this.mainBlock = document.createElement('div');
+    this.mainBlock.classList.add('main_mp');
+
+    this.header = document.querySelector('header');
+    this.headerBlock = document.createElement('div');
+    this.headerBlock.classList.add('header_mp');
     this.headerText = document.createElement('p');
     this.headerText.classList.add('header_text');
-    this.headerText.textContent = `Welcome, `;
+    this.headerText.textContent = `Приветствуем, `;
     this.headerLogin = document.createElement('span');
     this.headerLogin.classList.add('header_text_login');
     this.headerLogin.textContent = value;
@@ -17,7 +23,7 @@ export const ViewMainPage = class {
     this.ul = document.createElement('ul');
     this.liData = {
       class: ['about_user', 'logout'],
-      text: ['About user', 'Log out']
+      text: ['Профиль', 'Выйти']
     }
 
     for (let i = 0; i < 2; i++) {
@@ -27,43 +33,44 @@ export const ViewMainPage = class {
 
       this.ul.appendChild(this.li)
     }
-
     this.profile.append(this.ul);
     this.headerText.append(this.headerLogin)
-    this.header.append(this.headerText, this.profile);
+    this.headerBlock.append(this.headerText, this.profile);
+    this.header.append(this.headerBlock);
+    this.main.appendChild(this.mainBlock);
   }
 
   viewFilterBlock() {
-    this.main = document.querySelector('main');
+    this.mainBlock = document.querySelector('.main_mp');
     this.filterBlock = document.createElement('div');
     this.filterBlock.classList.add('filter_table');
 
     this.filterTitle = document.createElement('p');
     this.filterTitle.classList.add('filter_tables_text');
-    this.filterTitle.textContent = 'Find the tables';
+    this.filterTitle.textContent = 'Найти доски';
 
     this.filterValue = document.createElement('div');
     this.filterValue.classList.add('filter_input');
 
     this.labelName = document.createElement('label');
     this.labelName.setAttribute('for', 'name_table');
-    this.labelName.textContent = 'Name table:';
+    this.labelName.textContent = 'Имя таблицы:';
 
     this.inputName = document.createElement('input');
     this.inputName.setAttribute('type', 'text');
     this.inputName.setAttribute('id', 'name_table');
-    this.inputName.setAttribute('placeholder', 'Input name');
+    this.inputName.setAttribute('placeholder', 'Введите имя/часть имени');
 
     this.labelDate = document.createElement('label');
     this.labelDate.setAttribute('for', 'date_create_first');
-    this.labelDate.textContent = 'Date create: ';
+    this.labelDate.textContent = 'Дата создания: ';
     this.spanFrom = document.createElement('span');
-    this.spanFrom.textContent = 'from ';
+    this.spanFrom.textContent = 'с ';
     this.inputFrom = document.createElement('input');
     this.inputFrom.setAttribute('type', 'date');
     this.inputFrom.setAttribute('id', 'date_create_first');
     this.spanTo = document.createElement('span');
-    this.spanTo.textContent = 'to ';
+    this.spanTo.textContent = 'по ';
     this.inputTo = document.createElement('input');
     this.inputTo.setAttribute('type', 'date');
     this.inputTo.setAttribute('id', 'date_create_second');
@@ -71,16 +78,17 @@ export const ViewMainPage = class {
     this.btnBlock = document.createElement('div');
     this.btnSearch = document.createElement('button');
     this.btnSearch.classList.add('filter_search');
-    this.btnSearch.textContent = 'Search';
+    this.btnSearch.textContent = 'Искать';
     this.btnClear = document.createElement('button');
     this.btnClear.classList.add('filter_clear');
     this.btnClear.setAttribute('disabled', true);
-    this.btnClear.textContent = 'View all tables';
+    this.btnClear.textContent = 'Показать все таблицы';
 
     this.btnBlock.append(this.btnSearch, this.btnClear);
     this.filterValue.append(this.labelName, this.inputName, this.labelDate, this.spanFrom, this.inputFrom, this.spanTo, this.inputTo);
     this.filterBlock.append(this.filterTitle, this.filterValue, this.btnBlock);
-    this.main.appendChild(this.filterBlock);
+    this.mainBlock.appendChild(this.filterBlock);
+   // this.main.appendChild(this.mainBlock);
   }
 
   viewCalcBlockAvg(value) {
@@ -88,7 +96,7 @@ export const ViewMainPage = class {
     this.calcBlock.innerHTML = '';
     this.avg = document.createElement('p');
     this.avg.classList.add('avg');
-    this.avg.textContent = 'Average number of boards per user: '
+    this.avg.textContent = 'Среднее число досок на одного пользователя: '
     this.avgData = document.createElement('span');
     this.avgData.textContent = value;
     this.avgData.classList.add('avg_data');
@@ -104,7 +112,7 @@ export const ViewMainPage = class {
     this.percent.classList.add('percent');
     this.percentData = document.createElement('span');
     this.percentData.classList.add('percent_data');
-    this.percent.textContent = 'Your number of boards of total user boards (in percents): '
+    this.percent.textContent = 'Количество ваших досок от общего числа досок (в процентах): '
     this.percentData.textContent = value;
 
     this.percent.append(this.percentData);
@@ -125,7 +133,7 @@ export const ViewMainPage = class {
     this.titleDate = document.createElement('span');
     this.dateCreate.textContent = 'Дата создания: '
     this.dateCreate.classList.add('date_create');
-    this.titleDate.textContent = date_create;
+    this.titleDate.textContent = date_create.split('-').reverse().join('-');
     
     this.countRecords = document.createElement('p');
     this.titleCounts = document.createElement('span');
@@ -141,7 +149,7 @@ export const ViewMainPage = class {
   }
 
   viewTableBlock() {
-    this.main = document.querySelector('main');
+    this.mainBlock = document.querySelector('.main_mp');
     this.tableBlock = document.createElement('div');
     this.tableBlock.classList.add('table_block');
 
@@ -149,13 +157,13 @@ export const ViewMainPage = class {
     this.newTable.classList.add('table', 'new_table');
     this.newTableText = document.createElement('p');
     this.newTableText.classList.add('create_table_block');
-    this.newTableText.textContent = 'Create table';
+    this.newTableText.textContent = 'Создать доску';
 
     this.calcBlock = document.createElement('div');
     this.calcBlock.classList.add('calc_data');
     this.newTable.appendChild(this.newTableText);
     this.tableBlock.prepend(this.newTable);
-    this.main.append(this.calcBlock, this.tableBlock)
+    this.mainBlock.append(this.calcBlock, this.tableBlock)
   }
 
   viewCreateTable() {
@@ -168,16 +176,16 @@ export const ViewMainPage = class {
 
     this.labelCreateTable = document.createElement('label');
     this.labelCreateTable.setAttribute('for', 'new_table');
-    this.labelCreateTable.textContent = 'Input name';
+    this.labelCreateTable.textContent = 'Введите имя';
 
     this.inputCreateTable = document.createElement('input');
     this.inputCreateTable.setAttribute('type', 'text');
     this.inputCreateTable.setAttribute('id', 'new_table');
-    this.inputCreateTable.setAttribute('placeholder', 'Name of table');
+    this.inputCreateTable.setAttribute('placeholder', 'имя доски');
 
     this.btnCreateTable = document.createElement('button')
     this.btnCreateTable.classList.add('create_tbl_btn');
-    this.btnCreateTable.textContent = 'Create table';
+    this.btnCreateTable.textContent = 'Создать доску';
 
     this.createTabel.append(this.labelCreateTable, this.inputCreateTable, this.btnCreateTable);
     this.createTabelBlock.appendChild(this.createTabel);
@@ -192,17 +200,20 @@ export const ViewMainPage = class {
     });
   }
 
-  viewProfile(value, sex) {
+  viewProfile(value, all_days, sex) {
     this.dataInput = {
       for: ['password', 'password_check', 'b-day'],
       type: ['password', 'password', 'date'],
       id: ['password', 'password_check', 'b-day'],
-      text: ['New password', 'New password repeat', 'Change b-day (mm/dd/yyyy)'],
-      value: ['', '', value],
+      text: ['Новый пароль', 'Повторите пароль', 'Измените дату рождения'],
+      value: ['', '', value, all_days],
       sex,
     }
 
-    this.header = document.querySelector('.header');
+    this.header = document.querySelector('header');
+    this.headerClass = document.createElement('div');
+    this.headerClass.classList.add('header');
+
     this.overlay = document.createElement('div');
     this.overlay.classList.add('filter_menu');
     this.overlay.setAttribute('id', 'overlay');
@@ -211,19 +222,21 @@ export const ViewMainPage = class {
     this.profileSetting.classList.add('profile_setting');
     this.pHeader = document.createElement('p');
     this.pHeader.classList.add('profile_header_text');
-    this.pHeader.textContent = 'About user';
+    this.pHeader.textContent = 'О пользователе';
     this.btnChange = document.createElement('button');
     this.btnChange.classList.add('change_profile');
-    this.btnChange.textContent = 'Save changes';
+    this.btnChange.textContent = 'Сохранить изменения';
     this.btnClose = document.createElement('button');
     this.btnClose.classList.add('close_profile');
-    this.btnClose.textContent = 'Close';
+    this.btnClose.textContent = 'Закрыть';
 
+    this.allDays = document.createElement('p');
+    this.allDays.textContent = `Вы с нами ${all_days} дня(дней)`
     
 
     for (let i = 0; i < 3; i++) {
       this.pInput = document.createElement('p');
-      this.pInput.classList.add('form_in_input');
+      this.pInput.classList.add('form_in_mp');
       this.label = document.createElement('label');
       this.label.textContent = this.dataInput.text[i];
       this.label.setAttribute('for', this.dataInput.for[i]);
@@ -234,16 +247,16 @@ export const ViewMainPage = class {
       this.input.value = this.dataInput.value[i];
 
       this.errorPassword = document.createElement('p');
-    this.errorPassword.classList.add('error_password', this.dataInput.id[i]);
+      this.errorPassword.classList.add('error_password', this.dataInput.id[i]);
      
       this.pInput.append(this.label, this.errorPassword, this.input)
       this.profileSetting.appendChild(this.pInput);
     }
 
     this.pSex = document.createElement('p');
-    this.pSex.classList.add('form_in_input', 'sex');
-    this.titleSex = document.createElement('p');
-    this.titleSex.textContent = 'Choose a sex:';
+    this.pSex.classList.add('form_in_mp', 'sex');
+    this.titleSex = document.createElement('span');
+    this.titleSex.textContent = 'Пол:';
 
     this.inputFemale = document.createElement('input');
     this.inputFemale.setAttribute('type', 'radio');
@@ -252,7 +265,7 @@ export const ViewMainPage = class {
     this.inputFemale.setAttribute('value', 'female');
     this.labelFemale = document.createElement('label');
     this.labelFemale.setAttribute('for', 'female');
-    this.labelFemale.textContent = 'female';
+    this.labelFemale.textContent = 'женский';
 
     this.inputMale = document.createElement('input');
     this.inputMale.setAttribute('type', 'radio');
@@ -261,14 +274,15 @@ export const ViewMainPage = class {
     this.inputMale.setAttribute('value', 'male');
     this.labelMale = document.createElement('label');
     this.labelMale.setAttribute('for', 'male');
-    this.labelMale.textContent = 'male';
+    this.labelMale.textContent = 'мужский';
 
     this.dataInput.sex === 'female' ? this.inputFemale.checked = true : this.inputMale.checked = true;
 
     this.pSex.append(this.titleSex, this.inputFemale, this.labelFemale,  this.inputMale, this.labelMale);
     this.profileSetting.prepend(this.pHeader);
-    this.profileSetting.append(this.pSex, this.btnChange, this.btnClose);
+    this.profileSetting.append(this.pSex, this.allDays, this.btnChange, this.btnClose);
     this.overlay.appendChild(this.profileSetting);
-    this.header.appendChild(this.overlay);
+    this.headerClass.appendChild(this.overlay);
+    this.header.appendChild(this.headerClass);
   }
 }
