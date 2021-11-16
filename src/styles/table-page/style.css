@@ -9,7 +9,8 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: #c1e9f8;
+  background: linear-gradient(#218aba 0%, #162657 100%);
+  height: 100vh;
 }
 
 header {
@@ -36,22 +37,25 @@ header {
 .change_name_table,
 .history_btn {
   font-family: 'Roboto', sans-serif;
-  border: none;
+  border-color: #3498db;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  margin: 0 1.5rem; 
+  padding: .5rem;
+  color: white;
   cursor: pointer;
   font-size: 1rem;
-  background: linear-gradient(90deg, rgba(75,65,255,1) 0%, rgba(9,9,121,1) 100%);
-  color: white;
-  padding: .5rem;
-  border-radius: 10px;
-  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
-  margin: 0 1.5rem;
 }
 
 .create_column:hover,
 .delete_table:hover,
 .change_name_table:hover,
 .history_btn:hover {
-  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  background-color: transparent;
 }
 
 
@@ -119,7 +123,7 @@ header {
   border-radius: 5px;
   min-width: 13vw;
   max-width: 13vw;
-  background-color: rgba(179, 179, 179, .7);
+  background-color: #eaeef1;
   padding: 1rem 0;
   height: 100%;
   position: relative;
@@ -169,7 +173,7 @@ header {
   margin: .7rem .2rem;
   padding: .2rem;
   border-radius: 7px;
-  background-color: rgba(134, 240, 233, 0.5);
+  background-color: #c5e7e9;
   box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   overflow-wrap: break-word;
@@ -233,7 +237,7 @@ header {
   width: 100vw;
   height: 100vh;
   cursor: pointer;
-  display: none;
+  display: block;
 }
 
 .h3_history {
@@ -293,7 +297,6 @@ header {
 
 .change {
   font-weight: bold;
-  font-style: italic;
 }
 
 .show{

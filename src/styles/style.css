@@ -1,0 +1,426 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: -webkit-gradient(linear, left top, left bottom, from(#218aba), to(#162657));
+  background: linear-gradient(#218aba 0%, #162657 100%);
+  height: 100vh;
+}
+
+button {
+  font-family: 'Roboto', sans-serif;
+  border-color: #3498db;
+  color: #fff;
+  -webkit-box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+          box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  margin: 0 1.5rem;
+  padding: .5rem;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  color: #fff;
+  -webkit-box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+          box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  background-color: transparent;
+}
+
+button:disabled,
+button:disabled:hover {
+  background: #cccccc;
+  cursor: not-allowed;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.header_h1 {
+  font-family: 'Caveat', cursive;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.header_descript {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.header_btn {
+  text-align: center;
+  margin: 3rem 1rem;
+}
+
+.form_sp {
+  background: #fff;
+  text-align: center;
+  width: 20vw;
+  margin: 5rem auto;
+  padding: 1.5rem;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+}
+
+.form_sp .form_in_input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.form_sp label {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.form_sp input {
+  padding: 0.2rem;
+  font-size: 1.2rem;
+}
+
+.form_sp .sex {
+  display: block;
+}
+
+.form_sp .form_in_continue {
+  color: #000;
+  margin-top: 1.3rem;
+}
+
+.form_sp .error_password {
+  color: red;
+  font-size: .8rem;
+  padding: 0;
+}
+
+.header_mp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header_mp .header_text {
+  font-size: 2.5rem;
+  padding: 1rem;
+  font-family: 'Caveat', cursive;
+  font-weight: bold;
+}
+
+.header_mp .header_text .header_text_login {
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  font-size: 1.8rem;
+}
+
+.header_mp .profile {
+  padding: 1rem;
+}
+
+.header_mp .profile ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.header_mp .profile ul li {
+  margin: .5rem;
+  cursor: pointer;
+}
+
+.filter_menu {
+  position: fixed;
+  background: #0008;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.filter_menu .profile_setting {
+  position: absolute;
+  cursor: auto;
+  background-color: #fff;
+  text-align: center;
+  width: 20vw;
+  margin: 5rem auto;
+  padding: 1.5rem;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+  top: 0%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  z-index: 100;
+}
+
+.filter_menu .profile_setting .profile_header_text {
+  font-size: 2rem;
+  font-family: 'Caveat', cursive;
+  font-weight: bold;
+}
+
+.filter_menu .profile_setting .sex {
+  display: block;
+}
+
+.filter_menu .profile_setting .sex span {
+  padding: 0 1.5rem;
+  font-size: 1.1rem;
+}
+
+.filter_menu .profile_setting .sex label {
+  padding: 1rem 1rem 1rem .5rem;
+}
+
+.filter_menu .profile_setting button {
+  color: #000;
+  margin: 1rem;
+}
+
+.form_in_mp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.form_in_mp label {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.form_in_mp input {
+  padding: 0.2rem;
+  font-size: 1.2rem;
+}
+
+.main_mp {
+  position: relative;
+}
+
+.main_mp .table_block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #fff;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 70vw;
+  margin: 0 auto;
+  height: 26vw;
+  overflow-y: auto;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main_mp .table_block .table {
+  border-radius: 5px;
+  margin: 1rem;
+  padding: .5rem;
+  text-align: center;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+  width: 7vw;
+  height: 7vw;
+  cursor: pointer;
+  background-color: #2cabe6;
+}
+
+.main_mp .table_block .table .name_table {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.main_mp .table_block .table .date_create,
+.main_mp .table_block .table .number_records {
+  font-size: .9rem;
+  padding: .5rem 0;
+  text-align: left;
+}
+
+.main_mp .table_block .table .create_table_block {
+  font-size: 2rem;
+  font-family: 'Caveat', cursive;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.main_mp .table_block .table:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: -webkit-transform .4s ease-in-out;
+  transition: -webkit-transform .4s ease-in-out;
+  transition: transform .4s ease-in-out;
+  transition: transform .4s ease-in-out, -webkit-transform .4s ease-in-out;
+}
+
+.main_mp .table_block::-webkit-scrollbar {
+  width: 15px;
+}
+
+.main_mp .table_block::-webkit-scrollbar-track {
+  background-color: #5e85d8;
+}
+
+.main_mp .table_block::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 10px black;
+          box-shadow: inset 0 0 10px black;
+}
+
+.main_mp .filter_table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 70vw;
+  margin: 3rem auto;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+}
+
+.main_mp .filter_table button {
+  margin: 1rem;
+}
+
+.main_mp .filter_table .filter_input label {
+  padding: 2rem .2rem 2rem 1rem;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.main_mp .filter_table .filter_input span {
+  font-weight: 500;
+  padding: 0 .5rem;
+  font-size: 1.1rem;
+}
+
+.main_mp .filter_table .filter_input input {
+  padding: .6rem .3rem;
+  font-size: 1.2rem;
+}
+
+.main_mp .filter_tables_text {
+  font-size: 2rem;
+  font-family: 'Caveat', cursive;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.main_mp .calc_data {
+  position: absolute;
+  top: 20%;
+  left: 1%;
+  text-align: center;
+}
+
+.main_mp .calc_data .avg,
+.main_mp .calc_data .percent {
+  margin: 1rem 1rem;
+  width: 200px;
+}
+
+.main_mp .calc_data .avg .avg_data,
+.main_mp .calc_data .avg .percent_data,
+.main_mp .calc_data .percent .avg_data,
+.main_mp .calc_data .percent .percent_data {
+  font-weight: bold;
+  color: #fff;
+}
+
+.filter_create {
+  position: fixed;
+  background: #0008;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+}
+
+.filter_create .create_new_table {
+  position: absolute;
+  cursor: auto;
+  background-color: #fff;
+  text-align: center;
+  width: 40vw;
+  margin: 5rem auto;
+  padding: 1.5rem;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+  top: 0%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 100%);
+          transform: translate(-50%, 100%);
+  z-index: 100;
+}
+
+.filter_create .create_new_table label {
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 0 1rem;
+}
+
+.filter_create .create_new_table input {
+  height: 2rem;
+  width: 20rem;
+  padding: .2rem;
+}
+
+.filter_create .create_new_table button {
+  color: #000;
+}
+/*# sourceMappingURL=style.css.map */

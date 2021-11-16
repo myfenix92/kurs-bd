@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+$btn_color: #3498db;
+$white: #fff;
+$black: #000;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(#218aba 0%, #162657 100%);
+  height: 100vh;
+}
+
+button {
+  font-family: 'Roboto', sans-serif;
+  border-color: #3498db;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  margin: 0 1.5rem; 
+  padding: .5rem;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  color: #fff;
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  background-color: transparent;
+}
+
+button:disabled,
+button:disabled:hover {
+  background: #cccccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.header_h1 {
+  font-family: 'Caveat', cursive;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.header_descript {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.header_btn {
+  text-align: center;
+  margin: 3rem 1rem;
+}
+
+.form_sp {
+  background: $white;
+  text-align: center;
+  width: 20vw;
+  margin: 5rem auto;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+
+  .form_in_input {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  label {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  input {
+    padding: 0.2rem;
+    font-size: 1.2rem;
+  }
+
+  .sex {
+    display: block;
+  }
+
+  .form_in_continue {
+    color: $black;
+    margin-top: 1.3rem;
+  }
+
+  .error_password {
+    color: red;
+    font-size: .8rem;
+    padding: 0;
+  }
+}
+
+//main
+
+.header_mp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .header_text {
+    font-size: 2.5rem;
+    padding: 1rem;
+    font-family: 'Caveat', cursive;
+    font-weight: bold;
+
+    .header_text_login {
+      font-family: 'Roboto', sans-serif;
+      font-weight: normal;
+      font-size: 1.8rem;
+    }
+  }
+
+  .profile {
+    padding: 1rem;
+  
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+  
+      li {
+        margin: .5rem;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.filter_menu {
+  position: fixed;
+  background: #0008;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+  z-index: 100;
+
+  .profile_setting {
+    position: absolute;
+    cursor: auto;
+    background-color: $white;
+    text-align: center;
+    width: 20vw;
+    margin: 5rem auto;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+    top: 0%;
+    left: 50%;
+    transform:translate(-50%, 0);
+    z-index: 100;
+  
+    .profile_header_text {
+      font-size: 2rem;
+      font-family: 'Caveat', cursive;
+      font-weight: bold;
+    }
+
+    .sex {
+      display: block;
+      span {
+        padding: 0 1.5rem;
+        font-size: 1.1rem;
+      }
+      label {
+        padding: 1rem 1rem 1rem .5rem;
+      }
+    }
+
+    button {
+      color: $black;
+      margin: 1rem;
+    }
+}
+}
+.form_in_mp {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  text-align: center;
+
+  label {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  input {
+    padding: 0.2rem;
+    font-size: 1.2rem;
+  }
+}
+
+
+.main_mp {
+  position: relative;
+
+  .table_block {
+    display: flex;
+    background: $white;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 70vw;
+    margin: 0 auto;
+    height: 26vw;
+    overflow-y: auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+
+    .table {
+      border-radius: 5px;
+      margin: 1rem;
+      padding: .5rem;
+      text-align: center;
+      box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+      width: 7vw;
+      height: 7vw;
+      cursor: pointer;
+      background-color: #2cabe6;
+
+      .name_table {
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .date_create,
+      .number_records {
+        font-size: .9rem;
+        padding: .5rem 0;
+        text-align: left;
+      }
+
+      .create_table_block {
+        font-size: 2rem;
+        font-family: 'Caveat', cursive;
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+    }
+    
+    .table:hover {
+      transform: scale(1.1);
+      transition: transform .4s ease-in-out;
+    }
+  }
+
+  .table_block::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  .table_block::-webkit-scrollbar-track {
+    background-color: rgb(94, 133, 216);
+  }
+  
+  .table_block::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
+  }
+
+  .filter_table {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    margin: 3rem auto;
+    text-align: center;
+    align-items: center;
+    color: $white;
+
+    button {
+      margin: 1rem;
+    }
+
+    .filter_input {
+      label {
+        padding: 2rem .2rem 2rem 1rem;
+        font-weight: 700;
+        font-size: 1.3rem;
+      }
+
+      span {
+        font-weight: 500;
+        padding: 0 .5rem;
+        font-size: 1.1rem;
+      }
+
+      input {
+        padding: .6rem .3rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .filter_tables_text {
+    font-size: 2rem;
+    font-family: 'Caveat', cursive;
+    font-weight: bold;
+    padding-bottom: 1rem;
+  }
+
+  .calc_data {
+    position: absolute;
+    top: 20%;
+    left: 1%;
+    text-align: center;
+
+    .avg,
+    .percent {
+      margin: 1rem 1rem;
+      width: 200px;
+
+      .avg_data,
+      .percent_data {
+        font-weight: bold;
+        color: $white ;
+      }
+
+    }
+  }
+}
+
+
+
+.filter_create {
+  position: fixed;
+  background: #0008;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+
+  .create_new_table {
+    position: absolute;
+    cursor: auto;
+    background-color: $white;
+    text-align: center;
+    width: 40vw;
+    margin: 5rem auto;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+    top: 0%;
+    left: 50%;
+    transform:translate(-50%, 100%);
+    z-index: 100;
+
+    label {
+      font-weight: bold;
+      font-size: 1.4rem;
+      padding: 0 1rem;
+    }
+
+    input {
+      height: 2rem;
+      width: 20rem;
+      padding: .2rem;
+    }
+
+    button {
+      color: $black;
+    }
+  }
+}
