@@ -49,7 +49,7 @@ export const APIClass = class {
     this.res = await fetch(this.url, {
       method: 'GET',
       headers: {
-        Authorization: "Bearer " + getLocalStorageData('token'),
+        'Authorization': "Bearer " + getLocalStorageData('token'),
         'Content-Type': 'application/json',
       }
     });
@@ -179,7 +179,7 @@ export const APIClass = class {
       body: JSON.stringify(this.bodyData)
     });
     this.data = await this.res.json();
-    return this.data
+  //  return this.data
   }
 
   async isDone(id_record) {
@@ -303,6 +303,7 @@ export const APIClass = class {
       id_record, 
       new_record
     }
+
     this.url = `${this.path}/table/change/record`;
     this.res = await fetch(this.url, {
       method: 'PUT',
@@ -311,7 +312,29 @@ export const APIClass = class {
       },
       body: JSON.stringify(this.bodyData)
     });
-  //  this.data = await this.res.json();
+    this.data = await this.res.json();
   //  return this.data
+  }
+
+  async getHistoryChanges(id_table) {
+    this.url = `${this.path}/table/history/${id_table}`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+    return this.data;
+  }
+
+  async deleteTable(id_table) {
+    this.url = `${this.path}/table/${id_table}`;
+    this.res = await fetch(this.url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
   }
 }
