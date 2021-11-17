@@ -9,15 +9,15 @@ const ViewTP = new ViewTablePage()
 const API = new APIClass()
 export const ModelTablePage = class {
 
-  getStickers( /*id_table*/ ) {
+  getStickers(id_table, nameTable) {
     this.number_sticker = 0
-    API.getUserTableData(147).then(data => {
+    API.getUserTableData(id_table).then(data => {
       data.forEach((e) => {
         ViewTP.viewStickers(e.id_sticker, e.name_sticker)
           this.getStickerValue(e.id_sticker, this.number_sticker++)
       })
     })
-    ViewTP.viewTableData('cute table')
+    ViewTP.viewTableData(nameTable)
   }
 
   getStickerValue(id_sticker, i) {
@@ -29,13 +29,11 @@ export const ModelTablePage = class {
   }
 
   changeTableName(id_table, new_name_table) {
-    API.changeNameTable(id_table, new_name_table)
-    .then(data => {
+    API.changeNameTable(id_table, new_name_table).then(data => {
       if (data.message) {
-      document.querySelector('.name_table_input').value = '';
-     // document.querySelector('.name_table_input').setAttribute('placeholder', data.message);
-     } else {
-       return
+        this.nameTable = document.querySelector('.name_table_input')
+        this.nameTable.value = '';
+        this.nameTable.setAttribute('placeholder', data.message);
      }
     })
   }
@@ -110,7 +108,5 @@ export const ModelTablePage = class {
 
   deleteTable(id_table) {
     API.deleteTable(id_table);
-    document.querySelector('body').innerHTML = ''
-    console.log('delete')
   }
 }
