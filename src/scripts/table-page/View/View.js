@@ -1,5 +1,3 @@
-//import '../../../styles/table-page/style.css'
-
 export const ViewTablePage = class {
   
   viewTableData(nameTable) {
@@ -11,7 +9,7 @@ export const ViewTablePage = class {
     this.header = document.querySelector('header');
     this.header.innerHTML = '';
     this.headerBlock = document.createElement('div');
-    this.headerBlock.classList.add('profile');
+    this.headerBlock.classList.add('header_tp');
 
     this.headerTable = document.createElement('div');
     this.headerTable.classList.add('name_table_header');
@@ -26,30 +24,36 @@ export const ViewTablePage = class {
 
     this.btnChangeName = document.createElement('button');
     this.btnChangeName.classList.add('change_name_table');
-    this.btnChangeName.textContent = 'Change name table';
+    this.btnChangeName.textContent = 'Изменить имя доски';
     this.btnDelete = document.createElement('button');
     this.btnDelete.classList.add('delete_table');
-    this.btnDelete.textContent = 'Delete table'
+    this.btnDelete.textContent = 'Удалить доску'
 
     this.btnCreateColumn = document.createElement('button');
     this.btnCreateColumn .classList.add('create_column');
-    this.btnCreateColumn.textContent = 'Create column';
+    this.btnCreateColumn.textContent = 'Создать стикер';
+    this.btnGetTables = document.createElement('button');
+    this.btnGetTables .classList.add('get_tables');
+    this.btnGetTables.textContent = 'Показать доски';
     this.btnHistory = document.createElement('button');
     this.btnHistory.classList.add('history_btn');
-    this.btnHistory.textContent = 'History changes';
+    this.btnHistory.textContent = 'История доски';
     
     this.logout = document.createElement('p');
     this.logout.classList.add('logout');
-    this.logout.textContent = 'Logout'
+    this.logout.textContent = 'Выйти';
+
+    this.aboutChanges = document.createElement('p');
+    this.aboutChanges.classList.add('about_changes');
+    this.aboutChanges.textContent = `Для сохранения изменений использовать клавишу Enter. В записях для перехода на новую строку использовать сочетание клавиш Shift+Enter`;
 
     this.headerTable.append(this.nameTableTitle, this.nameTableTitleInput, this.btnChangeName, this.btnDelete);
-    this.headerBlock.append(this.headerTable, this.btnCreateColumn, this.btnHistory, this.logout);
+    this.headerBlock.append(this.headerTable, this.btnGetTables, this.btnCreateColumn, this.btnHistory, this.logout);
     this.header.append(this.headerBlock);
-    this.main.append(this.blockColumn)
+    this.main.append(this.blockColumn, this.aboutChanges)
   }
 
   viewStickers(id_sticker, nameSticker) {
-    
     this.main = document.querySelector('.block_columns');
     
     this.column = document.createElement('div');
@@ -77,15 +81,15 @@ export const ViewTablePage = class {
     this.headerPopMenu.classList.add('header_pop_menu');
     this.headerPopMenuTitle = document.createElement('p');
     this.headerPopMenuTitle.classList.add('header_pop_menu_title');
-    this.headerPopMenuTitle.textContent = 'Action with column';
+    this.headerPopMenuTitle.textContent = 'Действия со стикером';
 
     this.hr = document.createElement('hr');
 
     this.listPopMenu = document.createElement('ul');
     this.listPopMenu.classList.add('list_pop_menu');
 
-    this.liArray = ['Add record', 'Change sticker name', 'Sort by alphabet', 
-    'Sort by date create record (new)', 'Sort by date create record (old)', 'Delete column'];
+    this.liArray = ['Добавить запись', 'Изменить имя стикера', 'Сортировать по алфавиту', 
+    'Сортировать по дате создания (новые)', 'Сортировать по дате создания (старые)', 'Удалить стикер'];
     this.liArrayClass = ['add_record_menu', 'change_sticker_name', 'sort_alphabet', 
     'sort_new', 'sort_old', 'delete_sticker'];
 
@@ -101,7 +105,7 @@ export const ViewTablePage = class {
 
     this.btnAddRec = document.createElement('button');
     this.btnAddRec.classList.add('add_record');
-    this.btnAddRec.textContent = '+ Add record';
+    this.btnAddRec.textContent = '+ добавить запись';
 
     this.headerPopMenu.append(this.headerPopMenuTitle)
     this.popMenu.append(this.headerPopMenu, this.hr, this.listPopMenu)
@@ -137,7 +141,7 @@ export const ViewTablePage = class {
     this.recordBlock[i].appendChild(this.record)
   }
   
-  viewCreateStickers(/*id_sticker, nameSticker*/) {
+  viewCreateStickers() {
     this.main = document.querySelector('.block_columns');
 
     this.column = document.createElement('div');
@@ -162,14 +166,14 @@ export const ViewTablePage = class {
     this.headerPopMenu.classList.add('header_pop_menu');
     this.headerPopMenuTitle = document.createElement('p');
     this.headerPopMenuTitle.classList.add('header_pop_menu_title');
-    this.headerPopMenuTitle.textContent = 'Action with column';
+    this.headerPopMenuTitle.textContent = 'Действия со стикером';
 
     this.hr = document.createElement('hr');
 
     this.listPopMenu = document.createElement('ul');
     this.listPopMenu.classList.add('list_pop_menu');
-    this.liArray = ['Add record', 'Change sticker name', 'Sort by alphabet', 
-    'Sort by date create record (new)', 'Sort by date create record (old)', 'Delete column'];
+    this.liArray = ['Добавить запись', 'Изменить имя стикера', 'Сортировать по алфавиту', 
+    'Сортировать по дате создания (новые)', 'Сортировать по дате создания (старые)', 'Удалить стикер'];
     this.liArrayClass = ['add_record_menu', 'change_sticker_name', 'sort_alphabet', 
     'sort_new', 'sort_old', 'delete_sticker'];
 
@@ -185,7 +189,7 @@ export const ViewTablePage = class {
 
     this.btnAddRec = document.createElement('button');
     this.btnAddRec.classList.add('add_record');
-    this.btnAddRec.textContent = '+ Add record';
+    this.btnAddRec.textContent = '+ добавить запись';
  
     this.headerPopMenu.append(this.headerPopMenuTitle)
     this.popMenu.append(this.headerPopMenu, this.hr, this.listPopMenu)
@@ -213,7 +217,7 @@ export const ViewTablePage = class {
     this.historyBlock.classList.add('history_block');
     this.titleHistoryBlock = document.createElement('h3');
     this.titleHistoryBlock.classList.add('h3_history');
-    this.titleHistoryBlock.textContent = 'History changes';
+    this.titleHistoryBlock.textContent = 'История доски';
 
     this.historyList = document.createElement('div');
     this.historyList.classList.add('history_list');
