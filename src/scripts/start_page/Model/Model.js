@@ -34,7 +34,7 @@ export const ModelStartPage = class {
       API.createNewUser(login, password, date_birth, sex).then(data => {
         if (data.regStatus) {
           localStorage.clear()
-          setLocalStorageData('id_user', data.id_user);
+          this.onLoginUser(login, password)
         } else {
           ViewSP.onErrorValue('register-login')
         }
