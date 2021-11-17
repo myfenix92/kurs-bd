@@ -19,19 +19,18 @@ module.exports = {
   plugins: [
     // Removes/cleans build folders and unused assets when rebuilding
     new CleanWebpackPlugin(),
-
-    // Copies files from target to destination folder
-    // new CopyWebpackPlugin({
-    //   patterns: [
-    //     {
-    //       from: paths.src,
-    //       to: 'assets',
-    //       globOptions: {
-    //         ignore: ['*.DS_Store'],
-    //       },
-    //     },
-    //   ],
-    // }),
+  //  Copies files from target to destination folder
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: paths.src + '/image',
+          to: 'image',
+          globOptions: {
+            ignore: ['*.DS_Store'],
+          },
+        },
+      ],
+    }),
 
     // Generates an HTML file from a template
     // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
