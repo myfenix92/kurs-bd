@@ -84,7 +84,6 @@ export const ViewStartPage = class {
   }
 
   onErrorValue(value) {
-    console.log(value)
     if (value === 'register-login') {
       this.errorPassword = document.querySelector('.error_password.login');
       this.errorPassword.textContent = 'Логин уже существует';
