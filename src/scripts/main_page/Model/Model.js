@@ -41,7 +41,7 @@ export const ModelMainPage = class {
         ModelSP.init()
       } else {
         ViewMP.viewCalcBlockAvg(parseFloat(Number(data[0].avg_tab).toFixed(2)));
-        ViewMP.viewCalcBlockPercent(data[0].percent_tab)
+        ViewMP.viewCalcBlockPercent(parseFloat(Number(data[0].percent_tab).toFixed(1)));
       }
       
     })
@@ -74,7 +74,8 @@ export const ModelMainPage = class {
 
   profileData(id_user) {
     API.getAboutUser(id_user).then(data => {
-      ViewMP.viewProfile(data.date_birth.slice(0,10), data.all_days, data.sex)
+      ViewMP.viewProfile(data.date_birth.slice(0,10), data.all_days, 
+      data.all_users, data.online, data.sex)
     })
   }
 
@@ -87,5 +88,4 @@ export const ModelMainPage = class {
       ViewMP.viewLoginUser(data.login)
     })
   }
-
 }
