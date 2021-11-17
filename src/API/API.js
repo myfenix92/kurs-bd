@@ -44,6 +44,23 @@ export const APIClass = class {
     return this.data
   }
 
+  async logoutUser(id_user) {
+    this.bodyData = {
+      id_user
+    }
+
+    this.url = `${this.path}/logout`;
+    this.res = await fetch(this.url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    })
+   // this.data = await this.res.json();
+    //return this.data
+  }
+
   async getUserTables(id_user) {
     this.url = `${this.path}/main/tables/${id_user}`;
     this.res = await fetch(this.url, {
@@ -100,7 +117,11 @@ export const APIClass = class {
         .join('&');
 
       this.url = `http://127.0.0.8:8080/main/filter/${id_user}?${this.query}`;
-      this.res = await fetch(this.url);
+      this.res = await fetch(this.url, {
+        headers: {
+          Authorization: "Bearer " + getLocalStorageData('token'),
+        }
+      });
       this.data = await this.res.json();
       return this.data;
   }
@@ -146,6 +167,7 @@ export const APIClass = class {
     this.res = await fetch(this.url, {
       method: 'GET',
       headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
         'Content-Type': 'application/json',
       }
     });
@@ -158,6 +180,7 @@ export const APIClass = class {
     this.res = await fetch(this.url, {
       method: 'GET',
       headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
         'Content-Type': 'application/json',
       }
     });
@@ -179,7 +202,7 @@ export const APIClass = class {
       body: JSON.stringify(this.bodyData)
     });
     this.data = await this.res.json();
-  //  return this.data
+    return this.data
   }
 
   async isDone(id_record) {
@@ -238,6 +261,7 @@ export const APIClass = class {
     this.res = await fetch(this.url, {
       method: 'GET',
       headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
         'Content-Type': 'application/json',
       }
     });
@@ -251,6 +275,7 @@ export const APIClass = class {
     this.res = await fetch(this.url, {
       method: 'GET',
       headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
         'Content-Type': 'application/json',
       }
     });
@@ -264,6 +289,7 @@ export const APIClass = class {
     this.res = await fetch(this.url, {
       method: 'GET',
       headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
         'Content-Type': 'application/json',
       }
     });
@@ -294,8 +320,6 @@ export const APIClass = class {
       },
       body: JSON.stringify(this.bodyData)
     });
-  //  this.data = await this.res.json();
-  //  return this.data
   }
 
   async changeRecord(id_record, new_record) {
@@ -321,6 +345,7 @@ export const APIClass = class {
     this.res = await fetch(this.url, {
       method: 'GET',
       headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
         'Content-Type': 'application/json',
       }
     });
