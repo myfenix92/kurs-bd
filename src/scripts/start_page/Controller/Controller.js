@@ -53,9 +53,13 @@ export const ControllerStartPage = class {
           this.errorPassword.textContent = 'Введите дату рождения';
         } else if (this.password.value === this.passwordCheck.value) {
           ModelSP.onRegisterUser(this.login.value, this.password.value, this.date_birth.value, this.sex.find(r => r.checked).value);
-          document.querySelector('header').innerHTML = '';
-          document.querySelector('main').innerHTML = '';
-          ModelMP.init();
+          setTimeout(() => {
+            if (localStorage.length !== 0) {
+              document.querySelector('header').innerHTML = '';
+              document.querySelector('main').innerHTML = '';
+              ModelMP.init()
+            }
+          }, 300)
         }
 
       }
