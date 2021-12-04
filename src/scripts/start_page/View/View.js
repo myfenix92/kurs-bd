@@ -71,7 +71,7 @@ export const ViewStartPage = class {
       this.main.innerHTML = `<div class="main_sp"><form class="form_in form_sp">
         <p class="form_in_input login">
           <label for="login">Логин</label>
-          <input type="text" name="" id="login" placeholder="ваш логин">
+          <input type="text" name="" id="login" placeholder="ваш логин" maxLength="25">
           <p class="error_password login"></p>
         </p>
         <p class="form_in_input password">
