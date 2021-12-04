@@ -180,6 +180,7 @@ export const ViewMainPage = class {
     this.inputCreateTable.setAttribute('type', 'text');
     this.inputCreateTable.setAttribute('id', 'new_table');
     this.inputCreateTable.setAttribute('placeholder', 'имя доски');
+    this.inputCreateTable.setAttribute('maxLength', '50');
 
     this.btnCreateTable = document.createElement('button')
     this.btnCreateTable.classList.add('create_tbl_btn');
