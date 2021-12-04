@@ -20,6 +20,7 @@ export const ViewTablePage = class {
 
     this.nameTableTitleInput = document.createElement('input');
     this.nameTableTitleInput.classList.add('name_table_input', 'hide');
+    this.nameTableTitleInput.setAttribute('maxLength', '50');
     this.nameTableTitleInput.value = this.nameTableTitle.textContent;
 
     this.btnChangeName = document.createElement('button');
@@ -71,7 +72,7 @@ export const ViewTablePage = class {
     this.btnMenuColumn = document.createElement('button');
     this.btnMenuColumn.classList.add('menu_column');
     this.imgBtnMenu = document.createElement('img');
-    this.imgBtnMenu.src = '../../../image/more.png'
+    this.imgBtnMenu.src = './image/more.png'
 
     this.popMenu = document.createElement('div');
     this.popMenu.classList.add('pop_menu_column');
