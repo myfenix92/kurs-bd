@@ -145,7 +145,7 @@ export const ControllerTablePage = class {
         }, 300)
       } else {
         this.value.value = '';
-        this.value.setAttribute('placeholder', 'Record cant be empty')
+        this.value.setAttribute('placeholder', 'Запись не может быть пустой')
       }
     } 
   }
@@ -234,7 +234,7 @@ export const ControllerTablePage = class {
     if (event.key === 'Enter' && this.isFocus) {
       if (this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].value.trim() === '') {
         this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].value = '';
-        this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].setAttribute('placeholder', 'Name sticker cant be empty');
+        this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].setAttribute('placeholder', 'Имя стикера не может быть пустым');
       } else {
         this.nameStickerField[this.id_stickers.indexOf(this.id_sticker)].textContent = this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].value
         this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].value = '';
