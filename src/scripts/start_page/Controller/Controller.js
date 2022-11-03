@@ -68,6 +68,7 @@ export const ControllerStartPage = class {
     if (this.clickValue === 'login') {
       if (event.target.classList.contains('form_in_continue') && event.target.tagName === 'BUTTON') {
         ModelSP.onLoginUser(this.login.value, +this.password.value);
+        // попробовать получать токен и если 1, то на админ панель
         setTimeout(() => {
           if (localStorage.length !== 0) {
             document.querySelector('header').innerHTML = '';
@@ -75,7 +76,6 @@ export const ControllerStartPage = class {
             ModelMP.init()
           }
         }, 300)
-
       }
     } 
   };

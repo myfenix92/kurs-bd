@@ -5,7 +5,9 @@ import {
   APIClass
 } from '../../../API/index';
 import {
-  setLocalStorageData
+  getLocalStorageData,
+  setLocalStorageData,
+  getIdUser
 } from '../../../LocalStorage/index';
 
 const ViewSP = new ViewStartPage()
@@ -45,8 +47,8 @@ export const ModelStartPage = class {
     API.loginUser(login, password).then(data => {
       if (data.loginStatus) {
         localStorage.clear()
-        setLocalStorageData('id_user', data.id_user);
         setLocalStorageData('token', data.loginToken);
+        console.log('id: ', getIdUser())
       }
        else {
         ViewSP.onErrorValue('login-value')

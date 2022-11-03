@@ -10,12 +10,12 @@ export const ViewStartPage = class {
     this.headerBlock.classList.add('header_sp')
     this.headerTitle = document.createElement('h1');
     this.headerTitle.classList.add('header_h1');
-    this.headerTitle.textContent = 'Программа управления проектами';
+    this.headerTitle.textContent = 'Веб-приложение для ведения личных заметок';
     
     this.descript = document.createElement('p');
     this.descript.classList.add('header_descript');
-    this.descript.textContent = `Программа предназначена для создания отдельных досок 
-    и записей на них.`
+    this.descript.textContent = `Приложение предназначено для создания отдельных досок 
+    с записями на них.`
 
     this.headerBtn = document.createElement('div');
     this.headerBtn.classList.add('header_btn');

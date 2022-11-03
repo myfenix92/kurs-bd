@@ -1,5 +1,5 @@
 import regeneratorRuntime from 'regenerator-runtime';
-import { setLocalStorageData, getLocalStorageData } from '../LocalStorage/index';
+import { getLocalStorageData } from '../LocalStorage/index';
 
 export const APIClass = class {
   constructor() {
@@ -59,6 +59,20 @@ export const APIClass = class {
     })
    // this.data = await this.res.json();
     //return this.data
+  }
+
+  async getUsers() {
+    this.url = `${this.path}/users`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        'Authorization': "Bearer " + getLocalStorageData('token'),
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+//    console.log(this.data.rows)
+    return this.data;
   }
 
   async getUserTables(id_user) {

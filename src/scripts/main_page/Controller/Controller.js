@@ -8,7 +8,7 @@ import { APIClass } from "../../../API/index";
 
 import { ModelStartPage } from "../../start_page/Model";
 import { ModelTablePage } from "../../table-page/Model/index";
-import { setLocalStorageData ,getLocalStorageData } from '../../../LocalStorage/index';
+import { setLocalStorageData ,getLocalStorageData, getIdUser } from '../../../LocalStorage/index';
 
 const ViewMP = new ViewMainPage()
 const ModelMP = new ModelMainPage()
@@ -16,7 +16,7 @@ const ModelSP = new ModelStartPage()
 const ModelTP = new ModelTablePage();
 const API = new APIClass()
 
-const id_user = getLocalStorageData('id_user')
+//let id_user = getLocalStorageData('id_user')
 
 export const ControllerMainPage = class {
   constructor() {
@@ -34,12 +34,11 @@ export const ControllerMainPage = class {
 
     this.nameTable = document.querySelector('#new_table');
     if ((event.target.classList.contains('create_tbl_btn') && event.target.tagName === 'BUTTON')) {
-      console.log(localStorage)
       if (document.querySelector('#new_table').value.trim() === '') {
         document.querySelector('#new_table').value = '';
         document.querySelector('#new_table').setAttribute('placeholder', 'имя не может быть пустым');
       } else {
-        ModelMP.createTable(id_user, this.nameTable.value);
+        ModelMP.createTable(getIdUser(), this.nameTable.value);
       }
 
     }
@@ -50,7 +49,7 @@ export const ControllerMainPage = class {
       this.dateFrom = document.querySelector('#date_create_first');
       this.dateTo = document.querySelector('#date_create_second');
     if (event.target.classList.contains('filter_search') && event.target.tagName === 'BUTTON') {
-      ModelMP.filterTable(this.nameTable.value, this.dateFrom.value, this.dateTo.value, id_user);
+      ModelMP.filterTable(this.nameTable.value, this.dateFrom.value, this.dateTo.value, getIdUser());
       if (this.nameTable.value !== '' || this.dateFrom.value !== '' || this.dateTo.value !== '') {
         document.querySelector('.filter_clear').disabled = false;
       }
@@ -62,13 +61,13 @@ export const ControllerMainPage = class {
       this.dateFrom.value = '';
       this.dateTo.value = '';
       document.querySelector('.filter_clear').disabled = true;
-      ModelMP.onGetTables(id_user)
+      ModelMP.onGetTables(getIdUser())
     }
   }
 
   onProfileHandler(event) {
     if (event.target.classList.contains('about_user') && event.target.tagName === 'LI') {
-      ModelMP.profileData(getLocalStorageData('id_user'))
+      ModelMP.profileData(getIdUser())
     }
 
     if ((event.target.classList.contains('filter_menu') && !event.target.classList.contains('profile_setting'))
@@ -98,13 +97,13 @@ export const ControllerMainPage = class {
           this.errorPasswordCheck.textContent = 'Пароли не совпадают';
         }
         else if (this.password.value === this.passwordCheck.value) {
-          ModelMP.changeProfileData(id_user, this.password.value, this.bDay.value, this.sex.value)
+          ModelMP.changeProfileData(getIdUser(), this.password.value, this.bDay.value, this.sex.value)
           document.querySelector('.filter_menu').remove(); 
         }
       }
       
       else {
-        ModelMP.changeProfileData(id_user, this.password.value, this.bDay.value, this.sex.value)
+        ModelMP.changeProfileData(getIdUser(), this.password.value, this.bDay.value, this.sex.value)
         document.querySelector('.filter_menu').remove(); 
       }
     }
@@ -126,7 +125,7 @@ export const ControllerMainPage = class {
 
   onLogOutHandler(event) {
     if (event.target.classList.contains('logout') && event.target.tagName === 'LI') {
-     API.logoutUser(getLocalStorageData('id_user'));
+     API.logoutUser(getIdUser());
       localStorage.clear();
       document.querySelector('header').innerHTML = '';
       document.querySelector('main').innerHTML = '';

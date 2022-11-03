@@ -89,33 +89,33 @@ export const ViewMainPage = class {
    // this.main.appendChild(this.mainBlock);
   }
 
-  viewCalcBlockAvg(value) {
-    this.calcBlock = document.querySelector('.calc_data');
-    this.calcBlock.innerHTML = '';
-    this.avg = document.createElement('p');
-    this.avg.classList.add('avg');
-    this.avg.textContent = 'Среднее число досок на одного пользователя: '
-    this.avgData = document.createElement('span');
-    this.avgData.textContent = value;
-    this.avgData.classList.add('avg_data');
-    this.hr = document.createElement('hr');
+  // viewCalcBlockAvg(value) {
+  //   this.calcBlock = document.querySelector('.calc_data');
+  //   this.calcBlock.innerHTML = '';
+  //   this.avg = document.createElement('p');
+  //   this.avg.classList.add('avg');
+  //   this.avg.textContent = 'Среднее число досок на одного пользователя: '
+  //   this.avgData = document.createElement('span');
+  //   this.avgData.textContent = value;
+  //   this.avgData.classList.add('avg_data');
+  //   this.hr = document.createElement('hr');
     
-    this.avg.append(this.avgData);
-    this.calcBlock.append(this.avg, this.hr);
-  }
+  //   this.avg.append(this.avgData);
+  //   this.calcBlock.append(this.avg, this.hr);
+  // }
 
-  viewCalcBlockPercent(value) {
-    this.calcBlock = document.querySelector('.calc_data');
-    this.percent = document.createElement('p');
-    this.percent.classList.add('percent');
-    this.percentData = document.createElement('span');
-    this.percentData.classList.add('percent_data');
-    this.percent.textContent = 'Количество ваших досок от общего числа досок (в процентах): '
-    this.percentData.textContent = value;
+  // viewCalcBlockPercent(value) {
+  //   this.calcBlock = document.querySelector('.calc_data');
+  //   this.percent = document.createElement('p');
+  //   this.percent.classList.add('percent');
+  //   this.percentData = document.createElement('span');
+  //   this.percentData.classList.add('percent_data');
+  //   this.percent.textContent = 'Количество ваших досок от общего числа досок (в процентах): '
+  //   this.percentData.textContent = value;
 
-    this.percent.append(this.percentData);
-    this.calcBlock.append(this.percent)
-  }
+  //   this.percent.append(this.percentData);
+  //   this.calcBlock.append(this.percent)
+  // }
 
   viewTables(id_table, name_table, date_create, count_records) {
     this.tableBlock = document.querySelector('.table_block')
@@ -128,19 +128,19 @@ export const ViewMainPage = class {
     this.nameTable.textContent = name_table;
 
     this.dateCreate = document.createElement('p');
-    this.titleDate = document.createElement('span');
-    this.dateCreate.textContent = 'Дата создания: '
+   // this.titleDate = document.createElement('span');
+    this.dateCreate.textContent = `Дата создания: ${date_create.split('-').reverse().join('-')}`;
     this.dateCreate.classList.add('date_create');
-    this.titleDate.textContent = date_create.split('-').reverse().join('-');
+   // this.titleDate.textContent = date_create.split('-').reverse().join('-');
     
     this.countRecords = document.createElement('p');
-    this.titleCounts = document.createElement('span');
-    this.countRecords.textContent = 'Кол-во записей: '
+  //  this.titleCounts = document.createElement('span');
+    this.countRecords.textContent = `Кол-во записей: ${count_records}`;
     this.countRecords.classList.add('number_records');
-    this.titleCounts.textContent = count_records;
+  //  this.titleCounts.textContent = count_records;
 
-    this.dateCreate.appendChild(this.titleDate);
-    this.countRecords.appendChild(this.titleCounts);
+  //  this.dateCreate.appendChild(this.titleDate);
+  //  this.countRecords.appendChild(this.titleCounts);
     this.table.append(this.nameTable, this.dateCreate, this.countRecords)
     this.tableBlock.appendChild(this.table);
     
