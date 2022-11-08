@@ -2,8 +2,8 @@ import {
   ViewMainPage
 } from '../View/index';
 import {
-  ViewAdminPage
-} from '../../admin_page/View/index';
+  ModelAdminPage
+} from '../../admin_page/Model/index';
 import {
   APIClass
 } from '../../../API/index';
@@ -12,7 +12,7 @@ import { getLocalStorageData, getIdUser } from '../../../LocalStorage';
 import { ModelStartPage } from '../../start_page/Model';
 
 const ViewMP = new ViewMainPage()
-const ViewAP = new ViewAdminPage()
+const ModelAP = new ModelAdminPage()
 const API = new APIClass()
 const ModelSP = new ModelStartPage()
 export const ModelMainPage = class {
@@ -28,7 +28,7 @@ export const ModelMainPage = class {
           ViewMP.viewFilterBlock();
         }
         else {
-          ViewAP.viewAdminPage()
+          ModelAP.init()
         }
       }, 700)
     }, 500)

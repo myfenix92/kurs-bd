@@ -14,6 +14,10 @@ html {
   min-height: 100vh;
 }
 
+table, th, td {
+  border: 1px solid;
+}
+
 button {
   font-family: 'Roboto', sans-serif;
   border-color: #3498db;

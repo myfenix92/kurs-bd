@@ -72,7 +72,7 @@ export const APIClass = class {
     });
     this.data = await this.res.json();
 //    console.log(this.data.rows)
-    return this.data;
+    return this.data.rows;
   }
 
   async getUserTables(id_user) {
