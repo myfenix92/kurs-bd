@@ -17,7 +17,17 @@ export const ViewAdminPage = class {
     }
   }
 
-  viewAdminPage(id, login, sex, birth, registr, count_tbls, msg) {
+  viewAdminCountUsers(all_users, online) {
+    this.main = document.querySelector('.main_mp');
+    this.allUsers = document.createElement('p');
+    this.allUsers.textContent = `Всего пользователей: ${all_users}`;
+    this.onlineUsers = document.createElement('p');
+    this.onlineUsers.textContent = `Пользователей в сети: ${online}`;
+    this.main.insertBefore(this.onlineUsers, this.main.firstChild);
+    this.main.insertBefore(this.allUsers, this.main.firstChild);
+  }
+
+  viewAdminPage(id, login, sex, birth, registr, count_tbls, msg) { 
     this.table = document.querySelector('table');
     let htmlAdminTable = `
     <tr>
