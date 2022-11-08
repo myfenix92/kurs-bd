@@ -75,6 +75,33 @@ export const APIClass = class {
     return this.data.rows;
   }
 
+  async getMsgFromUsers() {
+    this.url = `${this.path}/user_msg_from_user`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        'Authorization': "Bearer " + getLocalStorageData('token'),
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+    return this.data.rows;
+  }
+
+  async getCountUsers() {
+    this.url = `${this.path}/count_users`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        'Authorization': "Bearer " + getLocalStorageData('token'),
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+//    console.log(this.data.rows)
+    return this.data.rows;
+  }
+
   async getUserTables(id_user) {
     this.url = `${this.path}/main/tables/${id_user}`;
     this.res = await fetch(this.url, {
