@@ -82,8 +82,7 @@ export const ModelMainPage = class {
 
   profileData(id_user) {
     API.getAboutUser(id_user).then(data => {
-      ViewMP.viewProfile(data.date_birth.slice(0,10), data.all_days, 
-      data.all_users, data.online, data.sex)
+      ViewMP.viewProfile(data.date_birth.slice(0,10), data.all_days, data.sex)
     })
   }
 

@@ -199,13 +199,13 @@ export const ViewMainPage = class {
     });
   }
 
-  viewProfile(value, all_days, all_users, online, sex) {
+  viewProfile(value, all_days, sex) {
     this.dataInput = {
       for: ['password', 'password_check', 'b-day'],
       type: ['password', 'password', 'date'],
       id: ['password', 'password_check', 'b-day'],
       text: ['Новый пароль', 'Повторите пароль', 'Измените дату рождения'],
-      value: ['', '', value, all_days, all_users, online],
+      value: ['', '', value, all_days],
       sex,
     }
 
@@ -230,16 +230,7 @@ export const ViewMainPage = class {
     this.btnClose.textContent = 'Закрыть';
 
     this.allDays = document.createElement('p');
-    this.allDays.textContent = `Вы с нами ${all_days} дня(дней)`;
-
-    
-    this.allUsers = document.createElement('p');
-    this.allUsers.textContent = `Всего пользователей: ${all_users}`;
-
-    
-    this.onlineUsers = document.createElement('p');
-    this.onlineUsers.textContent = `Пользователей в сети: ${online}`;
-    
+    this.allDays.textContent = `Вы с нами ${all_days} дня(дней)`;    
 
     for (let i = 0; i < 3; i++) {
       this.pInput = document.createElement('p');
@@ -287,7 +278,7 @@ export const ViewMainPage = class {
 
     this.pSex.append(this.titleSex, this.inputFemale, this.labelFemale,  this.inputMale, this.labelMale);
     this.profileSetting.prepend(this.pHeader);
-    this.profileSetting.append(this.pSex, this.allDays, this.allUsers, this.onlineUsers, this.btnChange, this.btnClose);
+    this.profileSetting.append(this.pSex, this.allDays, this.btnChange, this.btnClose);
     this.overlay.appendChild(this.profileSetting);
     this.headerClass.appendChild(this.overlay);
     this.header.appendChild(this.headerClass);
