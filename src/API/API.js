@@ -88,6 +88,21 @@ export const APIClass = class {
     return this.data.rows;
   }
 
+  async getDialogAdmin(id_user) {
+    try {
+      this.url = `${this.path}/users/dialog/${id_user}`;
+      this.res = await fetch(this.url, {
+        headers: {
+          Authorization: "Bearer " + getLocalStorageData('token'),
+        }
+      });
+      this.data = await this.res.json();
+      return this.data.rows
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
   async getCountUsers() {
     this.url = `${this.path}/count_users`;
     this.res = await fetch(this.url, {
@@ -98,7 +113,6 @@ export const APIClass = class {
       }
     });
     this.data = await this.res.json();
-//    console.log(this.data.rows)
     return this.data.rows;
   }
 
@@ -381,6 +395,24 @@ export const APIClass = class {
   //  return this.data
   }
 
+  async bannedUser(time_ban, id_user, ) {
+    this.bodyData = {
+      time_ban,
+      id_user, 
+    }
+console.log(time_ban, id_user)
+    this.url = `${this.path}/ban/${id_user}`;
+    this.res = await fetch(this.url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    });
+    this.data = await this.res.json();
+    return this.data
+  }
+
   async getHistoryChanges(id_table) {
     this.url = `${this.path}/table/history/${id_table}`;
     this.res = await fetch(this.url, {
@@ -399,6 +431,17 @@ export const APIClass = class {
     this.res = await fetch(this.url, {
       method: 'DELETE',
       headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+
+  async deleteUser(id_user) {
+    this.url = `${this.path}/users/${id_user}`;
+    this.res = await fetch(this.url, {
+      method: 'DELETE',
+      headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
         'Content-Type': 'application/json',
       }
     });

@@ -19,7 +19,6 @@ export const ModelAdminPage = class {
 
   onGetCountUsers() {
     API.getCountUsers().then(data => {
-      console.log(data)
       data.forEach((el) => {
         ViewAP.viewAdminCountUsers(el.all_users, el.online)
       })
@@ -32,16 +31,31 @@ export const ModelAdminPage = class {
         data.forEach((el) => {
           info_users.push(el);
         })
-        console.log(info_users)
     })
    
     API.getUsers().then(data => {
       ViewAP.ViewCreateTable();
       data.forEach((el) => {
         ViewAP.viewAdminPage(el.id_user, el.login, el.sex, el.date_birth.slice(0, 10), el.date_registr.slice(0, 10), el.count_tables,
-        info_users.find(count_msg => count_msg.id_user === el.id_user).count_msg)
+        info_users.find(count_msg => count_msg.id_user === el.id_user).count_msg, el.ban)
       })
     })
-    
+  }
+
+  onGetDialogAdmin(id_user) {
+    API.getDialogAdmin(id_user).then(data => {
+      data.forEach((el) => {
+        ViewAP.viewDialog(el.message, el.date_sent, el.type_msg)
+      })
+    })
+  }
+
+  onBannedUser(time_ban, id_user) {
+    API.bannedUser(time_ban, id_user);
+  }
+
+  onDeleteUser(id_user) {
+    console.log(id_user)
+    API.deleteUser(id_user);
   }
 }

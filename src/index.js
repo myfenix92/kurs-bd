@@ -1,4 +1,5 @@
 import './styles/style.css'
+import {ControllerAdminPage} from './scripts/admin_page/Controller/index';
 import {ControllerStartPage} from './scripts/start_page/Controller/index';
 import {ModelStartPage} from './scripts/start_page/Model/index';
 import {ControllerMainPage} from './scripts/main_page/Controller/index'
@@ -7,6 +8,7 @@ import {ModelMainPage} from './scripts/main_page/Model/index'
 import {ModelTablePage} from './scripts/table-page/Model/index';
 import {getLocalStorageData} from './LocalStorage';
 
+const ControllerAP = new ControllerAdminPage();
 const ControllerSP = new ControllerStartPage();
 const ModelSP = new ModelStartPage();
 const ControllerMP = new ControllerMainPage();
@@ -14,6 +16,9 @@ const ModelMP = new ModelMainPage();
 const ControllerTP = new ControllerTablePage();
 const ModelTP = new ModelTablePage();
 
+document.body.addEventListener('click', ControllerAP.onCreateTable);
+document.body.addEventListener('click', ControllerAP.onBannedUser);
+document.body.addEventListener('click', ControllerAP.onDeleteUser);
 document.body.addEventListener('click', ControllerSP.onClickHandler);
 document.body.addEventListener('click', ControllerSP.onContinueHandler);
 document.body.addEventListener('click', ControllerMP.onCreateTable);
