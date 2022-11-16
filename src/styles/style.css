@@ -213,22 +213,26 @@ button:disabled:hover {
   padding: 0.5rem;
   text-align: center;
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
-  width: 7vw;
+  width: 200px;
   height: 7vw;
   cursor: pointer;
   background-color: #2cabe6;
+  color: #fff;
 }
 .main_mp .table_block .table .name_table {
-  font-weight: bold;
+  padding: 0.2rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 32px;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .main_mp .table_block .table .date_create,
 .main_mp .table_block .table .number_records {
-  font-size: 0.9rem;
-  padding: 0.5rem 0;
+  font-size: 0.8em;
+  padding: 0.2rem;
   text-align: left;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .main_mp .table_block .table .create_table_block {
   font-size: 2rem;
@@ -391,27 +395,27 @@ button:disabled:hover {
 }
 
 .header_tp {
-  margin: 0 0 2rem 1rem;
-  padding: 1rem 0.5rem 0 0;
+  margin: 0 0 0.5rem 0;
+  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  background-color: rgba(227, 233, 236, 0.7);
 }
 .header_tp .name_table {
   font-size: 1.4rem;
-  padding: 1rem 1.5rem;
+  margin-bottom: 0.71rem;
   max-width: 21rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 32px;
 }
 .header_tp .name_table_input {
-  padding: 0.2rem;
   font-size: 1.4rem;
   margin-bottom: 0.71rem;
-  margin-left: 1.5rem;
-  margin-top: 0.75rem;
   width: 100%;
+  height: 32px;
 }
 .header_tp .logout {
   margin: 0.5rem;
@@ -505,6 +509,7 @@ main .history_overlay .history_block .history_list::-webkit-scrollbar-thumb {
   border-radius: 5px;
 }
 main .bg_img_block {
+  display: none;
   margin: 0 0.6rem;
   border-radius: 5px;
   width: 25vw;
@@ -512,7 +517,6 @@ main .bg_img_block {
   box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
   padding: 0.5rem;
   position: fixed;
-  display: block;
   text-align: center;
   top: 13%;
   z-index: 100;
@@ -521,6 +525,11 @@ main .bg_img_block .h3_bg_img {
   font-family: "Caveat", cursive;
   font-size: 1.8rem;
   text-align: center;
+}
+main .bg_img_block .input_img {
+  padding: 0.2rem 0.3rem;
+  margin: 0.5rem auto;
+  width: 100%;
 }
 main .bg_img_block .bg_image_list {
   display: flex;
@@ -531,10 +540,6 @@ main .bg_img_block .bg_image_list {
   overflow-x: hidden;
   margin: 0.2rem;
   height: 64vh;
-}
-main .bg_img_block .bg_image_list p {
-  word-wrap: break-word;
-  padding: 0.2rem;
 }
 main .bg_img_block .bg_image_list .color, main .bg_img_block .bg_image_list .image {
   width: 200px;
@@ -555,6 +560,9 @@ main .bg_img_block .bg_image_list::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
   border-radius: 5px;
 }
+main .bg_img_block.active {
+  display: inline-block;
+}
 
 .column {
   margin: 0 0.6rem;
@@ -571,6 +579,7 @@ main .bg_img_block .bg_image_list::-webkit-scrollbar-thumb {
   max-height: 5rem;
   word-break: break-all;
   overflow-y: auto;
+  cursor: pointer;
 }
 .column .title_column_span::-webkit-scrollbar {
   width: 8px;
@@ -587,7 +596,7 @@ main .bg_img_block .bg_image_list::-webkit-scrollbar-thumb {
   height: 2rem;
 }
 .column .column_list {
-  max-height: 55vh;
+  max-height: 60vh;
   overflow-y: auto;
   margin: 0.2rem;
 }
@@ -702,7 +711,7 @@ main .bg_img_block .bg_image_list::-webkit-scrollbar-thumb {
   background: transparent;
   border-color: transparent;
   box-shadow: none;
-  margin: 0;
+  margin: 0 !important;
   padding-top: 0.9rem;
 }
 
