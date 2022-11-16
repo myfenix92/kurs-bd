@@ -37,8 +37,9 @@ export const ModelMainPage = class {
   onGetTables(id_user) {
    // this.onGetCalcData(id_user);
     API.getUserTables(id_user).then(data => {
+      console.log(data)
       data.forEach((el) => {
-        ViewMP.viewTables(el.id_table, el.name_table, el.date_create.slice(0, 10), el.count_records)
+        ViewMP.viewTables(el.id_table, el.name_table, el.date_create.slice(0, 10), el.count_records, el.bg_image)
       })
     })
   }
