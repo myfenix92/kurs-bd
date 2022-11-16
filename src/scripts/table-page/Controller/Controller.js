@@ -74,28 +74,28 @@ export const ControllerTablePage = class {
     }
     this.isFocus = document.activeElement === document.querySelector('.new_sticker');
     if (event.key === 'Enter' && this.isFocus) {
-      if (document.querySelectorAll('.title_column_input')[0].value.trim() !== '') {
-        this.name_sticker = document.querySelectorAll('.title_column_input')[0];
+      if (document.querySelectorAll('.title_column_input')[document.querySelectorAll('.column').length - 1].value.trim() !== '') {
+        this.name_sticker = document.querySelectorAll('.title_column_input')[document.querySelectorAll('.column').length - 1];
         ModelTP.createSticker(getLocalStorageData('id_table'), this.name_sticker.value);
         
         this.name_sticker.classList.add('hide');
         this.name_sticker.classList.remove('new_sticker');
-        this.title_column = document.querySelectorAll('.title_column_span')[0];
+        this.title_column = document.querySelectorAll('.title_column_span')[document.querySelectorAll('.column').length - 1];
         this.title_column.textContent = this.name_sticker.value;
       } else {
-        this.name_sticker = document.querySelectorAll('.title_column_input')[0];
+        this.name_sticker = document.querySelectorAll('.title_column_input')[document.querySelectorAll('.column').length - 1];
         this.name_sticker.value = '';
         this.name_sticker.setAttribute('placeholder', 'имя стикера не может быть пустым')
       }
       setTimeout(() => {
         API.getUserTableData(getLocalStorageData('id_table')).then(data => {
-          document.querySelectorAll('.column')[0].setAttribute('data-id_sticker', data[0].id_sticker)
-          document.querySelectorAll('.pop_menu_column')[0].setAttribute('id', data[0].id_sticker)
+          document.querySelectorAll('.column')[document.querySelectorAll('.column').length - 1].setAttribute('data-id_sticker', data[0].id_sticker)
+          document.querySelectorAll('.pop_menu_column')[document.querySelectorAll('.column').length - 1].setAttribute('id', data[0].id_sticker)
         })
       }, 500)
     } 
     if (!this.isFocus && document.querySelector('.new_sticker') !== null && !event.target.classList.contains('create_column')) {
-      document.querySelectorAll('.column')[0].remove();
+      document.querySelectorAll('.column')[document.querySelectorAll('.column').length - 1].remove();
     }
   }
 
@@ -213,26 +213,29 @@ export const ControllerTablePage = class {
       this.id_stickers.push(e.getAttribute('data-id_sticker'))
     })
     this.id_sticker;
+    
     this.nameStickerField = document.querySelectorAll('.title_column_span');
     this.nameStickerFieldInput = document.querySelectorAll('.title_column_input');
     this.isFocus = document.activeElement === this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)]
-    if (event.target.tagName === 'LI' && event.target.classList.contains('change_sticker_name')) {
-      this.id_sticker = event.target.parentNode.parentNode.parentNode.getAttribute('data-id_sticker')
+    if (event.target.tagName === 'SPAN' && event.target.classList.contains('title_column_span')) {
+      this.id_sticker = event.target.parentNode.parentNode.getAttribute('data-id_sticker')
+      //(event.target.tagName === 'LI' && event.target.classList.contains('change_sticker_name')) ||
+      //this.id_sticker = event.target.parentNode.parentNode.parentNode.getAttribute('data-id_sticker')
       document.querySelectorAll('.column').forEach((e) => {
         if (e.getAttribute('data-id_sticker') === this.id_sticker) {
           this.isFocus = !this.isFocus
           this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].value = this.nameStickerField[this.id_stickers.indexOf(this.id_sticker)].textContent
-          this.nameStickerField[this.id_stickers.indexOf(this.id_sticker)].classList.add('hide')
-          this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.add('show');
-          this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.remove('hide');
+          this.nameStickerField[this.id_stickers.indexOf(this.id_sticker)].classList.toggle('hide') //add
+          this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.toggle('show'); //add
+          this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.toggle('hide'); //remove
           this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].focus();
         }
       })
     }
     if (!this.isFocus && document.querySelector('.title_column_input.show') !== null) {
-      this.nameStickerField[this.id_stickers.indexOf(this.id_sticker)].classList.remove('hide');
-      this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.remove('show');
-      this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.add('hide');
+      this.nameStickerField[this.id_stickers.indexOf(this.id_sticker)].classList.toggle('hide'); //remove
+      this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.toggle('show'); //remove
+      this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.toggle('hide'); //add
     }
     if (event.key === 'Enter' && this.isFocus) {
       if (this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].value.trim() === '') {
@@ -241,9 +244,9 @@ export const ControllerTablePage = class {
       } else {
         this.nameStickerField[this.id_stickers.indexOf(this.id_sticker)].textContent = this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].value
         this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].value = '';
-        this.nameStickerField[this.id_stickers.indexOf(this.id_sticker)].classList.remove('hide');
-        this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.remove('show');
-        this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.add('hide');
+        this.nameStickerField[this.id_stickers.indexOf(this.id_sticker)].classList.toggle('hide'); //remove
+        this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.toggle('show'); //remove
+        this.nameStickerFieldInput[this.id_stickers.indexOf(this.id_sticker)].classList.toggle('hide'); //add
         ModelTP.changeNameSticker(this.id_sticker, this.nameStickerField[this.id_stickers.indexOf(this.id_sticker)].textContent);
       }
     }
@@ -334,13 +337,19 @@ export const ControllerTablePage = class {
   }
 
   onviewBgImageChangesHandler(event) {
-    if (event.target.tagName === 'BUTTON' && event.target.classList.contains('change_bg_table') && document.querySelector('.bg_img_block') === null) {
-      ViewTP.viewBgImageChanges()
+    if (event.target.tagName === 'BUTTON' && event.target.classList.contains('change_bg_table')) {
+      event.stopPropagation();
+      document.querySelector('.bg_img_block').classList.toggle('active');
     }
-    // if (event.target.classList.contains('change_bg_table') && document.querySelector('.bg_img_block') !== null) {
-    //   console.log(event.target)
-    //   document.querySelector('.bg_img_block').remove()
-    // }
+    let target = event.target;
+    let its_menu = target == document.querySelector('.bg_img_block') || document.querySelector('.bg_img_block').contains(target);
+    let its_hamburger = target == document.querySelector('.change_bg_table');
+    let menu_is_active = document.querySelector('.bg_img_block').classList.contains('active');
+
+    if (!its_menu && !its_hamburger && menu_is_active) {
+        document.querySelector('.bg_img_block').classList.toggle('active');
+      }
+
   }
 
   onDeleteTable(event) {
@@ -363,8 +372,8 @@ export const ControllerTablePage = class {
       document.querySelector('header').innerHTML = '';
       document.querySelector('main').innerHTML = '';
       var body = document.querySelector('body')
-      
-      body.style.setProperty('--body-image', `linear-gradient(#218aba, #162657)`)
+      setLocalStorageData('bg_table', 'linear-gradient(#218aba, #162657)')
+      body.style.setProperty('--body-image', getLocalStorageData('bg_table'))
       ModelMP.init()
     }
   }
@@ -409,7 +418,8 @@ export const ControllerTablePage = class {
 
   onViewImageInputHandler(event) {
     this.image = ''
-    if(event.key === 'Enter' && (document.querySelector('.image') !== null || document.querySelector('.bg_image_error') !== null)) {
+    this.isFocus = document.activeElement === document.querySelector('.input_img');
+    if(event.key === 'Enter' && this.isFocus) {
       this.image = document.querySelector('.input_img').value
       numberPage = 1;
       this.bgImageList = document.querySelector('.bg_image_list');
@@ -422,22 +432,20 @@ export const ControllerTablePage = class {
 
   onChangeBgTable(event) {
   let composed = []
+  var body = document.querySelector('body')
    if (event.target.classList.contains('image')) {
     ViewTP.highlight(event.target)
     composed = event.composedPath()
-
-    document.querySelector('body').style.background = 'none'
-    document.querySelector('body').style.backgroundImage = 
-    `url("${composed[0].style.backgroundImage.slice(5, composed[0].style.backgroundImage.length - 9)}=&w=2400)"`
-    document.querySelector('body').style.backgroundSize = `cover`
-    document.querySelector('body').style.backgroundPosition = `50%`
+    setLocalStorageData('bg_table', composed[0].style.backgroundImage.slice(5, composed[0].style.backgroundImage.length - 9))
+    body.style.setProperty('--body-image', `url("${getLocalStorageData('bg_table')}=&w=2400)") 50%/cover`);
     API.changeBgTable(getLocalStorageData('id_table'), 
     composed[0].style.backgroundImage.slice(5, composed[0].style.backgroundImage.length - 9))
    }
    if (event.target.classList.contains('color')) {
     ViewTP.highlight(event.target)
-    composed = Event.composedPath()
-    document.querySelector('body').style.background = composed[0].style.background
+    composed = event.composedPath()
+    setLocalStorageData('bg_table', composed[0].style.background)
+    body.style.setProperty('--body-image', `${getLocalStorageData('bg_table')}`);
     API.changeBgTable(getLocalStorageData('id_table'), composed[0].style.background)
    }
   }
