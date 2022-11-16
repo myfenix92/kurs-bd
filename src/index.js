@@ -47,16 +47,29 @@ document.body.addEventListener('click', ControllerTP.onViewColorHandler);
 document.body.addEventListener('click', ControllerTP.onViewImageHandler);
 document.body.addEventListener('click', ControllerTP.onViewImageLoadMoreHandler);
 document.body.addEventListener('click', ControllerTP.onChangeBgTable);
-document.body.addEventListener('keydown', ControllerTP.onViewImageInputHandler);
+document.body.addEventListener('keyup', ControllerTP.onViewImageInputHandler);
 document.body.addEventListener('click', ControllerTP.onBackToTables);
 document.body.addEventListener('click', ControllerTP.onDeleteTable);
 document.body.addEventListener('click', ControllerTP.onLogOutHandler);
 
 document.addEventListener("DOMContentLoaded", function () {
+  var body = document.querySelector('body')
+  if (getLocalStorageData('token')) {
+    if (getLocalStorageData('bg_table').includes('unsplash')) {     
+      body.style.setProperty('--body-image', `url("${getLocalStorageData('bg_table')}=&w=2400)") 50%/cover`);
+    } else {
+      body.style.setProperty('--body-image', `${getLocalStorageData('bg_table')}`);
+    }
+  }
+
+
+
   if (!getLocalStorageData('token') && getLocalStorageData('id_table') === null) {
+    body.style.setProperty('--body-image', `linear-gradient(#218aba, #162657)`);
     ModelSP.init();
   }
   if (getLocalStorageData('token') && getLocalStorageData('id_table') === undefined) {
+    body.style.setProperty('--body-image', `linear-gradient(#218aba, #162657)`);
     ModelMP.init();
   }
   if (getLocalStorageData('token') && getLocalStorageData('id_table') !== undefined) {
