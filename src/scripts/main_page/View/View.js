@@ -117,11 +117,16 @@ export const ViewMainPage = class {
   //   this.calcBlock.append(this.percent)
   // }
 
-  viewTables(id_table, name_table, date_create, count_records) {
+  viewTables(id_table, name_table, date_create, count_records, bg_image) {
     this.tableBlock = document.querySelector('.table_block')
     this.table = document.createElement('div');
     this.table.classList.add('table');
     this.table.setAttribute('data-id_table', id_table);
+    if (bg_image.includes('unsplash')) {     
+      this.table.style.background = `url("${bg_image}=&w=200)") 50%/cover`;
+    } else {
+      this.table.style.background = `${bg_image}`;
+    }
 
     this.nameTable = document.createElement('p');
     this.nameTable.classList.add('name_table');
