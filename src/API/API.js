@@ -1,6 +1,7 @@
 import regeneratorRuntime from 'regenerator-runtime';
 import { getLocalStorageData } from '../LocalStorage/index';
 
+
 export const APIClass = class {
   constructor() {
     this.path = 'http://127.0.0.8:8080'
@@ -230,6 +231,19 @@ export const APIClass = class {
     return this.data;
   }
 
+  async getBgTableData(id_table) {
+    this.url = `${this.path}/table/bg/${id_table}`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+    return this.data;
+  }
+
   async getStickerValue(id_sticker) {
     this.url = `${this.path}/table/sticker/${id_sticker}`;
     this.res = await fetch(this.url, {
@@ -249,6 +263,23 @@ export const APIClass = class {
       new_name_table,
     }
     this.url = `${this.path}/table/${id_table}`;
+    this.res = await fetch(this.url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    });
+    this.data = await this.res.json();
+    return this.data
+  }
+
+  async changeBgTable(id_table, new_bg) {
+    this.bodyData = {
+      id_table,
+      new_bg,
+    }
+    this.url = `${this.path}/table/bg/${id_table}`;
     this.res = await fetch(this.url, {
       method: 'PUT',
       headers: {

@@ -118,6 +118,7 @@ export const ControllerMainPage = class {
       setLocalStorageData('id_table', +this.id_table)
       setLocalStorageData('name_table', this.nameTable)
       setTimeout(() => {
+        ModelTP.getBgTableData(getLocalStorageData('id_table'))
         ModelTP.getStickers(getLocalStorageData('id_table'), getLocalStorageData('name_table'))
       }, 200)
     }

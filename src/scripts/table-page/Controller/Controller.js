@@ -20,6 +20,7 @@ const ModelMP = new ModelMainPage()
 const ViewTP = new ViewTablePage()
 const API = new APIClass()
 
+let numberPage = 1;
 export const ControllerTablePage = class {
 
   onChangeNameTableHandler(event) {
@@ -141,8 +142,10 @@ export const ControllerTablePage = class {
           API.getStickerValue(this.id_sticker).then(data => {
             document.querySelector('.input_create').remove()
             ViewTP.viewRecords(data[data.length - 1].id_record, data[data.length - 1].record, this.id_stickers.indexOf(this.id_sticker), data[data.length - 1].done)
+            ViewTP.viewCreateRecord(this.id_stickers.indexOf(this.id_sticker))
           })
         }, 300)
+        
       } else {
         this.value.value = '';
         this.value.setAttribute('placeholder', 'Запись не может быть пустой')
@@ -328,7 +331,16 @@ export const ControllerTablePage = class {
       if (document.querySelector('.history_overlay') !== null)
       document.querySelector('.history_overlay').remove()
     }
-    
+  }
+
+  onviewBgImageChangesHandler(event) {
+    if (event.target.tagName === 'BUTTON' && event.target.classList.contains('change_bg_table') && document.querySelector('.bg_img_block') === null) {
+      ViewTP.viewBgImageChanges()
+    }
+    // if (event.target.classList.contains('change_bg_table') && document.querySelector('.bg_img_block') !== null) {
+    //   console.log(event.target)
+    //   document.querySelector('.bg_img_block').remove()
+    // }
   }
 
   onDeleteTable(event) {
@@ -340,7 +352,7 @@ export const ControllerTablePage = class {
       document.querySelector('main').innerHTML = '';
       setTimeout(() => {
         ModelMP.init()
-      })
+      }, 100)
     }
   }
 
@@ -350,6 +362,9 @@ export const ControllerTablePage = class {
       setLocalStorageData('name_table');
       document.querySelector('header').innerHTML = '';
       document.querySelector('main').innerHTML = '';
+      var body = document.querySelector('body')
+      
+      body.style.setProperty('--body-image', `linear-gradient(#218aba, #162657)`)
       ModelMP.init()
     }
   }
@@ -361,5 +376,69 @@ export const ControllerTablePage = class {
       document.querySelector('main').innerHTML = '';
       ModelSP.init()
     }
+  }
+
+  onViewColorHandler(event) {
+    if (event.target.tagName === 'BUTTON' && event.target.classList.contains('btn_color')) {
+      if (document.querySelector('.color') === null) {
+        ViewTP.viewColorBlock()
+      }
+    }
+  }
+
+
+  onViewImageHandler(event) {
+    if (event.target.tagName === 'BUTTON' && event.target.classList.contains('btn_img')) {
+      if (document.querySelector('.image') === null) {
+        numberPage = 1;
+        ModelTP.getBgImage(numberPage)
+      }
+    }
+  }
+
+  onViewImageLoadMoreHandler(event) {
+    if (event.target.tagName === 'BUTTON' && event.target.classList.contains('btn_load_img')) { 
+      if (document.querySelector('.input_img').value === '') {
+        document.querySelector('.input_img').value = 'morning'
+        
+      }
+      ModelTP.getBgImage(++numberPage, document.querySelector('.input_img').value)
+        
+    }
+  }
+
+  onViewImageInputHandler(event) {
+    this.image = ''
+    if(event.key === 'Enter' && (document.querySelector('.image') !== null || document.querySelector('.bg_image_error') !== null)) {
+      this.image = document.querySelector('.input_img').value
+      numberPage = 1;
+      this.bgImageList = document.querySelector('.bg_image_list');
+      while(this.bgImageList.firstChild){
+        this.bgImageList.removeChild(this.bgImageList.firstChild);
+    }
+    ModelTP.getBgImage(numberPage, this.image)      
+  }
+  }
+
+  onChangeBgTable(event) {
+  let composed = []
+   if (event.target.classList.contains('image')) {
+    ViewTP.highlight(event.target)
+    composed = event.composedPath()
+
+    document.querySelector('body').style.background = 'none'
+    document.querySelector('body').style.backgroundImage = 
+    `url("${composed[0].style.backgroundImage.slice(5, composed[0].style.backgroundImage.length - 9)}=&w=2400)"`
+    document.querySelector('body').style.backgroundSize = `cover`
+    document.querySelector('body').style.backgroundPosition = `50%`
+    API.changeBgTable(getLocalStorageData('id_table'), 
+    composed[0].style.backgroundImage.slice(5, composed[0].style.backgroundImage.length - 9))
+   }
+   if (event.target.classList.contains('color')) {
+    ViewTP.highlight(event.target)
+    composed = Event.composedPath()
+    document.querySelector('body').style.background = composed[0].style.background
+    API.changeBgTable(getLocalStorageData('id_table'), composed[0].style.background)
+   }
   }
 }

@@ -1,3 +1,4 @@
+import { createApi } from 'unsplash-js';
 import {
   APIClass
 } from "../../../API/index"
@@ -8,6 +9,16 @@ import {
 const ViewTP = new ViewTablePage()
 const API = new APIClass()
 export const ModelTablePage = class {
+
+  getBgTableData(id_table) {
+    API.getBgTableData(id_table).then(data => {
+      var body = document.querySelector('body')
+      
+      body.style.setProperty('--body-image', `url("${data.bg_image}=&w=2400)"`);
+    document.querySelector('body').style.backgroundSize = `cover`
+    document.querySelector('body').style.backgroundPosition = `50%`
+    })
+  }
 
   getStickers(id_table, nameTable) {
     this.number_sticker = 0
@@ -36,6 +47,10 @@ export const ModelTablePage = class {
         this.nameTable.setAttribute('placeholder', data.message);
      }
     })
+  }
+
+  changeBgTable(id_table, new_bg) {
+    API.changeBgTable(id_table, new_bg)
   }
 
   isDone(id_record) {
@@ -108,5 +123,36 @@ export const ModelTablePage = class {
 
   deleteTable(id_table) {
     API.deleteTable(id_table);
+  }
+
+  getBgImage(page, query = 'morning') {
+    const unsplash = createApi({
+      accessKey: 'DV7WC8XDv7absV4qiByr-gG2HlYcViKFAR3s_tDQS8A',
+    });
+    this.currentPage = 1;
+    
+    document.querySelector('.btn_load_img').style.display = 'inline'
+    unsplash.search.getPhotos({
+      query: query,
+      page: page,
+      perPage: 10,
+      orientation: 'landscape',
+    }).then(data => {
+      if (data.response.total_pages === 0) {
+        document.querySelector('.bg_image_error').textContent = 'Ничего не найдено'
+      } else {
+        
+        document.querySelector('.bg_image_error').textContent = ''
+        this.currentPage = data.response.total_pages
+        data.response.results.forEach(img => {
+          ViewTP.viewImageBlock(img.id, img.urls.raw)
+        })
+
+        if (this.currentPage === page) {
+          document.querySelector('.btn_load_img').style.display = 'none'
+        }
+      }
+    });
+
   }
 }

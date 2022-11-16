@@ -42,6 +42,12 @@ document.body.addEventListener('keyup', ControllerTP.onChangeNameStickerHandler)
 document.body.addEventListener('click', ControllerTP.onChangeRecordHandler);
 document.body.addEventListener('keyup', ControllerTP.onChangeRecordHandler);
 document.body.addEventListener('click', ControllerTP.onHistoryChangesHandler);
+document.body.addEventListener('click', ControllerTP.onviewBgImageChangesHandler);
+document.body.addEventListener('click', ControllerTP.onViewColorHandler);
+document.body.addEventListener('click', ControllerTP.onViewImageHandler);
+document.body.addEventListener('click', ControllerTP.onViewImageLoadMoreHandler);
+document.body.addEventListener('click', ControllerTP.onChangeBgTable);
+document.body.addEventListener('keydown', ControllerTP.onViewImageInputHandler);
 document.body.addEventListener('click', ControllerTP.onBackToTables);
 document.body.addEventListener('click', ControllerTP.onDeleteTable);
 document.body.addEventListener('click', ControllerTP.onLogOutHandler);

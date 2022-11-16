@@ -26,6 +26,9 @@ export const ViewTablePage = class {
     this.btnChangeName = document.createElement('button');
     this.btnChangeName.classList.add('change_name_table');
     this.btnChangeName.textContent = 'Изменить имя доски';
+    this.btnChangeBgImage = document.createElement('button');
+    this.btnChangeBgImage.classList.add('change_bg_table');
+    this.btnChangeBgImage.textContent = 'Изменить фон доски';
     this.btnDelete = document.createElement('button');
     this.btnDelete.classList.add('delete_table');
     this.btnDelete.textContent = 'Удалить доску'
@@ -48,7 +51,7 @@ export const ViewTablePage = class {
     this.aboutChanges.classList.add('about_changes');
     this.aboutChanges.textContent = `Для сохранения изменений использовать клавишу Enter. В записях для перехода на новую строку использовать сочетание клавиш Shift+Enter`;
 
-    this.headerTable.append(this.nameTableTitle, this.nameTableTitleInput, this.btnChangeName, this.btnDelete);
+    this.headerTable.append(this.nameTableTitle, this.nameTableTitleInput, this.btnChangeName, this.btnChangeBgImage, this.btnDelete);
     this.headerBlock.append(this.headerTable, this.btnGetTables, this.btnCreateColumn, this.btnHistory, this.logout);
     this.header.append(this.headerBlock);
     this.main.append(this.blockColumn, this.aboutChanges)
@@ -226,6 +229,88 @@ export const ViewTablePage = class {
     this.historyBlock.append(this.titleHistoryBlock, this.historyList);
     this.overlay.appendChild(this.historyBlock);
     this.main.appendChild(this.overlay);
+  }
+
+  viewBgImageChanges() {
+    this.main = document.querySelector('main');
+    this.overlay = document.createElement('div');
+    this.overlay.classList.add('bg_img_block');
+
+    this.titleBgImageBlock = document.createElement('h3');
+    this.titleBgImageBlock.classList.add('h3_bg_img');
+    this.titleBgImageBlock.textContent = 'Выберите фон';
+
+    this.bgImageBtn = document.createElement('button');
+    this.bgImageBtn.classList.add('btn_img')
+    this.bgImageBtn.textContent = 'Изображение'
+
+    this.bgColorBtn = document.createElement('button');
+    this.bgColorBtn.classList.add('btn_color')
+    this.bgColorBtn.textContent = 'Цвет'
+
+    this.br = document.createElement('br');
+
+    this.bgColorInput = document.createElement('input');
+    this.bgColorInput.classList.add('input_img')
+    this.bgColorInput.placeholder = 'Изображения'
+    this.bgColorInput.style.display = 'none'
+
+    this.bgImageList = document.createElement('div');
+    this.bgImageList.classList.add('bg_image_list');
+
+    this.bgImageError = document.createElement('p');
+    this.bgImageError.classList.add('bg_image_error');
+
+
+    this.btnLoadMore = document.createElement('button');
+    this.btnLoadMore.textContent = 'Загрузить еще'
+    this.btnLoadMore.classList.add('btn_load_img')
+    this.btnLoadMore.style.display = 'none'
+    this.bgImageList.appendChild(this.btnLoadMore)
+
+    this.overlay.append(this.titleBgImageBlock, this.bgImageBtn, this.bgColorBtn, this.br, this.bgColorInput, this.bgImageError, this.bgImageList, this.btnLoadMore);
+    this.main.appendChild(this.overlay);
+  }
+
+  viewColorBlock() {
+    this.bgImageList = document.querySelector('.bg_image_list');
+    document.querySelector('.input_img').value = '';
+    document.querySelector('.input_img').style.display = 'none'
+    document.querySelector('.btn_load_img').style.display = 'none'
+    while(this.bgImageList.firstChild){
+      this.bgImageList.removeChild(this.bgImageList.firstChild);
+  }
+    this.colorArray = ['gray', 'red', 'orange', 'yellow', 'green', 'lightblue', 'blue', 'purple']
+    for (let i = 0; i < this.colorArray.length; i++) {
+      this.bgColorBlock = document.createElement('div');
+      this.bgColorBlock.classList.add('color', `color_${this.colorArray[i]}`);
+      this.bgColorBlock.style.background = this.colorArray[i]
+      this.bgImageList.appendChild(this.bgColorBlock);
+    }
+  }
+
+  viewImageBlock(id, image) {
+    this.bgImageList = document.querySelector('.bg_image_list');
+    if (document.querySelector('.color') !== null) {
+      while(this.bgImageList.firstChild){
+        this.bgImageList.removeChild(this.bgImageList.firstChild);
+    }
+    }
+    document.querySelector('.input_img').style.display = 'inline'
+    
+      this.bgImgBlock = document.createElement('div');
+      this.bgImgBlock.classList.add('image', `image_${id}`);
+      this.bgImgBlock.style.backgroundImage = `url(${image}=&w=200)`
+      this.bgImageList.appendChild(this.bgImgBlock);
+  }
+
+  highlight(target) {
+    this.selected;
+    if (this.selected) { // убрать существующую подсветку, если есть
+      this.selected.style.outline = 'none'
+    }
+    this.selected = target;
+    this.selected.style.outline = 'dashed'; // подсветить новый td
   }
 
   viewCreateHistoryChanges(changes, old_value, table, sticker, id_sticker, record, date, time) {
