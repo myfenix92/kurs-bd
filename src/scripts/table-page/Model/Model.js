@@ -5,6 +5,7 @@ import {
 import {
   ViewTablePage
 } from "../View/index"
+import { getLocalStorageData, setLocalStorageData } from "../../../LocalStorage";
 
 const ViewTP = new ViewTablePage()
 const API = new APIClass()
@@ -13,10 +14,12 @@ export const ModelTablePage = class {
   getBgTableData(id_table) {
     API.getBgTableData(id_table).then(data => {
       var body = document.querySelector('body')
-      
-      body.style.setProperty('--body-image', `url("${data.bg_image}=&w=2400)"`);
-    document.querySelector('body').style.backgroundSize = `cover`
-    document.querySelector('body').style.backgroundPosition = `50%`
+      setLocalStorageData('bg_table', data.bg_image)
+      if (data.bg_image.includes('unsplash')) {     
+        body.style.setProperty('--body-image', `url("${getLocalStorageData('bg_table')}=&w=2400)") 50%/cover`);
+      } else {
+        body.style.setProperty('--body-image', `${getLocalStorageData('bg_table')}`);
+      }
     })
   }
 
@@ -29,6 +32,7 @@ export const ModelTablePage = class {
       })
     })
     ViewTP.viewTableData(nameTable)
+    ViewTP.viewBgImageChanges()
   }
 
   getStickerValue(id_sticker, i) {
