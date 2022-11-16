@@ -92,9 +92,9 @@ export const ViewTablePage = class {
     this.listPopMenu = document.createElement('ul');
     this.listPopMenu.classList.add('list_pop_menu');
 
-    this.liArray = ['Добавить запись', 'Изменить имя стикера', 'Сортировать по алфавиту', 
+    this.liArray = ['Сортировать по алфавиту', 
     'Сортировать по дате создания (новые)', 'Сортировать по дате создания (старые)', 'Удалить стикер'];
-    this.liArrayClass = ['add_record_menu', 'change_sticker_name', 'sort_alphabet', 
+    this.liArrayClass = ['sort_alphabet', 
     'sort_new', 'sort_old', 'delete_sticker'];
 
     for (let i = 0; i < this.liArray.length; i++) {
@@ -176,9 +176,11 @@ export const ViewTablePage = class {
 
     this.listPopMenu = document.createElement('ul');
     this.listPopMenu.classList.add('list_pop_menu');
-    this.liArray = ['Добавить запись', 'Изменить имя стикера', 'Сортировать по алфавиту', 
+   
+    this.liArray = ['Сортировать по алфавиту', 
     'Сортировать по дате создания (новые)', 'Сортировать по дате создания (старые)', 'Удалить стикер'];
-    this.liArrayClass = ['add_record_menu', 'change_sticker_name', 'sort_alphabet', 
+
+    this.liArrayClass = ['sort_alphabet', 
     'sort_new', 'sort_old', 'delete_sticker'];
 
     for (let i = 0; i < this.liArray.length; i++) {
@@ -200,7 +202,7 @@ export const ViewTablePage = class {
     this.btnMenuColumn.append(this.imgBtnMenu)
     this.titleColumn.append(this.titleSpan, this.titleColumnInput, this.btnMenuColumn)
     this.column.append(this.titleColumn, this.popMenu, this.columnList, this.btnAddRec)
-    this.main.prepend(this.column);
+    this.main.append(this.column);
     this.titleColumnInput.focus()
   }
 
