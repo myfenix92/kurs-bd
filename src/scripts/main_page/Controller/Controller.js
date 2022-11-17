@@ -110,9 +110,9 @@ export const ControllerMainPage = class {
   }
 
   onclickTable(event) {
-    if ((event.target.parentNode.classList.contains('table') || event.target.parentNode.parentNode.classList.contains('table')) && !event.target.parentNode.classList.contains('new_table')) {
-      this.id_table = event.target.parentNode.getAttribute('data-id_table');
-      this.nameTable = event.path[1].firstChild.textContent
+    if (event.target.closest('div').dataset.id_table) {
+      this.id_table = event.target.closest('div').dataset.id_table;
+      this.nameTable = event.target.closest('div').firstChild.textContent
       document.querySelector('header').innerHTML = '';
       document.querySelector('main').innerHTML = '';
       setLocalStorageData('id_table', +this.id_table)
