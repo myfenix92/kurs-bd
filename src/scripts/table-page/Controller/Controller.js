@@ -341,12 +341,16 @@ export const ControllerTablePage = class {
       event.stopPropagation();
       document.querySelector('.bg_img_block').classList.toggle('active');
     }
-    let target = event.target;
-    let its_menu = target == document.querySelector('.bg_img_block') || document.querySelector('.bg_img_block').contains(target);
-    let its_hamburger = target == document.querySelector('.change_bg_table');
-    let menu_is_active = document.querySelector('.bg_img_block').classList.contains('active');
+    
+    this.target = event.target;
+    if (document.querySelector('.bg_img_block')) {
+      this.its_menu = this.target == document.querySelector('.bg_img_block') || document.querySelector('.bg_img_block').contains(this.target);
+      this.its_hamburger = this.target == document.querySelector('.change_bg_table');
+      this.menu_is_active = document.querySelector('.bg_img_block').classList.contains('active');
+    }
 
-    if (!its_menu && !its_hamburger && menu_is_active) {
+
+    if (!this.its_menu && !this.its_hamburger && this.menu_is_active) {
         document.querySelector('.bg_img_block').classList.toggle('active');
       }
 
