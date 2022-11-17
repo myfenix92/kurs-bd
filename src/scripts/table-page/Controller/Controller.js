@@ -421,9 +421,9 @@ export const ControllerTablePage = class {
   }
 
   onViewImageInputHandler(event) {
-    this.image = ''
+  //  this.image = ''
     this.isFocus = document.activeElement === document.querySelector('.input_img');
-    if(event.key === 'Enter' && this.isFocus) {
+    if(this.isFocus) {
       this.image = document.querySelector('.input_img').value
       numberPage = 1;
       this.bgImageList = document.querySelector('.bg_image_list');

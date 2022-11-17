@@ -43,6 +43,14 @@ export const ModelMainPage = class {
     })
   }
 
+  onGetDialogAdmin(id_user) {
+    API.getDialogAdmin(id_user).then(data => {
+      data.forEach((el) => {
+        ViewMP.viewDialog(el.message, el.date_sent, el.type_msg)
+      })
+    })
+  }
+
   // onGetCalcData(id_user) {
   //   API.getNumericData(id_user).then(data => {
   //     if (data.message) {

@@ -353,6 +353,127 @@ button:disabled:hover {
 
 
 
+
+
+  .msg-block {
+    position: absolute;
+    background-color: $white;
+    text-align: center;
+    width: 25vw;
+    height: 100%;
+    padding: .5rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+    top: 0%;
+    transform: translate(-100%, 0%);
+    animation: show 1s forwards;
+    z-index: 100;
+    display: grid;
+    grid-template-areas:
+    ". close"
+    "dialog dialog"
+    "input  send";
+    grid-template-rows: .5fr 1fr 1fr;
+    align-content: space-between;
+    align-items: center;
+
+    @keyframes show {
+      0% {transform: translateX(-100%);}
+      100% {transform: translateY(0);}
+    }
+
+    .close_msg_btn {
+      grid-area: close;
+    }
+
+    .msg_dialog {
+      grid-area: dialog;
+      height: 40vw;
+      overflow-y: auto;
+      margin: 0.3rem;
+    }
+
+    textarea {
+      grid-area: input;
+      width: 100%;
+      padding: .3rem;
+      resize: none;
+    }
+
+    .send_msg_btn {
+      grid-area: send;
+      background: transparent;
+      outline: none;
+      border: none;
+      padding: 0.7rem;
+      margin: 0 0.5rem;
+      cursor: pointer;
+    }
+
+    .send_msg_btn:hover {
+      transform: scale(1.5);
+      transition: transform 0.3s ease-in;
+    }
+
+
+
+    .msg_text {
+      padding: .3rem;
+      margin: .2rem 0;
+      border-radius: 6px;
+      text-align: left;
+
+      hr {
+        border-top: 1px dotted rgb(0, 0, 0);
+      }
+        span {
+          font-size: .8em;
+          display: block;
+          margin: .2rem 0;
+          padding: .15rem;
+        }
+
+            
+
+        .from-msg {
+          text-align: left;
+          background: rgba($color: #807d7d, $alpha: 0.5);
+        }
+    
+        .to-msg {
+          text-align: right;
+          background: rgba($color: #80aecc, $alpha: 0.5);
+        }
+    }
+
+
+  }
+
+  .from-msg_color {
+    background: rgba($color: #807d7d, $alpha: 0.5);
+  }
+  
+  .to-msg_color {
+    background: rgba($color: #80aecc, $alpha: 0.5);
+  }
+
+.showBlock {
+  display: none;
+}
+
+.close {
+  transform: translate(0%, 0%);
+  animation: close 1s forwards;
+}
+
+@keyframes close {
+  0% {transform: translateX(0%);}
+  100% {transform: translateX(-100%);}
+}
+
+
+
+
 .filter_create {
   position: fixed;
   background: #0008;
@@ -362,10 +483,11 @@ button:disabled:hover {
   height: 100vh;
   cursor: auto;
 
-  .msg {
+
+
+  .msg_admin {
     position: absolute;
     background-color: $white;
-    text-align: center;
     width: 40vw;
     min-height: 40vw;
     margin: 5rem auto;
@@ -382,12 +504,37 @@ button:disabled:hover {
     "input  send";
     align-content: space-between;
     align-items: center;
+    .from-msg {
+      text-align: left;
+      background: rgba($color: #807d7d, $alpha: 0.5);
+    }
 
+    .msg_text {
+      padding: .3rem;
+      margin: .2rem 0;
+      border-radius: 6px;
+      text-align: left;
+    }
+
+    hr {
+      border-top: 1px dotted rgb(0, 0, 0);
+    }
+
+    span {
+      font-size: .8em;
+      display: block;
+      margin: .2rem 0;
+      padding: .15rem;
+    }
+  
+    .to-msg {
+      text-align: right;
+      background: rgba($color: #80aecc, $alpha: 0.5);
+    }
     .msg_dialog {
       grid-area: dialog;
       height: 30vw;
       max-height: 30vw;
-      background: #6f95ff;
     }
 
     textarea {

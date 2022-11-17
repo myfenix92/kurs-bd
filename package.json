@@ -44,6 +44,8 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "socket.io-client": "^4.5.3",
+    "unsplash-js": "^7.0.15"
   }
 }

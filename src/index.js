@@ -7,6 +7,7 @@ import {ControllerTablePage} from './scripts/table-page/Controller/index'
 import {ModelMainPage} from './scripts/main_page/Model/index'
 import {ModelTablePage} from './scripts/table-page/Model/index';
 import {getLocalStorageData} from './LocalStorage';
+import {socket} from 'socket.io-client'
 
 const ControllerAP = new ControllerAdminPage();
 const ControllerSP = new ControllerStartPage();
@@ -26,6 +27,8 @@ document.body.addEventListener('click', ControllerMP.onclickTable);
 document.body.addEventListener('click', ControllerMP.onFilterHandler);
 document.body.addEventListener('click', ControllerMP.onProfileHandler);
 document.body.addEventListener('click', ControllerMP.onChangeProfileHandler);
+document.body.addEventListener('click', ControllerMP.onShowMsgBlock);
+document.body.addEventListener('click', ControllerMP.sendMsg);
 document.body.addEventListener('click', ControllerMP.onLogOutHandler);
 document.body.addEventListener('click', ControllerTP.onChangeNameTableHandler);
 document.body.addEventListener('keyup', ControllerTP.onChangeNameTableHandler);

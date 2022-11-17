@@ -15,6 +15,7 @@ const ModelMP = new ModelMainPage()
 const ModelSP = new ModelStartPage()
 const ModelTP = new ModelTablePage();
 const API = new APIClass()
+var socket = io('http://localhost:8080', { });
 
 //let id_user = getLocalStorageData('id_user')
 
@@ -41,6 +42,24 @@ export const ControllerMainPage = class {
         ModelMP.createTable(getIdUser(), this.nameTable.value);
       }
 
+    }
+  }
+
+  onShowMsgBlock(event) {
+    if (event.target.classList.contains('dialog_admin')) {
+      ModelMP.onGetDialogAdmin(getLocalStorageData('token'))
+      ViewMP.viewShowMessageBlock()
+      document.querySelector('.msg-block').classList.remove('close')
+      document.querySelector('.msg-block').classList.remove('showBlock')
+      document.querySelector('.dialog_admin').style.pointerEvents = 'none'
+    }
+
+    if (event.target.classList.contains('close_msg_btn')) {
+      document.querySelector('.msg-block').classList.toggle('close')
+      setTimeout(() => {
+        document.querySelector('.msg-block').remove()
+        document.querySelector('.dialog_admin').style.pointerEvents = 'auto'
+      }, 1200)
     }
   }
 
@@ -131,6 +150,15 @@ export const ControllerMainPage = class {
       document.querySelector('header').innerHTML = '';
       document.querySelector('main').innerHTML = '';
       ModelSP.init()
+    }
+  }
+
+  sendMsg(e) {
+    
+    if (document.querySelector('.send_msg_btn') && e.target.closest('button') && e.target.closest('button').classList.contains('send_msg_btn')) {
+      
+      socket.emit('chat message', document.querySelector('textarea').value);
+
     }
   }
 
