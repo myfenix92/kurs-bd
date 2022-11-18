@@ -4,12 +4,14 @@ import {
 import {
   ModelMainPage
 } from "../../main_page/Model/index";
+
 import {
   ViewStartPage
 } from "../View/index";
 
 const ModelSP = new ModelStartPage()
 const ModelMP = new ModelMainPage()
+
 const ViewSP = new ViewStartPage()
 
 export const ControllerStartPage = class {
@@ -68,12 +70,12 @@ export const ControllerStartPage = class {
     if (this.clickValue === 'login') {
       if (event.target.classList.contains('form_in_continue') && event.target.tagName === 'BUTTON') {
         ModelSP.onLoginUser(this.login.value, +this.password.value);
-        // попробовать получать токен и если 1, то на админ панель
         setTimeout(() => {
           if (localStorage.length !== 0) {
             document.querySelector('header').innerHTML = '';
             document.querySelector('main').innerHTML = '';
             ModelMP.init()
+            
           }
         }, 300)
       }

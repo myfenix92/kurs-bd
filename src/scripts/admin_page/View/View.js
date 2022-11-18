@@ -46,13 +46,14 @@ export const ViewAdminPage = class {
    this.table.insertAdjacentHTML('beforeend', htmlAdminTable)
   }
 
-  viewShowMessageBlock() {
+  viewShowMessageBlock(id_user) {
     this.main = document.querySelector('main');
     this.msgBlock = document.createElement('div');
     this.msgBlock.classList.add('msg-block_admin', 'filter_create');
 
     this.msg = document.createElement('div');
     this.msg.classList.add('msg_admin');
+    this.msg.setAttribute('id', id_user);
 
     this.msgDialog = document.createElement('div');
     this.msgDialog.classList.add('msg_dialog');
@@ -138,6 +139,29 @@ export const ViewAdminPage = class {
       this.msgText.classList.add('from-msg_color')
       this.msgDate.classList.add('from-msg')
     } else {
+      this.msgText.classList.add('to-msg_color')
+      this.msgDate.classList.add('to-msg')
+    }
+    this.msgText.append(this.hr, this.msgDate);
+    this.msgDialog.appendChild(this.msgText);
+  }
+
+  viewDialog1(msg, type) {
+    console.log('v admin', type)
+    this.msgDialog = document.querySelector('.msg_dialog');
+    this.msgText = document.createElement('p');
+    this.msgText.classList.add('msg_text');
+
+    this.hr = document.createElement('hr')
+    let date = new Date()
+    this.msgText.textContent = msg;
+    this.msgDate = document.createElement('span');
+    this.msgDate.textContent = `Отправлено ${date}`
+    if (type === 0) {
+      this.msgText.classList.add('from-msg_color')
+      this.msgDate.classList.add('from-msg')
+    } 
+    else {
       this.msgText.classList.add('to-msg_color')
       this.msgDate.classList.add('to-msg')
     }

@@ -138,6 +138,29 @@ export const ViewMainPage = class {
     this.msgDialog.appendChild(this.msgText);
   }
 
+  viewDialog1(msg, type) {
+    console.log('v user', type)
+    this.msgDialog = document.querySelector('.msg_dialog');
+    this.msgText = document.createElement('p');
+    this.msgText.classList.add('msg_text');
+
+    this.hr = document.createElement('hr')
+    let date = new Date()
+    this.msgText.textContent = msg;
+    this.msgDate = document.createElement('span');
+    this.msgDate.textContent = `Отправлено ${date}`
+    if (type === 1) {
+      this.msgText.classList.add('from-msg_color')
+      this.msgDate.classList.add('from-msg')
+    } 
+    else {
+      this.msgText.classList.add('to-msg_color')
+      this.msgDate.classList.add('to-msg')
+    }
+    this.msgText.append(this.hr, this.msgDate);
+    this.msgDialog.appendChild(this.msgText);
+  }
+
   viewFilterBlock() {
     this.mainBlock = document.querySelector('.main_mp');
     this.filterBlock = document.createElement('div');

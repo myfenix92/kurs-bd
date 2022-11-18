@@ -54,8 +54,11 @@ export const ModelAdminPage = class {
     API.bannedUser(time_ban, id_user);
   }
 
+  sendNewMsg(id_user, message) {
+    API.newMsg(id_user, message)
+  }
+
   onDeleteUser(id_user) {
-    console.log(id_user)
     API.deleteUser(id_user);
   }
 }

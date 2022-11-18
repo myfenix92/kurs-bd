@@ -7,7 +7,7 @@ import {ControllerTablePage} from './scripts/table-page/Controller/index'
 import {ModelMainPage} from './scripts/main_page/Model/index'
 import {ModelTablePage} from './scripts/table-page/Model/index';
 import {getLocalStorageData} from './LocalStorage';
-import {socket} from 'socket.io-client'
+//import {socket} from 'socket.io-client'
 
 const ControllerAP = new ControllerAdminPage();
 const ControllerSP = new ControllerStartPage();
@@ -17,9 +17,12 @@ const ModelMP = new ModelMainPage();
 const ControllerTP = new ControllerTablePage();
 const ModelTP = new ModelTablePage();
 
+var socket = io('http://localhost:8080', { });
+
 document.body.addEventListener('click', ControllerAP.onCreateTable);
 document.body.addEventListener('click', ControllerAP.onBannedUser);
 document.body.addEventListener('click', ControllerAP.onDeleteUser);
+document.body.addEventListener('click', ControllerAP.sendMsg1);
 document.body.addEventListener('click', ControllerSP.onClickHandler);
 document.body.addEventListener('click', ControllerSP.onContinueHandler);
 document.body.addEventListener('click', ControllerMP.onCreateTable);
@@ -81,3 +84,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 300);
   }
 });
+
+export {socket}

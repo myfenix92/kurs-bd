@@ -1,9 +1,16 @@
 import {
   ViewMainPage
 } from '../View/index';
+// import {
+//   ControllerMainPage
+// } from '../Controller/index';
+import {socket} from '../../../index'
 import {
   ModelAdminPage
 } from '../../admin_page/Model/index';
+import {
+  ControllerAdminPage
+} from '../../admin_page/Controller/index';
 import {
   APIClass
 } from '../../../API/index';
@@ -13,22 +20,36 @@ import { ModelStartPage } from '../../start_page/Model';
 
 const ViewMP = new ViewMainPage()
 const ModelAP = new ModelAdminPage()
+const ControllerAP = new ControllerAdminPage()
+//const ControllerMP = new ControllerMainPage()
 const API = new APIClass()
 const ModelSP = new ModelStartPage()
+
 export const ModelMainPage = class {
 
   init() {
     setTimeout(() => {
       this.id_user = getIdUser();
       this.getLoginUser(this.id_user);
+      
       setTimeout(() => {
         if (this.id_user !== 1) {
           this.onGetTables(this.id_user);
           ViewMP.viewTableBlock();
           ViewMP.viewFilterBlock();
+          setTimeout(() => {
+           
+              console.log('user init')
+              socket.on('chat message', function(msg) {
+              ViewMP.viewDialog1(msg, 1)
+              
+            });
+          
+          }, 500)
         }
         else {
           ModelAP.init()
+          ControllerAP.init()
         }
       }, 700)
     }, 500)
@@ -76,6 +97,12 @@ export const ModelMainPage = class {
         ViewMP.viewRemoveTable();
         document.querySelector('.filter_create').remove();
       }
+    });
+  }
+
+  sendNewMsg(id_user, message) {
+    API.newMsg(id_user, message).then(data => {
+      console.log(data)
     });
   }
 

@@ -1,16 +1,29 @@
 import {ModelAdminPage} from "../Model/index";
 import {ViewAdminPage} from '../View/index';
 import {APIClass} from "../../../API/index";
-
+import {socket} from '../../../index'
 const ViewAP = new ViewAdminPage()
 const ModelAP = new ModelAdminPage()
 const API = new APIClass()
 
+
 export const ControllerAdminPage = class {
 
+    init() {
+        console.log('admin init')
+        socket.on('chat message', function(msg) {
+        ViewAP.viewDialog1(msg, 0)
+    });
+    }
+
     onCreateTable(event) {
+        // socket.on("chat message", (msg) => {
+        //     ViewAP.viewDialog1(msg, 1)
+        //     ModelAP.sendNewMsg(document.querySelector('.msg_admin').getAttribute('id'), msg)    
+        //   });
         if (event.target.classList.contains('btn-msg') && event.target.tagName === 'BUTTON') {
-            ViewAP.viewShowMessageBlock();
+            console.log(event.target.id)
+            ViewAP.viewShowMessageBlock(event.target.id);
             ModelAP.onGetDialogAdmin(event.target.id);
         }
     }
@@ -48,4 +61,35 @@ export const ControllerAdminPage = class {
         }
     }
 
+    sendMsg1(e) {
+        let id_user = document.querySelector('.msg_admin').getAttribute('id')
+        if (document.querySelector('.send_msg_btn') && 
+        e.target.closest('button') && 
+        e.target.closest('button').classList.contains('send_msg_btn') &&
+        document.querySelector('.header_text_login').textContent === 'admin') {
+            socket.emit('chat message', document.querySelector('textarea').value);
+            console.log(id_user , 'id')
+            ModelAP.sendNewMsg(id_user, document.querySelector('textarea').value)
+
+            document.querySelector('textarea').value = ''
+
+            // socket.on('chat message', function(msg) {
+            //     ViewAP.viewDialog1(msg, 1)
+            //     ModelAP.sendNewMsg(id_user, msg)
+                
+            //   });
+        //   socket.emit('chat message', document.querySelector('textarea').value, id_user);
+        //   ViewAP.viewDialog1(document.querySelector('textarea').value, 1)
+        //   console.log(id_user)
+        //   ModelAP.sendNewMsg(id_user, document.querySelector('textarea').value)
+        //   document.querySelector('textarea').value = ''
+        }
+
+      }
 }
+
+// socket.on('chat message', function(msg) {
+//     console.log('admin', msg)
+//     ViewAP.viewDialog1(msg, 1)
+//     ModelAP.sendNewMsg(id_user, msg)
+//   });

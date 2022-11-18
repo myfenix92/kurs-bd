@@ -477,4 +477,23 @@ console.log(time_ban, id_user)
       }
     });
   }
+
+  async newMsg(id_user, message) {
+    this.bodyData = {
+      id_user,
+      message,
+    }
+
+    this.url = `${this.path}/dialog`;
+    this.res = await fetch(this.url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    });
+    this.data = this.res.json();
+    return this.data;
+  }
+
 }

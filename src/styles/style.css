@@ -480,6 +480,7 @@ button:disabled:hover {
 .filter_create .msg_admin .msg_dialog {
   grid-area: dialog;
   height: 30vw;
+  overflow-y: auto;
   max-height: 30vw;
 }
 .filter_create .msg_admin textarea {

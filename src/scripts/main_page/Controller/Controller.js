@@ -5,7 +5,7 @@ import {
   ViewMainPage
 } from '../View/index';
 import { APIClass } from "../../../API/index";
-
+import {socket} from '../../../index'
 import { ModelStartPage } from "../../start_page/Model";
 import { ModelTablePage } from "../../table-page/Model/index";
 import { setLocalStorageData ,getLocalStorageData, getIdUser } from '../../../LocalStorage/index';
@@ -15,14 +15,13 @@ const ModelMP = new ModelMainPage()
 const ModelSP = new ModelStartPage()
 const ModelTP = new ModelTablePage();
 const API = new APIClass()
-var socket = io('http://localhost:8080', { });
+//var socket = io('http://localhost:8080', { });
 
-//let id_user = getLocalStorageData('id_user')
 
 export const ControllerMainPage = class {
-  constructor() {
-    this.clickValue;
-  }
+
+
+
 
   onCreateTable(event) {
     if (event.target.classList.contains('create_table_block') && event.target.tagName === 'P') {
@@ -46,6 +45,11 @@ export const ControllerMainPage = class {
   }
 
   onShowMsgBlock(event) {
+    // socket.on("chat message", (msg) => {
+    //   ViewMP.viewDialog1(msg, 0)
+    //   ModelMP.sendNewMsg(getLocalStorageData('token'), msg)
+    // });
+ //   this.init
     if (event.target.classList.contains('dialog_admin')) {
       ModelMP.onGetDialogAdmin(getLocalStorageData('token'))
       ViewMP.viewShowMessageBlock()
@@ -153,13 +157,44 @@ export const ControllerMainPage = class {
     }
   }
 
-  sendMsg(e) {
+  // socketFunc() {
     
-    if (document.querySelector('.send_msg_btn') && e.target.closest('button') && e.target.closest('button').classList.contains('send_msg_btn')) {
+  //     socket.on('chat message', function(msg) {
+  //     console.log(msg)
+  //     ViewMP.viewDialog1(msg, 0)
+  //     ModelMP.sendNewMsg(getLocalStorageData('token'), msg)
       
-      socket.emit('chat message', document.querySelector('textarea').value);
+  //   });
+  // }
 
+  // socketConnect() {
+  //   console.log('socket');
+  //   socket.on("chat message", () => {
+  //     console.log(socket.id);
+  //   });
+  // }
+
+  sendMsg(e) {
+
+    if (document.querySelector('.send_msg_btn') && 
+    e.target.closest('button') && 
+    e.target.closest('button').classList.contains('send_msg_btn') &&
+    document.querySelector('.header_text_login').textContent !== 'admin') {
+    socket.emit('chat message', document.querySelector('textarea').value);
+    ModelMP.sendNewMsg(getLocalStorageData('token'), document.querySelector('textarea').value)
+    console.log('send user if')
+      
+      document.querySelector('textarea').value = ''
     }
+
   }
 
 }
+//getLocalStorageData('token')
+
+    // socket.on('chat message', function(msg) {
+    //   console.log(msg)
+    //   ViewMP.viewDialog1(msg, 0)
+    //   ModelMP.sendNewMsg(getLocalStorageData('token'), msg)
+      
+    // });
