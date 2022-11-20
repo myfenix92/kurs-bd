@@ -134,6 +134,7 @@ export const ControllerMainPage = class {
 
   onclickTable(event) {
     if (event.target.closest('div').dataset.id_table) {
+      socket.removeAllListeners('chat message')
       this.id_table = event.target.closest('div').dataset.id_table;
       this.nameTable = event.target.closest('div').firstChild.textContent
       document.querySelector('header').innerHTML = '';
@@ -153,6 +154,7 @@ export const ControllerMainPage = class {
       localStorage.clear();
       document.querySelector('header').innerHTML = '';
       document.querySelector('main').innerHTML = '';
+      socket.removeAllListeners('chat message')
       ModelSP.init()
     }
   }
