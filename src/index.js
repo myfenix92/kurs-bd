@@ -22,7 +22,7 @@ var socket = io('http://localhost:8080', { });
 document.body.addEventListener('click', ControllerAP.onCreateTable);
 document.body.addEventListener('click', ControllerAP.onBannedUser);
 document.body.addEventListener('click', ControllerAP.onDeleteUser);
-document.body.addEventListener('click', ControllerAP.sendMsg1);
+document.body.addEventListener('click', ControllerAP.sendMsg);
 document.body.addEventListener('click', ControllerSP.onClickHandler);
 document.body.addEventListener('click', ControllerSP.onContinueHandler);
 document.body.addEventListener('click', ControllerMP.onCreateTable);

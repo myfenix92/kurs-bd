@@ -37,15 +37,10 @@ export const ModelMainPage = class {
           this.onGetTables(this.id_user);
           ViewMP.viewTableBlock();
           ViewMP.viewFilterBlock();
-          setTimeout(() => {
-           
-              console.log('user init')
-              socket.on('chat message', function(msg) {
-              ViewMP.viewDialog1(msg, 1)
-              
-            });
-          
-          }, 500)
+          socket.on('chat message', function(msg, send) {
+            ViewMP.viewDialog(msg, new Date(), 0, send)
+            
+          });
         }
         else {
           ModelAP.init()
@@ -67,6 +62,7 @@ export const ModelMainPage = class {
   onGetDialogAdmin(id_user) {
     API.getDialogAdmin(id_user).then(data => {
       data.forEach((el) => {
+        
         ViewMP.viewDialog(el.message, el.date_sent, el.type_msg)
       })
     })
@@ -101,9 +97,7 @@ export const ModelMainPage = class {
   }
 
   sendNewMsg(id_user, message) {
-    API.newMsg(id_user, message).then(data => {
-      console.log(data)
-    });
+    API.newMsg(id_user, message)
   }
 
   filterTable(nameTable, dateFrom, dateTo, id_user) {

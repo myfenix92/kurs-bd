@@ -117,49 +117,51 @@ export const ViewMainPage = class {
     this.main.appendChild(this.msgBlock);
   }
 
-  viewDialog(message, date_sent, type) {
+  viewDialog(message, date_sent, type, send = 1) {
     this.msgDialog = document.querySelector('.msg_dialog');
     this.msgText = document.createElement('p');
     this.msgText.classList.add('msg_text');
 
     this.hr = document.createElement('hr')
-
+    let date = date_sent
     this.msgText.textContent = message;
     this.msgDate = document.createElement('span');
-    this.msgDate.textContent = `Отправлено ${date_sent.slice(0, 10).split('-').reverse().join('-')} в ${date_sent.slice(11, 19)}`
-    if (type === 0) {
-      this.msgText.classList.add('from-msg_color')
-      this.msgDate.classList.add('from-msg')
+  //  this.msgDate.textContent = `Отправлено ${date}`
+  console.log(date)
+  if (date.toString().includes('GMT')) {
+    this.msgDate.textContent = `Отправлено ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} 
+      в ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`
+
+
+    if (send === 1) {
+      this.msgText.classList.add('to-msg_color')
+      this.msgDate.classList.add('to-msg')
+
     } else {
-      this.msgText.classList.add('to-msg_color')
-      this.msgDate.classList.add('to-msg')
+    this.msgText.classList.add('from-msg_color')
+    this.msgDate.classList.add('from-msg')
     }
-    this.msgText.append(this.hr, this.msgDate);
-    this.msgDialog.appendChild(this.msgText);
-  }
 
-  viewDialog1(msg, type) {
-    console.log('v user', type)
-    this.msgDialog = document.querySelector('.msg_dialog');
-    this.msgText = document.createElement('p');
-    this.msgText.classList.add('msg_text');
 
-    this.hr = document.createElement('hr')
-    let date = new Date()
-    this.msgText.textContent = msg;
-    this.msgDate = document.createElement('span');
-    this.msgDate.textContent = `Отправлено ${date}`
+
+  } else {
+    console.log(date)
+    this.msgDate.textContent = `Отправлено ${date.slice(0, 10).split('-').reverse().join('-')} в ${date_sent.slice(11, 19)}`
+
     if (type === 1) {
-      this.msgText.classList.add('from-msg_color')
-      this.msgDate.classList.add('from-msg')
-    } 
-    else {
       this.msgText.classList.add('to-msg_color')
       this.msgDate.classList.add('to-msg')
+
+    } else {
+    this.msgText.classList.add('from-msg_color')
+    this.msgDate.classList.add('from-msg')
     }
-    this.msgText.append(this.hr, this.msgDate);
-    this.msgDialog.appendChild(this.msgText);
   }
+
+
+     this.msgText.append(this.hr, this.msgDate);
+    this.msgDialog.appendChild(this.msgText);
+   }
 
   viewFilterBlock() {
     this.mainBlock = document.querySelector('.main_mp');

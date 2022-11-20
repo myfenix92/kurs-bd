@@ -159,22 +159,8 @@ export const ControllerMainPage = class {
     }
   }
 
-  // socketFunc() {
-    
-  //     socket.on('chat message', function(msg) {
-  //     console.log(msg)
-  //     ViewMP.viewDialog1(msg, 0)
-  //     ModelMP.sendNewMsg(getLocalStorageData('token'), msg)
-      
-  //   });
-  // }
 
-  // socketConnect() {
-  //   console.log('socket');
-  //   socket.on("chat message", () => {
-  //     console.log(socket.id);
-  //   });
-  // }
+
 
   sendMsg(e) {
 
@@ -182,9 +168,8 @@ export const ControllerMainPage = class {
     e.target.closest('button') && 
     e.target.closest('button').classList.contains('send_msg_btn') &&
     document.querySelector('.header_text_login').textContent !== 'admin') {
-    socket.emit('chat message', document.querySelector('textarea').value);
+    socket.emit('chat message', document.querySelector('textarea').value, 1);
     ModelMP.sendNewMsg(getLocalStorageData('token'), document.querySelector('textarea').value)
-    console.log('send user if')
       
       document.querySelector('textarea').value = ''
     }
@@ -192,11 +177,3 @@ export const ControllerMainPage = class {
   }
 
 }
-//getLocalStorageData('token')
-
-    // socket.on('chat message', function(msg) {
-    //   console.log(msg)
-    //   ViewMP.viewDialog1(msg, 0)
-    //   ModelMP.sendNewMsg(getLocalStorageData('token'), msg)
-      
-    // });
