@@ -29,7 +29,7 @@ export const ViewAdminPage = class {
 
   viewAdminPage(id, login, sex, birth, registr, count_tbls, msg, time_ban) { 
     this.table = document.querySelector('table');
-    this.banText = time_ban === null ? 'Не забанен' : `Забанен(а) до ${time_ban}`;
+    this.banText = time_ban === null ? 'Не забанен' : `Забанен(а) до ${time_ban.slice(11, 19)}, ${time_ban.slice(0, 10).split('-').reverse().join('-')}`;
     let htmlAdminTable = `
     <tr>
       <td>${id}</td>
@@ -134,7 +134,7 @@ export const ViewAdminPage = class {
     let date = date_sent
     this.msgDate = document.createElement('span');
    // this.msgDate.textContent = `Отправлено ${date}`
-    console.log(date)
+
     if (date.toString().includes('GMT')) {
       this.msgDate.textContent = `Отправлено ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} 
       в ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`
@@ -149,7 +149,6 @@ export const ViewAdminPage = class {
 
 
     } else {
-      console.log(date)
     this.msgDate.textContent = `Отправлено ${date.slice(0, 10).split('-').reverse().join('-')} в ${date_sent.slice(11, 19)}`
 
       if (type === 0) {
@@ -165,9 +164,11 @@ export const ViewAdminPage = class {
     
     this.msgText.textContent = message;
     
-    
+
     this.msgText.append(this.hr, this.msgDate);
     this.msgDialog.appendChild(this.msgText);
+    document.querySelector('.msg_dialog').scrollTo(0, document.querySelector('.msg_dialog').scrollHeight)
+
   }
 
 
