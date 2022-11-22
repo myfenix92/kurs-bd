@@ -357,15 +357,21 @@ export const ControllerTablePage = class {
   }
 
   onDeleteTable(event) {
-    if (event.target.tagName === 'BUTTON' && event.target.classList.contains('delete_table')) {
-      ModelTP.deleteTable(getLocalStorageData('id_table'));
-      setLocalStorageData('id_table');
-      setLocalStorageData('name_table');
-      document.querySelector('header').innerHTML = '';
-      document.querySelector('main').innerHTML = '';
-      setTimeout(() => {
-        ModelMP.init()
-      }, 100)
+    if (event.target.tagName === 'BUTTON' && event.target.classList.contains('delete_table')) {      
+        this.isDeleteTable = confirm(`Удалить таблицу?`);
+        if (this.isDeleteTable) {
+          var body = document.querySelector('body')
+          ModelTP.deleteTable(getLocalStorageData('id_table'));
+          setLocalStorageData('id_table');
+          setLocalStorageData('name_table');
+          setLocalStorageData('bg_table', 'linear-gradient(#218aba, #162657)')
+          body.style.setProperty('--body-image', getLocalStorageData('bg_table'))
+          document.querySelector('header').innerHTML = '';
+          document.querySelector('main').innerHTML = '';
+          setTimeout(() => {
+            ModelMP.init()
+          }, 100)
+        }
     }
   }
 
