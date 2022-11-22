@@ -62,6 +62,22 @@ export const APIClass = class {
     //return this.data
   }
 
+  async readNewMsg(id_user) {
+    this.bodyData = {
+      id_user
+    }
+    this.url = `${this.path}/users/dialog/${id_user}`;
+    this.res = await fetch(this.url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    });
+  //  this.data = await this.res.json();
+  //  return this.data
+  }
+
   async getUsers() {
     this.url = `${this.path}/users`;
     this.res = await fetch(this.url, {
@@ -274,6 +290,16 @@ export const APIClass = class {
     return this.data
   }
 
+  async checkBan() {
+    this.url = `${this.path}/checkban`;
+    this.res = await fetch(this.url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
   async changeBgTable(id_table, new_bg) {
     this.bodyData = {
       id_table,
@@ -431,7 +457,7 @@ export const APIClass = class {
       time_ban,
       id_user, 
     }
-console.log(time_ban, id_user)
+
     this.url = `${this.path}/ban/${id_user}`;
     this.res = await fetch(this.url, {
       method: 'PUT',
