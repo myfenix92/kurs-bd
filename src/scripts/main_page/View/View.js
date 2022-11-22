@@ -12,23 +12,31 @@ export const ViewMainPage = class {
     this.headerText.classList.add('header_text');
     this.headerText.textContent = `Приветствуем, `;
     this.headerLogin = document.createElement('span');
+    
     this.headerLogin.classList.add('header_text_login');
     this.headerLogin.textContent = value;
+    
 
     this.profile = document.createElement('div');
     this.profile.classList.add('profile')
 
     this.ul = document.createElement('ul');
-    this.liData = {
-      class: ['dialog_admin', 'about_user', 'logout'],
-      text: ['Сообщения', 'Профиль', 'Выйти']
+    if (value !== 'admin') {
+      this.liData = {
+        class: ['dialog_admin', 'about_user', 'logout'],
+        text: ['Сообщения', 'Профиль', 'Выйти']
+      }
+    } else {
+      this.liData = {
+        class: ['about_user', 'logout'],
+        text: ['Профиль', 'Выйти']
+      }
     }
-
-    for (let i = 0; i < 3; i++) {
+    
+    for (let i = 0; i < this.liData.class.length; i++) {
       this.li = document.createElement('li');
       this.li.classList.add(this.liData.class[i]);
       this.li.textContent = this.liData.text[i];
-
       this.ul.appendChild(this.li)
     }
     this.profile.append(this.ul);
@@ -38,7 +46,7 @@ export const ViewMainPage = class {
     this.main.appendChild(this.mainBlock);
   }
 
-  viewShowMessageBlock() {
+  viewShowMessageBlock(ban) {
     this.main = document.querySelector('main');
     this.msgBlock = document.createElement('div');
     this.msgBlock.classList.add('msg-block', 'close', 'showBlock');
@@ -54,8 +62,6 @@ export const ViewMainPage = class {
     this.inputMsgInput.setAttribute('cols', 70);
     this.inputMsgInput.setAttribute('wrap', 'hard');
     this.inputMsgInput.setAttribute('name', 'input_msg');
-    this.inputMsgInput.setAttribute('placeholder', 'Введите сообщение...');
-
     this.btnMsgInput = document.createElement('button')
     this.btnMsgInput.classList.add('send_msg_btn');
     this.svgSend = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="25" height="25" x="0" y="0" viewBox="0 0 367.92 367.92" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g>
@@ -112,8 +118,18 @@ export const ViewMainPage = class {
     </g>
     </g></svg>`
     this.btnMsgInput.insertAdjacentHTML('afterbegin', this.svgSend)
-  //  this.msg.append(this.msgDialog, this.inputMsgInput, this.btnMsgInput);
-    this.msgBlock.append(this.closeBtn, this.msgDialog, this.inputMsgInput, this.btnMsgInput);
+    this.banTextBlock = document.createElement('p')
+    this.banTextBlock.classList.add('ban_text')
+    if (ban) {
+      this.banTextBlock.textContent =  `Вы забанены до ${ban.slice(11, 19)}, 
+      ${ban.slice(0, 10).split('-').reverse().join('-')} и не можете отправлять сообщения.`;
+      this.msgBlock.append(this.closeBtn, this.msgDialog, this.banTextBlock);
+    } else {
+      this.inputMsgInput.setAttribute('placeholder', 'Введите сообщение...');
+      this.msgBlock.append(this.closeBtn, this.msgDialog, this.inputMsgInput, this.btnMsgInput);
+    }
+
+   
     this.main.appendChild(this.msgBlock);
   }
 
@@ -127,7 +143,6 @@ export const ViewMainPage = class {
     this.msgText.textContent = message;
     this.msgDate = document.createElement('span');
   //  this.msgDate.textContent = `Отправлено ${date}`
-  console.log(date)
   if (date.toString().includes('GMT')) {
     this.msgDate.textContent = `Отправлено ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} 
       в ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`
@@ -145,7 +160,6 @@ export const ViewMainPage = class {
 
 
   } else {
-    console.log(date)
     this.msgDate.textContent = `Отправлено ${date.slice(0, 10).split('-').reverse().join('-')} в ${date_sent.slice(11, 19)}`
 
     if (type === 1) {
@@ -161,6 +175,8 @@ export const ViewMainPage = class {
 
      this.msgText.append(this.hr, this.msgDate);
     this.msgDialog.appendChild(this.msgText);
+    document.querySelector('.msg_dialog').scrollTo(0, document.querySelector('.msg_dialog').scrollHeight)
+
    }
 
   viewFilterBlock() {
