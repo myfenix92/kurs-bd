@@ -291,18 +291,6 @@ button:disabled:hover {
   left: 1%;
   text-align: center;
 }
-.main_mp .calc_data .avg,
-.main_mp .calc_data .percent {
-  margin: 1rem 1rem;
-  width: 200px;
-}
-.main_mp .calc_data .avg .avg_data,
-.main_mp .calc_data .avg .percent_data,
-.main_mp .calc_data .percent .avg_data,
-.main_mp .calc_data .percent .percent_data {
-  font-weight: bold;
-  color: #fff;
-}
 
 .msg-block {
   position: absolute;
@@ -319,7 +307,7 @@ button:disabled:hover {
           animation: show 1s forwards;
   z-index: 100;
   display: grid;
-  grid-template-areas: ". close" "dialog dialog" "input  send";
+  grid-template-areas: ". close" "dialog dialog" "input send" "ban ban";
   grid-template-rows: 0.5fr 1fr 1fr;
   align-content: space-between;
   align-items: center;
@@ -342,6 +330,11 @@ button:disabled:hover {
 }
 .msg-block .close_msg_btn {
   grid-area: close;
+}
+.msg-block .ban_text {
+  grid-area: ban;
+  color: red;
+  font-weight: bold;
 }
 .msg-block .msg_dialog {
   grid-area: dialog;

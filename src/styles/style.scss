@@ -336,18 +336,6 @@ button:disabled:hover {
     top: 20%;
     left: 1%;
     text-align: center;
-
-    .avg,
-    .percent {
-      margin: 1rem 1rem;
-      width: 200px;
-
-      .avg_data,
-      .percent_data {
-        font-weight: bold;
-        color: $white;
-      }
-    }
   }
 }
 
@@ -372,7 +360,8 @@ button:disabled:hover {
     grid-template-areas:
     ". close"
     "dialog dialog"
-    "input  send";
+    "input send"
+    "ban ban";
     grid-template-rows: .5fr 1fr 1fr;
     align-content: space-between;
     align-items: center;
@@ -384,6 +373,12 @@ button:disabled:hover {
 
     .close_msg_btn {
       grid-area: close;
+    }
+
+    .ban_text {
+      grid-area: ban;
+      color: red;
+      font-weight: bold;
     }
 
     .msg_dialog {
