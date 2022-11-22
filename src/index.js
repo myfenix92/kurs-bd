@@ -19,7 +19,7 @@ const ModelTP = new ModelTablePage();
 
 var socket = io('http://localhost:8080', { });
 
-document.body.addEventListener('click', ControllerAP.onCreateTable);
+document.body.addEventListener('click', ControllerAP.onShowMsgUser);
 document.body.addEventListener('click', ControllerAP.onBannedUser);
 document.body.addEventListener('click', ControllerAP.onDeleteUser);
 document.body.addEventListener('click', ControllerAP.sendMsg);
@@ -59,6 +59,7 @@ document.body.addEventListener('click', ControllerTP.onDeleteTable);
 document.body.addEventListener('click', ControllerTP.onLogOutHandler);
 
 document.addEventListener("DOMContentLoaded", function () {
+  ModelMP.checkBanUser();
   var body = document.querySelector('body')
   if (getLocalStorageData('token')) {
     if (getLocalStorageData('bg_table').includes('unsplash')) {     
