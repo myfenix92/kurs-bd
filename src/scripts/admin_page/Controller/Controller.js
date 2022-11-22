@@ -12,13 +12,17 @@ export const ControllerAdminPage = class {
     init() {
         socket.on('chat message', function(msg, send) {
         ViewAP.viewDialog(msg, new Date(), 1, send)
+        document.querySelector('.msg_dialog').scrollTo(0, document.querySelector('.msg_dialog').scrollHeight)
     });
     }
 
-    onCreateTable(event) {
+    onShowMsgUser(event) {
         if (event.target.classList.contains('btn-msg') && event.target.tagName === 'BUTTON') {
-            ViewAP.viewShowMessageBlock(event.target.id);
             ModelAP.onGetDialogAdmin(event.target.id);
+            ModelAP.onReadNewMsg(event.target.id);
+            ViewAP.viewShowMessageBlock(event.target.id);
+            document.querySelector('.msg_dialog').scrollTo(0, document.querySelector('.msg_dialog').scrollHeight)
+            
         }
     }
 
@@ -56,15 +60,19 @@ export const ControllerAdminPage = class {
     }
 
     sendMsg(e) {
-        let id_user = document.querySelector('.msg_admin').getAttribute('id')
+        this.id_user = document.querySelector('.msg_admin') === null ? null : document.querySelector('.msg_admin').getAttribute('id')
         if (document.querySelector('.send_msg_btn') && 
+        document.querySelector('textarea').value.trim() !== '' &&
         e.target.closest('button') && 
         e.target.closest('button').classList.contains('send_msg_btn') &&
         document.querySelector('.header_text_login').textContent === 'admin') {
             socket.emit('chat message', document.querySelector('textarea').value, 0);
-            ModelAP.sendNewMsg(id_user, document.querySelector('textarea').value)
+            ModelAP.sendNewMsg(this.id_user, document.querySelector('textarea').value)
             document.querySelector('textarea').value = ''
         }
-
+        if (document.querySelector('textarea') && document.querySelector('textarea').value.trim() === '') {
+            document.querySelector('textarea').value = ''
+            document.querySelector('textarea').placeholder = 'Сообщение не может быть пустым'
+          }
       }
 }
