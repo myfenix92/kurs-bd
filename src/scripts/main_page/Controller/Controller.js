@@ -24,10 +24,11 @@ export const ControllerMainPage = class {
 
 
   onCreateTable(event) {
-    if (event.target.classList.contains('create_table_block') && event.target.tagName === 'P') {
+    if (event.target.classList.contains('new_table') || event.target.closest('div').classList.contains('new_table')) {
+      
       ViewMP.viewCreateTable();
     }
-
+    
     if (event.target.tagName === 'DIV' && event.target.classList.contains('filter_create') && !event.target.classList.contains('create_new_table')) {
       document.querySelector('.filter_create').remove();
     }
@@ -45,26 +46,32 @@ export const ControllerMainPage = class {
   }
 
   onShowMsgBlock(event) {
-    // socket.on("chat message", (msg) => {
-    //   ViewMP.viewDialog1(msg, 0)
-    //   ModelMP.sendNewMsg(getLocalStorageData('token'), msg)
-    // });
- //   this.init
-    if (event.target.classList.contains('dialog_admin')) {
-      ModelMP.onGetDialogAdmin(getLocalStorageData('token'))
-      ViewMP.viewShowMessageBlock()
-      document.querySelector('.msg-block').classList.remove('close')
-      document.querySelector('.msg-block').classList.remove('showBlock')
-      document.querySelector('.dialog_admin').style.pointerEvents = 'none'
-    }
-
-    if (event.target.classList.contains('close_msg_btn')) {
-      document.querySelector('.msg-block').classList.toggle('close')
-      setTimeout(() => {
-        document.querySelector('.msg-block').remove()
-        document.querySelector('.dialog_admin').style.pointerEvents = 'auto'
-      }, 1200)
-    }
+    
+    ModelMP.checkBanUser();
+    this.ban = '' 
+    API.getAboutUser(getIdUser()).then(data => {   
+      this.ban = data.ban
+    })
+    setTimeout(() => {
+      if (event.target.classList.contains('dialog_admin')) {
+        document.querySelector('.calc_data').textContent = ''
+        ModelMP.onGetDialogAdmin(getLocalStorageData('token'))
+        ModelMP.onReadNewMsg(getLocalStorageData('token'))
+        ViewMP.viewShowMessageBlock(this.ban)
+        
+        document.querySelector('.msg-block').classList.remove('close')
+        document.querySelector('.msg-block').classList.remove('showBlock')
+        document.querySelector('.dialog_admin').style.pointerEvents = 'none'
+      }
+  
+      if (event.target.classList.contains('close_msg_btn')) {
+        document.querySelector('.msg-block').classList.toggle('close')
+        setTimeout(() => {
+          document.querySelector('.msg-block').remove()
+          document.querySelector('.dialog_admin').style.pointerEvents = 'auto'
+        }, 1200)
+      }
+    }, 200)
   }
 
   onFilterHandler(event) {
@@ -164,7 +171,8 @@ export const ControllerMainPage = class {
 
   sendMsg(e) {
 
-    if (document.querySelector('.send_msg_btn') && 
+    if (document.querySelector('.send_msg_btn') &&
+    document.querySelector('textarea').value.trim() !== '' &&
     e.target.closest('button') && 
     e.target.closest('button').classList.contains('send_msg_btn') &&
     document.querySelector('.header_text_login').textContent !== 'admin') {
@@ -172,6 +180,10 @@ export const ControllerMainPage = class {
     ModelMP.sendNewMsg(getLocalStorageData('token'), document.querySelector('textarea').value)
       
       document.querySelector('textarea').value = ''
+    }
+    if (document.querySelector('textarea') && document.querySelector('textarea').value.trim() === '') {
+      document.querySelector('textarea').value = ''
+      document.querySelector('textarea').placeholder = 'Сообщение не может быть пустым'
     }
 
   }
