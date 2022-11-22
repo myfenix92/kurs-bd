@@ -38,6 +38,7 @@ export const ModelMainPage = class {
           ViewMP.viewTableBlock();
           ViewMP.viewFilterBlock();
           socket.on('chat message', function(msg, send) {
+            document.querySelector('.calc_data').textContent = 'У вас новые сообщения'
             ViewMP.viewDialog(msg, new Date(), 0, send)
             
           });
@@ -66,6 +67,10 @@ export const ModelMainPage = class {
         ViewMP.viewDialog(el.message, el.date_sent, el.type_msg)
       })
     })
+  }
+
+  onReadNewMsg(id_user) {
+    API.readNewMsg(id_user)
   }
 
   // onGetCalcData(id_user) {
@@ -118,6 +123,10 @@ export const ModelMainPage = class {
   changeProfileData(id_user, password, b_day, sex) {
    API.changeProfile(id_user, password, b_day, sex);
   }
+
+  checkBanUser() {
+    API.checkBan()
+   }
 
   getLoginUser(id_user) {
     API.getAboutUser(id_user).then(data => {
