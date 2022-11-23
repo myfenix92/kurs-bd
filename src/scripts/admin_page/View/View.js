@@ -31,7 +31,7 @@ export const ViewAdminPage = class {
     this.table = document.querySelector('table');
     this.banText = time_ban === null ? 'Не забанен' : `Забанен(а) до ${time_ban.slice(11, 19)}, ${time_ban.slice(0, 10).split('-').reverse().join('-')}`;
     let htmlAdminTable = `
-    <tr>
+    <tr id=${id}>
       <td>${id}</td>
       <td>${login}</td>
       <td>${sex}</td>
@@ -46,13 +46,16 @@ export const ViewAdminPage = class {
    this.table.insertAdjacentHTML('beforeend', htmlAdminTable)
   }
 
-  viewShowMessageBlock(id_user) {
+  viewShowMessageBlock(id_user, login) {
     this.main = document.querySelector('main');
     this.msgBlock = document.createElement('div');
     this.msgBlock.classList.add('msg-block_admin', 'filter_create');
 
     this.msg = document.createElement('div');
     this.msg.classList.add('msg_admin');
+    this.msgLoginUser = document.createElement('p')
+    this.msgLoginUser.textContent = `Вы общаетесь с пользователем ${login}`
+    this.msgLoginUser.classList.add('msg_login')
     this.msg.setAttribute('id', id_user);
 
     this.msgDialog = document.createElement('div');
@@ -120,7 +123,7 @@ export const ViewAdminPage = class {
     </g>
     </g></svg>`
     this.btnMsgInput.insertAdjacentHTML('afterbegin', this.svgSend)
-    this.msg.append(this.msgDialog, this.inputMsgInput, this.btnMsgInput);
+    this.msg.append(this.msgLoginUser, this.msgDialog, this.inputMsgInput, this.btnMsgInput);
     this.msgBlock.appendChild(this.msg);
     this.main.appendChild(this.msgBlock);
   }
