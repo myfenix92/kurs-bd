@@ -29,7 +29,8 @@ export const ControllerMainPage = class {
       ViewMP.viewCreateTable();
     }
     
-    if (event.target.tagName === 'DIV' && event.target.classList.contains('filter_create') && !event.target.classList.contains('create_new_table')) {
+    if (event.target.tagName === 'DIV' && event.target.classList.contains('filter_create') && !event.target.classList.contains('create_new_table')
+    && document.querySelector('.header_text_login').textContent !== 'admin') {
       document.querySelector('.filter_create').remove();
     }
 
@@ -107,6 +108,7 @@ export const ControllerMainPage = class {
 
     if ((event.target.classList.contains('filter_menu') && !event.target.classList.contains('profile_setting'))
     || (event.target.classList.contains('close_profile') && event.target.tagName === 'BUTTON')) {
+      
       document.querySelector('.filter_menu').remove(); 
     }
   }
@@ -139,6 +141,7 @@ export const ControllerMainPage = class {
       
       else {
         ModelMP.changeProfileData(getIdUser(), this.password.value, this.bDay.value, this.sex.value)
+        
         document.querySelector('.filter_menu').remove(); 
       }
     }
