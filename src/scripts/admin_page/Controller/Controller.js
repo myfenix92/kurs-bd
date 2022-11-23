@@ -27,11 +27,28 @@ export const ControllerAdminPage = class {
             //    socket.emit('room', '1');
                 socket.emit('room', `${event.target.id}`);
             });
+            this.loginUser = ''
+            document.querySelectorAll('tr').forEach((e) => {
+                if (e.id === event.target.id) {
+                    this.loginUser = e.children[1].textContent
+                }
+            })
             ModelAP.onGetDialogAdmin(event.target.id);
             ModelAP.onReadNewMsg(event.target.id);
-            ViewAP.viewShowMessageBlock(event.target.id);
+            ViewAP.viewShowMessageBlock(event.target.id, this.loginUser);
             document.querySelector('.msg_dialog').scrollTo(0, document.querySelector('.msg_dialog').scrollHeight)
             
+        }
+    }
+
+    closeMsgBlock(event) {
+        if (event.target.classList.contains('msg-block_admin')) {
+            document.querySelector('.msg-block_admin').remove()
+            API.getMsgFromUsers().then(data => {
+                data.forEach((el) => {
+                  console.log(el) //вот тут с новыми сообщениями
+                })
+            })
         }
     }
 
