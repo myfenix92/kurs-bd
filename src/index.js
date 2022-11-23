@@ -6,7 +6,7 @@ import {ControllerMainPage} from './scripts/main_page/Controller/index'
 import {ControllerTablePage} from './scripts/table-page/Controller/index'
 import {ModelMainPage} from './scripts/main_page/Model/index'
 import {ModelTablePage} from './scripts/table-page/Model/index';
-import {getLocalStorageData} from './LocalStorage';
+import {getLocalStorageData, getIdUser} from './LocalStorage';
 //import {socket} from 'socket.io-client'
 
 const ControllerAP = new ControllerAdminPage();
@@ -17,7 +17,15 @@ const ModelMP = new ModelMainPage();
 const ControllerTP = new ControllerTablePage();
 const ModelTP = new ModelTablePage();
 
-var socket = io('http://localhost:8080', { });
+const socket = io('http://localhost:8080', {
+  transportOptions: {
+    polling: {
+      extraHeaders: {
+        'Authorization': `Bearer ${getLocalStorageData('token')}`,
+      },
+    },
+  },
+});
 
 document.body.addEventListener('click', ControllerAP.onShowMsgUser);
 document.body.addEventListener('click', ControllerAP.onBannedUser);
@@ -59,6 +67,13 @@ document.body.addEventListener('click', ControllerTP.onDeleteTable);
 document.body.addEventListener('click', ControllerTP.onLogOutHandler);
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (getIdUser() !== 1) {
+    socket.on('connect', () => {
+      console.log('connect')
+      socket.emit('room', `${getIdUser()}`);
+    });
+  }
+
   ModelMP.checkBanUser();
   var body = document.querySelector('body')
   if (getLocalStorageData('token')) {

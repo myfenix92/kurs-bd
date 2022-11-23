@@ -6,18 +6,27 @@ const ViewAP = new ViewAdminPage()
 const ModelAP = new ModelAdminPage()
 const API = new APIClass()
 
-
 export const ControllerAdminPage = class {
 
     init() {
-        socket.on('chat message', function(msg, send) {
+
+        
+        socket.on('chat message', function(msg, send, id_user) {
+            console.log(msg, send, id_user)
         ViewAP.viewDialog(msg, new Date(), 1, send)
         document.querySelector('.msg_dialog').scrollTo(0, document.querySelector('.msg_dialog').scrollHeight)
     });
     }
 
     onShowMsgUser(event) {
+        // socket.removeAllListeners('chat message')
+        // socket.removeAllListeners('room')
         if (event.target.classList.contains('btn-msg') && event.target.tagName === 'BUTTON') {
+            socket.on('connect', () => {
+                console.log('connect')
+            //    socket.emit('room', '1');
+                socket.emit('room', `${event.target.id}`);
+            });
             ModelAP.onGetDialogAdmin(event.target.id);
             ModelAP.onReadNewMsg(event.target.id);
             ViewAP.viewShowMessageBlock(event.target.id);
@@ -60,13 +69,14 @@ export const ControllerAdminPage = class {
     }
 
     sendMsg(e) {
+       
         this.id_user = document.querySelector('.msg_admin') === null ? null : document.querySelector('.msg_admin').getAttribute('id')
         if (document.querySelector('.send_msg_btn') && 
         document.querySelector('textarea').value.trim() !== '' &&
         e.target.closest('button') && 
         e.target.closest('button').classList.contains('send_msg_btn') &&
         document.querySelector('.header_text_login').textContent === 'admin') {
-            socket.emit('chat message', document.querySelector('textarea').value, 0);
+            socket.emit('chat message', document.querySelector('textarea').value, 0, document.querySelector('.msg_admin').id);
             ModelAP.sendNewMsg(this.id_user, document.querySelector('textarea').value)
             document.querySelector('textarea').value = ''
         }

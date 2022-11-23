@@ -46,7 +46,12 @@ export const ControllerMainPage = class {
   }
 
   onShowMsgBlock(event) {
-    
+    // socket.removeAllListeners('chat message')
+    // socket.removeAllListeners('room')
+    socket.on('connect', () => {
+      console.log('connect')
+      socket.emit('room', `${getIdUser()}`);
+    });
     ModelMP.checkBanUser();
     this.ban = '' 
     API.getAboutUser(getIdUser()).then(data => {   
@@ -176,7 +181,7 @@ export const ControllerMainPage = class {
     e.target.closest('button') && 
     e.target.closest('button').classList.contains('send_msg_btn') &&
     document.querySelector('.header_text_login').textContent !== 'admin') {
-    socket.emit('chat message', document.querySelector('textarea').value, 1);
+    socket.emit('chat message', document.querySelector('textarea').value, 1, getIdUser());
     ModelMP.sendNewMsg(getLocalStorageData('token'), document.querySelector('textarea').value)
       
       document.querySelector('textarea').value = ''

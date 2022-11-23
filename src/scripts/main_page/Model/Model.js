@@ -37,7 +37,8 @@ export const ModelMainPage = class {
           this.onGetTables(this.id_user);
           ViewMP.viewTableBlock();
           ViewMP.viewFilterBlock();
-          socket.on('chat message', function(msg, send) {
+
+          socket.on('chat message', function(msg, send, id_user) {
             document.querySelector('.calc_data').textContent = 'У вас новые сообщения'
             ViewMP.viewDialog(msg, new Date(), 0, send)
             
