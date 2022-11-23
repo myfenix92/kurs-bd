@@ -28,6 +28,7 @@ const socket = io('http://localhost:8080', {
 });
 
 document.body.addEventListener('click', ControllerAP.onShowMsgUser);
+document.body.addEventListener('click', ControllerAP.closeMsgBlock);
 document.body.addEventListener('click', ControllerAP.onBannedUser);
 document.body.addEventListener('click', ControllerAP.onDeleteUser);
 document.body.addEventListener('click', ControllerAP.sendMsg);
