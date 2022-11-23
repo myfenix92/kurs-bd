@@ -443,7 +443,7 @@ button:disabled:hover {
   transform: translate(-50%, 0%);
   z-index: 100;
   display: grid;
-  grid-template-areas: "dialog dialog" "input  send";
+  grid-template-areas: "login login" "dialog dialog" "input  send";
   align-content: space-between;
   align-items: center;
 }
@@ -456,6 +456,11 @@ button:disabled:hover {
   margin: 0.2rem 0;
   border-radius: 6px;
   text-align: left;
+}
+.filter_create .msg_admin .msg_login {
+  grid-area: login;
+  text-align: center;
+  margin-bottom: 0.6rem;
 }
 .filter_create .msg_admin hr {
   border-top: 1px dotted rgb(0, 0, 0);
