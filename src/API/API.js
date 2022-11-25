@@ -452,6 +452,26 @@ export const APIClass = class {
   //  return this.data
   }
 
+  
+  async moveRecord(id_sticker, id_record) {
+    this.bodyData = {
+      id_sticker,
+      id_record
+    }
+
+    this.url = `${this.path}/table/move/record`;
+    this.res = await fetch(this.url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.bodyData)
+    });
+    this.data = await this.res.json();
+
+  //  return this.data
+  }
+
   async bannedUser(time_ban, id_user, ) {
     this.bodyData = {
       time_ban,
