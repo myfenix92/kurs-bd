@@ -466,8 +466,15 @@ button:disabled:hover {
   100% {transform: translateX(-100%);}
 }
 
+.selected {
+  opacity: 0.6;
+  
+}
 
-
+.record_block {
+  cursor: move;
+ 
+}
 
 .filter_create {
   position: fixed;
@@ -845,7 +852,8 @@ main {
     height: 2rem;
   }
   .column_list {
-    max-height: 60vh;
+  min-height: 25px;
+  max-height: 60vh;
   overflow-y: auto;
   margin: .2rem;
 
@@ -855,7 +863,7 @@ main {
       border-radius: 7px;
       background-color: #c5e7e9;
       box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.2);
-      cursor: pointer;
+      cursor: move;
       overflow-wrap: break-word;
     }
   }
