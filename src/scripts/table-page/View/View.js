@@ -63,6 +63,7 @@ export const ViewTablePage = class {
     this.column = document.createElement('div');
     this.column.classList.add('column');
     this.column.setAttribute('data-id_sticker', id_sticker);
+  //  this.column.setAttribute('draggable', true);
 
     this.titleColumn = document.createElement('p');
     this.titleColumn.classList.add('title_column');
@@ -106,6 +107,7 @@ export const ViewTablePage = class {
 
     this.columnList = document.createElement('div');
     this.columnList.classList.add('column_list');
+    this.columnList.setAttribute('id', id_sticker);
 
     this.btnAddRec = document.createElement('button');
     this.btnAddRec.classList.add('add_record');
@@ -119,11 +121,12 @@ export const ViewTablePage = class {
     this.main.append(this.column);
   }
 
-  viewRecords(id_record, recordText, i, done) {
+  viewRecords(id_record, recordText, i, done, order_user) {
     this.recordBlock = document.querySelectorAll('.column_list');
 
     this.record = document.createElement('p');
     this.record.classList.add('record_block');
+    this.record.style.order = order_user
     this.recordText = document.createElement('span');
     this.recordTextInput = document.createElement('textarea');
     this.recordTextInput.classList.add('input_record', 'hide');
@@ -139,6 +142,8 @@ export const ViewTablePage = class {
     this.record.classList.add('show')
     this.recordInput.classList.add('hide');
     this.record.setAttribute('data-id_record', id_record);
+    this.record.setAttribute('id', id_record);
+    this.record.setAttribute('draggable', true);
     this.recordText.textContent = recordText;
     this.record.append(this.isDone, this.recordLabel, this.recordTextInput, this.recordText);
     
@@ -356,6 +361,14 @@ export const ViewTablePage = class {
           this.recordHistory.insertAdjacentHTML('afterbegin',
         `Вы <span class="change">${changes}</span> ${old_value} <span class="change">на</span> ${record}
         <span class="sticker_value">в стикере <strong>${id_sticker}</strong></span>
+        <br>
+        <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
+        <span class="time_history">${time.slice(0, 8)}</span></small>`)
+        break;
+        case 'перенесли запись':
+          this.recordHistory.insertAdjacentHTML('afterbegin',
+        `Вы <span class="change">${changes}</span> ${old_value} из стикера <span class="sticker_value">
+        <strong>${sticker}</strong> в стикер <strong>${id_sticker}</strong></span>
         <br>
         <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
         <span class="time_history">${time.slice(0, 8)}</span></small>`)
