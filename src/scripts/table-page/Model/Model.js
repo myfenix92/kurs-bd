@@ -105,15 +105,27 @@ export const ModelTablePage = class {
     API.changeRecord(id_record, new_record);
   }
 
+  moveRecordFromSticker(id_sticker, id_record) {
+    API.moveRecord(id_sticker, id_record);
+  }
+
   getHistoryChanges(id_table) {
    this.name_sticker;
    API.getUserTableData(id_table).then(data => {
     this.name_sticker = data;
+    
 })
     API.getHistoryChanges(id_table).then(data => {
       ViewTP.viewHistoryChanges()
       data.forEach((e) => {
-        this.name_st = this.name_sticker.find(el => el.id_sticker === e.id_sticker);
+        if (e.changes === 'перенесли запись') {
+          this.name_st_old = this.name_sticker.find(el => el.id_sticker === e.id_sticker);
+          this.name_st_new = this.name_sticker.find(el => el.id_sticker === +e.new_stc);
+           ViewTP.viewCreateHistoryChanges(e.changes, 
+             e.old_value, e.new_tbl, this.name_st_old.name_sticker, this.name_st_new.name_sticker, e.new_rec, e.date_change, e.time_change)
+        } else {
+          this.name_st = this.name_sticker.find(el => el.id_sticker === e.id_sticker);
+        }
         if (this.name_st === undefined) {
           ViewTP.viewCreateHistoryChanges(e.changes, 
             e.old_value, e.new_tbl, e.new_stc, '', e.new_rec, e.date_change, e.time_change)
