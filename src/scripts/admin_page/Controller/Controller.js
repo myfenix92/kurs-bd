@@ -46,7 +46,11 @@ export const ControllerAdminPage = class {
             document.querySelector('.msg-block_admin').remove()
             API.getMsgFromUsers().then(data => {
                 data.forEach((el) => {
-                  console.log(el) //вот тут с новыми сообщениями
+                    document.querySelectorAll('.btn-msg').forEach((span) => {
+                        if (span.id == el.id_user) {
+                            span.children[0].textContent = el.count_msg
+                        }
+                    })
                 })
             })
         }
