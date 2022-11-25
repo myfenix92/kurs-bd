@@ -71,6 +71,7 @@ export const ControllerMainPage = class {
       }
   
       if (event.target.classList.contains('close_msg_btn')) {
+        document.querySelector('.calc_data').textContent = ''
         document.querySelector('.msg-block').classList.toggle('close')
         setTimeout(() => {
           document.querySelector('.msg-block').remove()
