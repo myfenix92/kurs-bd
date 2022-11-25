@@ -102,4 +102,47 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+
+setTimeout(() =>{
+    document.querySelectorAll('.record_block').forEach((e) => {
+    e.addEventListener('dragstart', dragStart)
+  })
+  document.querySelectorAll('.column_list').forEach((e) => {
+    e.addEventListener('dragenter', dragEnter)
+    e.addEventListener('dragover', dragOver)
+    e.addEventListener('drop', dragDrop)
+  })
+}, 1000)
+
+let dragStartVar = 0
+let dragEndVar = 0
+let id_record = 0
+function dragStart(e) {
+  e.dataTransfer.setData("text/plain",e.target.id);
+  id_record = e.target.id
+  dragStartVar =  e.target.closest('.column').dataset.id_sticker
+}
+
+function dragEnter(e) {
+  e.preventDefault();
+  dragEndVar = e.target.closest('.column').dataset.id_sticker
+  return true;
+}
+
+function dragDrop(e) {
+  var data = e.dataTransfer.getData("text/plain");
+  if (dragStartVar !== dragEndVar) {
+     e.target.closest('.column_list').appendChild(document.getElementById(data));
+     ModelTP.moveRecordFromSticker(dragEndVar, id_record)
+  } 
+  
+}
+
+function dragOver(e) {
+  e.preventDefault();
+}
+
+
+
+
 export {socket}
