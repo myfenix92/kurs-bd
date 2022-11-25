@@ -38,7 +38,7 @@ export const ViewAdminPage = class {
       <td>${birth}</td>
       <td>${registr}</td>
       <td>${count_tbls}</td>
-      <td><button class="btn-msg" id=${id}>Новые сообщения: ${msg}</button></td>
+      <td><button class="btn-msg" id=${id}>Новые сообщения: <span class="count_msg">${msg}</span></button></td>
       <td><button class="btn-ban" id=${id}>Забанить</button></td>
       <td>${this.banText}</td>
       <td><button class="btn-delete" id=${id}>Удалить</button></td>
