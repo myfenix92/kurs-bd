@@ -178,28 +178,31 @@ export const ControllerTablePage = class {
 	}
 
 	onPopMenu(event) {
-		if (event.target.parentNode.classList.contains('menu_column')) {
-			document
-				.querySelectorAll('.pop_menu_column')
-				.forEach((e) => {
-					if (!e.classList.contains('show') && e.getAttribute('id') === event.path[3].getAttribute('data-id_sticker')) {
-						e
-							.classList
-							.add('show');
-					} else {
+		if (!document.querySelector('.header_text_login')) {
+			if (event.target.parentNode.classList.contains('menu_column')
+			) {
+				document
+					.querySelectorAll('.pop_menu_column')
+					.forEach((e) => {
+						if (!e.classList.contains('show') && e.getAttribute('id') === event.path[3].getAttribute('data-id_sticker')) {
+							e
+								.classList
+								.add('show');
+						} else {
+							e
+								.classList
+								.remove('show');
+						}
+					});
+			} else {
+				document
+					.querySelectorAll('.pop_menu_column')
+					.forEach((e) => {
 						e
 							.classList
 							.remove('show');
-					}
-				});
-		} else {
-			document
-				.querySelectorAll('.pop_menu_column')
-				.forEach((e) => {
-					e
-						.classList
-						.remove('show');
-				});
+					});
+			}
 		}
 	}
 
@@ -436,9 +439,6 @@ export const ControllerTablePage = class {
 				.parentNode
 				.parentNode
 				.getAttribute('data-id_sticker');
-			// (event.target.tagName === 'LI' &&
-			// event.target.classList.contains('change_sticker_name')) || this.id_sticker =
-			// event.target.parentNode.parentNode.parentNode.getAttribute('data-id_sticker')
 			document
 				.querySelectorAll('.column')
 				.forEach((e) => {
@@ -653,82 +653,85 @@ export const ControllerTablePage = class {
 			this.id_record = null;
 		}
 
-		this.id_record = event
-			.target
-			.parentNode
-			.getAttribute('data-id_record') != null
-			? event
+		if (!document.querySelector('.header_text_login')) {
+			this.id_record = event
 				.target
 				.parentNode
-				.getAttribute('data-id_record')
-			: event
-				.target
-				.getAttribute('data-id_record');
-
-		if ((event.target.tagName === 'P' || event.target.tagName === 'SPAN') || event.target.parentNode.classList.contains('record')) {
-			this.isFocus = !this
-				.isFocus;
-			document
-				.querySelectorAll('.record')
-				.forEach((e) => {
-					if (e.parentNode.getAttribute('data-id_record') === this.id_record) {
-						e
-							.parentNode
-							.childNodes[0]
-							.classList
-							.add('hide');
-						e
-							.parentNode
-							.childNodes[1]
-							.classList
-							.add('hide');
-						this
-							.recordFieldInput[
-								this
-									.id_records
-									.indexOf(this.id_record)
-							]
-							.value = this
+				.getAttribute('data-id_record') !== null
+				? event
+					.target
+					.parentNode
+					.getAttribute('data-id_record')
+				: event
+					.target
+					.getAttribute('data-id_record');
+			if ((event.target.tagName === 'P' || event.target.tagName === 'SPAN') || event.target.parentNode.classList.contains('record')) {
+				this.isFocus = !this
+					.isFocus;
+				document
+					.querySelectorAll('.record')
+					.forEach((e) => {
+						if (e.parentNode.getAttribute('data-id_record') === this.id_record) {
+							e
+								.parentNode
+								.childNodes[0]
+								.classList
+								.add('hide');
+							e
+								.parentNode
+								.childNodes[1]
+								.classList
+								.add('hide');
+							this
+								.recordFieldInput[
+									this
+										.id_records
+										.indexOf(this.id_record)
+								]
+								.value = this
+									.recordField[
+										this
+											.id_records
+											.indexOf(this.id_record)
+									]
+									.textContent;
+							this
 								.recordField[
 									this
 										.id_records
 										.indexOf(this.id_record)
 								]
-								.textContent;
-						this
-							.recordField[
-								this
-									.id_records
-									.indexOf(this.id_record)
-							]
-							.classList
-							.add('hide');
-						this
-							.recordFieldInput[
-								this
-									.id_records
-									.indexOf(this.id_record)
-							]
-							.classList
-							.add('show');
-						this
-							.recordFieldInput[
-								this
-									.id_records
-									.indexOf(this.id_record)
-							]
-							.classList
-							.remove('hide');
-						this
-							.recordFieldInput[
-								this
-									.id_records
-									.indexOf(this.id_record)
-							]
-							.focus();
-					}
-				});
+								.classList
+								.add('hide');
+							this
+								.recordFieldInput[
+									this
+										.id_records
+										.indexOf(this.id_record)
+								]
+								.classList
+								.add('show');
+							this
+								.recordFieldInput[
+									this
+										.id_records
+										.indexOf(this.id_record)
+								]
+								.classList
+								.remove('hide');
+							this
+								.recordFieldInput[
+									this
+										.id_records
+										.indexOf(this.id_record)
+								]
+								.focus();
+						}
+					});
+			}
 		}
+
+
 
 		if (event.key === 'Enter' && !event.shiftKey && this.isFocus) {
 			this.id_record = event
