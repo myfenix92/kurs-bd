@@ -690,7 +690,7 @@ main .bg_img_block .bg_image_list {
   overflow-y: auto;
   overflow-x: hidden;
   margin: 0.2rem;
-  height: 64vh;
+  max-height: 64vh;
 }
 main .bg_img_block .bg_image_list .color, main .bg_img_block .bg_image_list .image {
   width: 200px;

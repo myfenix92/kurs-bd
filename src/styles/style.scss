@@ -782,7 +782,7 @@ main {
       overflow-y: auto;
       overflow-x: hidden;
       margin: .2rem;
-      height: 64vh;
+      max-height: 64vh;
 
       .color, .image {
         width: 200px;
