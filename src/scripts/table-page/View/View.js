@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export const ViewTablePage = class {
   
 	viewTableData(nameTable) {
@@ -368,9 +369,12 @@ export const ViewTablePage = class {
         <span class="time_history">${time.slice(0, 8)}</span></small>`);
 			break;
 		case 'перенесли запись':
+			console.log(sticker);
+			console.log(id_sticker);
 			this.recordHistory.insertAdjacentHTML('afterbegin',
-				`Вы <span class="change">${changes}</span> ${old_value} из стикера <span class="sticker_value">
-        <strong>${sticker}</strong> в стикер <strong>${id_sticker}</strong></span>
+				`Вы <span class="change">${changes}</span> ${record}
+				из стикера <span class="sticker_value"> <strong>${old_value}</strong> 
+				в стикер <strong>${sticker}</strong></span>
         <br>
         <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
         <span class="time_history">${time.slice(0, 8)}</span></small>`);
