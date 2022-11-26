@@ -66,6 +66,7 @@ document.body.addEventListener('keyup', ControllerTP.onViewImageInputHandler);
 document.body.addEventListener('click', ControllerTP.onBackToTables);
 document.body.addEventListener('click', ControllerTP.onDeleteTable);
 document.body.addEventListener('click', ControllerTP.onLogOutHandler);
+document.body.addEventListener('mousedown', ControllerTP.mouseDownHandler);
 
 document.addEventListener('DOMContentLoaded', function () {
 	if (getIdUser() !== 1 && getIdUser()) {

@@ -15,6 +15,7 @@ const ViewTP = new ViewTablePage();
 const API = new APIClass();
 
 let numberPage = 1;
+let pos = { right: 0, left: 0, x: 0, y: 0 };
 export const ControllerTablePage = class {
 
 	onChangeNameTableHandler(event) {
@@ -1010,6 +1011,41 @@ export const ControllerTablePage = class {
 				composed[0].style.background
 			);
 		}
+	}
+
+	mouseDownHandler(event) {
+		console.log('down');
+		this.block_column = document.querySelector('.block_columns');
+		this.block_column.style.cursor = 'grabbing';
+		this.block_column.style.userSelect = 'none';
+		pos = {
+			left: this.block_column.scrollLeft,
+			right: this.block_column.scrollRight,
+			x: event.clientX,
+			y: event.clientY,
+		};
+		document.addEventListener('mousemove', (new ControllerTablePage).mouseMoveHandler);
+		document.addEventListener('mouseup', (new ControllerTablePage).mouseUpHandler);
+	}
+
+	mouseMoveHandler(e) {
+		console.log('move');
+		this.block_column = document.querySelector('.block_columns');
+		const dx = e.clientX - pos.x;
+		const dy = e.clientY - pos.y;
+
+		this.block_column.scrollRight = pos.right - dy;
+		this.block_column.scrollLeft = pos.left - dx;
+	}
+
+	mouseUpHandler() {
+		console.log('up');
+		this.block_column = document.querySelector('.block_columns');
+		document.removeEventListener('mousemove', (new ControllerTablePage).mouseMoveHandler);
+		document.removeEventListener('mouseup', (new ControllerTablePage).mouseUpHandler);
+
+		this.block_column.style.cursor = 'grab';
+		this.block_column.style.removeProperty('user-select');
 	}
 
 };

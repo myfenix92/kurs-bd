@@ -590,6 +590,8 @@ main .block_columns {
   overflow-y: clip;
   margin: 0 1.2rem;
   min-height: 20vw;
+  cursor: -webkit-grab;
+  cursor: grab;
 }
 main .block_columns::-webkit-scrollbar {
   height: 10px;
