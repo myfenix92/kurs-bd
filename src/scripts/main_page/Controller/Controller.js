@@ -191,7 +191,7 @@ export const ControllerMainPage = class {
 	}
 
 	onclickTable(event) {
-		if (document.querySelector('.header_text_login')) {
+		if (document.querySelector('.header_text_login') && !document.querySelector('.msg-block')) {
 			if (event.target.closest('div').classList.contains('table') &&
         event.target.closest('div').dataset.id_table) {
 				socket.removeAllListeners('chat message');
