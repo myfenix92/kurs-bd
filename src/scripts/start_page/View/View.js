@@ -7,30 +7,54 @@ export const ViewStartPage = class {
 	viewHeaderStartPage() {
 		this.header = document.querySelector('header');
 		this.headerBlock = document.createElement('div');
-		this.headerBlock.classList.add('header_sp');
+		this
+			.headerBlock
+			.classList
+			.add('header_sp');
 		this.headerTitle = document.createElement('h1');
-		this.headerTitle.classList.add('header_h1');
+		this
+			.headerTitle
+			.classList
+			.add('header_h1');
 		this.headerTitle.textContent = 'Веб-приложение для ведения личных заметок';
-    
+
 		this.descript = document.createElement('p');
-		this.descript.classList.add('header_descript');
+		this
+			.descript
+			.classList
+			.add('header_descript');
 		this.descript.textContent = `Приложение предназначено для создания отдельных досок 
     с записями на них.`;
 
 		this.headerBtn = document.createElement('div');
-		this.headerBtn.classList.add('header_btn');
+		this
+			.headerBtn
+			.classList
+			.add('header_btn');
 
 		this.btnReg = document.createElement('button');
-		this.btnReg.classList.add('header_btn_register');
+		this
+			.btnReg
+			.classList
+			.add('header_btn_register');
 		this.btnReg.textContent = 'Регистрация';
 
 		this.btnLog = document.createElement('button');
-		this.btnLog.classList.add('header_btn_log');
+		this
+			.btnLog
+			.classList
+			.add('header_btn_log');
 		this.btnLog.textContent = 'Авторизация';
 
-		this.headerBtn.append(this.btnReg, this.btnLog);
-		this.headerBlock.append(this.headerTitle, this.descript, this.headerBtn);
-		this.header.append(this.headerBlock);
+		this
+			.headerBtn
+			.append(this.btnReg, this.btnLog);
+		this
+			.headerBlock
+			.append(this.headerTitle, this.descript, this.headerBtn);
+		this
+			.header
+			.append(this.headerBlock);
 	}
 
 	viewStartPage(value) {
@@ -92,7 +116,9 @@ export const ViewStartPage = class {
 		if (value === 'login-value') {
 			this.errorPassword = document.querySelector('.error_password.login');
 			this.errorPassword.textContent = 'Логин и/или пароль неверны';
-			document.querySelector('#password').value = '';
+			document
+				.querySelector('#password')
+				.value = '';
 		}
 	}
 };

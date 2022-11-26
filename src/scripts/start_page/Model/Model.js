@@ -1,11 +1,6 @@
-import {
-	ViewStartPage
-} from '../View/index';
-import {
-	APIClass
-} from '../../../API/index';
-import {
-	setLocalStorageData} from '../../../LocalStorage/index';
+import {ViewStartPage} from '../View/index';
+import {APIClass} from '../../../API/index';
+import {setLocalStorageData} from '../../../LocalStorage/index';
 
 const ViewSP = new ViewStartPage();
 const API = new APIClass();
@@ -13,7 +8,10 @@ const API = new APIClass();
 export const ModelStartPage = class {
 
 	init() {
-		document.querySelector('body').style.setProperty('--body-image', 'linear-gradient(#218aba, #162657)');
+		document
+			.querySelector('body')
+			.style
+			.setProperty('--body-image', 'linear-gradient(#218aba, #162657)');
 		ViewSP.viewHeaderStartPage();
 	}
 
@@ -31,26 +29,29 @@ export const ModelStartPage = class {
 	}
 
 	onRegisterUser(login, password, date_birth, sex) {
-		API.createNewUser(login, password, date_birth, sex).then(data => {
-			if (data.regStatus) {
-				localStorage.clear();
-				this.onLoginUser(login, password);
-			} else {
-				ViewSP.onErrorValue('register-login');
-			}
-		});
+		API
+			.createNewUser(login, password, date_birth, sex)
+			.then(data => {
+				if (data.regStatus) {
+					localStorage.clear();
+					this.onLoginUser(login, password);
+				} else {
+					ViewSP.onErrorValue('register-login');
+				}
+			});
 	}
 
 	onLoginUser(login, password) {
-		API.loginUser(login, password).then(data => {
-			if (data.loginStatus) {
-				localStorage.clear();
-				setLocalStorageData('token', data.loginToken);
-				setLocalStorageData('bg_table', 'linear-gradient(#218aba, #162657)');
-			}
-			else {
-				ViewSP.onErrorValue('login-value');
-			}
-		});
+		API
+			.loginUser(login, password)
+			.then(data => {
+				if (data.loginStatus) {
+					localStorage.clear();
+					setLocalStorageData('token', data.loginToken);
+					setLocalStorageData('bg_table', 'linear-gradient(#218aba, #162657)');
+				} else {
+					ViewSP.onErrorValue('login-value');
+				}
+			});
 	}
 };

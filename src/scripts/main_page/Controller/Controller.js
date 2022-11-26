@@ -15,13 +15,9 @@ const API = new APIClass();
 export const ControllerMainPage = class {
 
 	onCreateTable(event) {
-		if (event.target.classList.contains('new_table') 
-        && event.target.closest('div').classList.contains('new_table')) {
+		if (event.target.classList.contains('new_table') && event.target.closest('div').classList.contains('new_table')) {
 			ViewMP.viewCreateTable();
-		} else if (event.target.tagName === 'DIV' 
-        && event.target.classList.contains('filter_create') 
-        && !event.target.classList.contains('create_new_table') 
-        && document.querySelector('.header_text_login').textContent !== 'admin') {
+		} else if (event.target.tagName === 'DIV' && event.target.classList.contains('filter_create') && !event.target.classList.contains('create_new_table') && document.querySelector('.header_text_login').textContent !== 'admin') {
 			document
 				.querySelector('.filter_create')
 				.remove();
@@ -45,7 +41,7 @@ export const ControllerMainPage = class {
 
 	onShowMsgBlock(event) {
 		socket.on('connect', () => {
-		//	console.log('connect');
+			//	console.log('connect');
 			socket.emit('room', `${getIdUser()}`);
 		});
 		ModelMP.checkBanUser();
@@ -136,8 +132,7 @@ export const ControllerMainPage = class {
 			ModelMP.profileData(getIdUser());
 		}
 
-		if ((event.target.classList.contains('filter_menu') && !event.target.classList.contains('profile_setting')) 
-        || (event.target.classList.contains('close_profile') && event.target.tagName === 'BUTTON')) {
+		if ((event.target.classList.contains('filter_menu') && !event.target.classList.contains('profile_setting')) || (event.target.classList.contains('close_profile') && event.target.tagName === 'BUTTON')) {
 			document
 				.querySelector('.filter_menu')
 				.remove();
@@ -192,8 +187,7 @@ export const ControllerMainPage = class {
 
 	onclickTable(event) {
 		if (document.querySelector('.header_text_login') && !document.querySelector('.msg-block')) {
-			if (event.target.closest('div').classList.contains('table') &&
-        event.target.closest('div').dataset.id_table) {
+			if (event.target.closest('div').classList.contains('table') && event.target.closest('div').dataset.id_table) {
 				socket.removeAllListeners('chat message');
 				this.id_table = event
 					.target
@@ -248,7 +242,9 @@ export const ControllerMainPage = class {
 				1,
 				getIdUser()
 			);
-			document.querySelector('.calc_data').textContent = '';
+			document
+				.querySelector('.calc_data')
+				.textContent = '';
 			ModelMP.sendNewMsg(
 				getLocalStorageData('token'),
 				document.querySelector('textarea').value
