@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createApi } from 'unsplash-js';
 import {
 	APIClass
@@ -135,20 +136,23 @@ export const ModelTablePage = class {
 			ViewTP.viewHistoryChanges();
 			data.forEach((e) => {
 				if (e.changes === 'перенесли запись') {
-					this.name_st_old = this.name_sticker.find(el => el.id_sticker === e.id_sticker);
-					this.name_st_new = this.name_sticker.find(el => el.id_sticker === +e.new_stc);
-					ViewTP.viewCreateHistoryChanges(e.changes, 
-						e.old_value, e.new_tbl, this.name_st_old.name_sticker, this.name_st_new.name_sticker, e.new_rec, e.date_change, e.time_change);
-				} else {
-					this.name_st = this.name_sticker.find(el => el.id_sticker === e.id_sticker);
-				}
-				if (this.name_st === undefined) {
+					this.name_st_new = this.name_sticker.find(el => el.id_sticker === e.id_sticker);
+					console.log(this.name_st_new);
 					ViewTP.viewCreateHistoryChanges(e.changes, 
 						e.old_value, e.new_tbl, e.new_stc, '', e.new_rec, e.date_change, e.time_change);
-				} else {
-					ViewTP.viewCreateHistoryChanges(e.changes, 
-						e.old_value, e.new_tbl, e.new_stc, this.name_st.name_sticker, e.new_rec, e.date_change, e.time_change);
+				} 
+				else {
+					this.name_st = this.name_sticker.find(el => el.id_sticker === e.id_sticker);
+					if (this.name_st === undefined) {
+						ViewTP.viewCreateHistoryChanges(e.changes, 
+							e.old_value, e.new_tbl, e.new_stc, '', e.new_rec, e.date_change, e.time_change);
+					} else {
+						console.log('there');
+						ViewTP.viewCreateHistoryChanges(e.changes, 
+							e.old_value, e.new_tbl, e.new_stc, this.name_st.name_sticker, e.new_rec, e.date_change, e.time_change);
+					}
 				}
+
 			});
 		});  
 	}
