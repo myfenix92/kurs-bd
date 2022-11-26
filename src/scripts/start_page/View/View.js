@@ -1,42 +1,42 @@
 export const ViewStartPage = class {
-  constructor() {
-    this.isError = true;
-    this.isErrorLogin = true;
-  }
+	constructor() {
+		this.isError = true;
+		this.isErrorLogin = true;
+	}
 
-  viewHeaderStartPage() {
-    this.header = document.querySelector('header');
-    this.headerBlock = document.createElement('div');
-    this.headerBlock.classList.add('header_sp')
-    this.headerTitle = document.createElement('h1');
-    this.headerTitle.classList.add('header_h1');
-    this.headerTitle.textContent = 'Веб-приложение для ведения личных заметок';
+	viewHeaderStartPage() {
+		this.header = document.querySelector('header');
+		this.headerBlock = document.createElement('div');
+		this.headerBlock.classList.add('header_sp');
+		this.headerTitle = document.createElement('h1');
+		this.headerTitle.classList.add('header_h1');
+		this.headerTitle.textContent = 'Веб-приложение для ведения личных заметок';
     
-    this.descript = document.createElement('p');
-    this.descript.classList.add('header_descript');
-    this.descript.textContent = `Приложение предназначено для создания отдельных досок 
-    с записями на них.`
+		this.descript = document.createElement('p');
+		this.descript.classList.add('header_descript');
+		this.descript.textContent = `Приложение предназначено для создания отдельных досок 
+    с записями на них.`;
 
-    this.headerBtn = document.createElement('div');
-    this.headerBtn.classList.add('header_btn');
+		this.headerBtn = document.createElement('div');
+		this.headerBtn.classList.add('header_btn');
 
-    this.btnReg = document.createElement('button');
-    this.btnReg.classList.add('header_btn_register');
-    this.btnReg.textContent = 'Регистрация';
+		this.btnReg = document.createElement('button');
+		this.btnReg.classList.add('header_btn_register');
+		this.btnReg.textContent = 'Регистрация';
 
-    this.btnLog = document.createElement('button');
-    this.btnLog.classList.add('header_btn_log');
-    this.btnLog.textContent = 'Авторизация';
+		this.btnLog = document.createElement('button');
+		this.btnLog.classList.add('header_btn_log');
+		this.btnLog.textContent = 'Авторизация';
 
-    this.headerBtn.append(this.btnReg, this.btnLog);
-    this.headerBlock.append(this.headerTitle, this.descript, this.headerBtn);
-    this.header.append(this.headerBlock)
-  }
+		this.headerBtn.append(this.btnReg, this.btnLog);
+		this.headerBlock.append(this.headerTitle, this.descript, this.headerBtn);
+		this.header.append(this.headerBlock);
+	}
 
-  viewStartPage(value) {
-    this.main = document.querySelector('main');
-    if (value === 'register') {
-        this.main.innerHTML = `<div class="main_sp"><form class="form_in form_sp">
+	viewStartPage(value) {
+		this.main = document.querySelector('main');
+		if (value === 'register') {
+			this.main.innerHTML = `<div class="main_sp"><form class="form_in form_sp">
         <p class="form_in_input login">
           <label for="login">Логин</label>
           <input type="text" id="login" placeholder="ваш логин" maxLength="25">
@@ -66,9 +66,9 @@ export const ViewStartPage = class {
           <label for="male">мужской</label>
         </p>
         <button class="form_in_continue" type="button">Продолжить</button>
-      </form></div>`
-    } else if (value === 'login') {
-      this.main.innerHTML = `<div class="main_sp"><form class="form_in form_sp">
+      </form></div>`;
+		} else if (value === 'login') {
+			this.main.innerHTML = `<div class="main_sp"><form class="form_in form_sp">
         <p class="form_in_input login">
           <label for="login">Логин</label>
           <input type="text" name="" id="login" placeholder="ваш логин" maxLength="25">
@@ -79,20 +79,20 @@ export const ViewStartPage = class {
           <input type="password" name="" id="password" placeholder="123456">
         </p>
         <button class="form_in_continue" type="button">Продолжить</button>
-      </form></div>`
-    }
-  }
+      </form></div>`;
+		}
+	}
 
-  onErrorValue(value) {
-    if (value === 'register-login') {
-      this.errorPassword = document.querySelector('.error_password.login');
-      this.errorPassword.textContent = 'Логин уже существует';
-    }
+	onErrorValue(value) {
+		if (value === 'register-login') {
+			this.errorPassword = document.querySelector('.error_password.login');
+			this.errorPassword.textContent = 'Логин уже существует';
+		}
 
-    if (value === 'login-value') {
-      this.errorPassword = document.querySelector('.error_password.login');
-      this.errorPassword.textContent = 'Логин и/или пароль неверны';
-      document.querySelector('#password').value = '';
-    }
-  }
-}
+		if (value === 'login-value') {
+			this.errorPassword = document.querySelector('.error_password.login');
+			this.errorPassword.textContent = 'Логин и/или пароль неверны';
+			document.querySelector('#password').value = '';
+		}
+	}
+};

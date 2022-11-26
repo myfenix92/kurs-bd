@@ -1,70 +1,70 @@
 export const ViewMainPage = class {
 
-  viewLoginUser(value) {
-    this.main = document.querySelector('main');
-    this.mainBlock = document.createElement('div');
-    this.mainBlock.classList.add('main_mp');
+	viewLoginUser(value) {
+		this.main = document.querySelector('main');
+		this.mainBlock = document.createElement('div');
+		this.mainBlock.classList.add('main_mp');
 
-    this.header = document.querySelector('header');
-    this.headerBlock = document.createElement('div');
-    this.headerBlock.classList.add('header_mp');
-    this.headerText = document.createElement('p');
-    this.headerText.classList.add('header_text');
-    this.headerText.textContent = `Приветствуем, `;
-    this.headerLogin = document.createElement('span');
+		this.header = document.querySelector('header');
+		this.headerBlock = document.createElement('div');
+		this.headerBlock.classList.add('header_mp');
+		this.headerText = document.createElement('p');
+		this.headerText.classList.add('header_text');
+		this.headerText.textContent = 'Приветствуем, ';
+		this.headerLogin = document.createElement('span');
     
-    this.headerLogin.classList.add('header_text_login');
-    this.headerLogin.textContent = value;
+		this.headerLogin.classList.add('header_text_login');
+		this.headerLogin.textContent = value;
     
 
-    this.profile = document.createElement('div');
-    this.profile.classList.add('profile')
+		this.profile = document.createElement('div');
+		this.profile.classList.add('profile');
 
-    this.ul = document.createElement('ul');
-    if (value !== 'admin') {
-      this.liData = {
-        class: ['dialog_admin', 'about_user', 'logout'],
-        text: ['Сообщения', 'Профиль', 'Выйти']
-      }
-    } else {
-      this.liData = {
-        class: ['about_user', 'logout'],
-        text: ['Профиль', 'Выйти']
-      }
-    }
+		this.ul = document.createElement('ul');
+		if (value !== 'admin') {
+			this.liData = {
+				class: ['dialog_admin', 'about_user', 'logout'],
+				text: ['Сообщения', 'Профиль', 'Выйти']
+			};
+		} else {
+			this.liData = {
+				class: ['about_user', 'logout'],
+				text: ['Профиль', 'Выйти']
+			};
+		}
     
-    for (let i = 0; i < this.liData.class.length; i++) {
-      this.li = document.createElement('li');
-      this.li.classList.add(this.liData.class[i]);
-      this.li.textContent = this.liData.text[i];
-      this.ul.appendChild(this.li)
-    }
-    this.profile.append(this.ul);
-    this.headerText.append(this.headerLogin)
-    this.headerBlock.append(this.headerText, this.profile);
-    this.header.append(this.headerBlock);
-    this.main.appendChild(this.mainBlock);
-  }
+		for (let i = 0; i < this.liData.class.length; i++) {
+			this.li = document.createElement('li');
+			this.li.classList.add(this.liData.class[i]);
+			this.li.textContent = this.liData.text[i];
+			this.ul.appendChild(this.li);
+		}
+		this.profile.append(this.ul);
+		this.headerText.append(this.headerLogin);
+		this.headerBlock.append(this.headerText, this.profile);
+		this.header.append(this.headerBlock);
+		this.main.appendChild(this.mainBlock);
+	}
 
-  viewShowMessageBlock(ban) {
-    this.main = document.querySelector('main');
-    this.msgBlock = document.createElement('div');
-    this.msgBlock.classList.add('msg-block', 'close', 'showBlock');
+	viewShowMessageBlock(ban) {
+		this.main = document.querySelector('main');
+		this.msgBlock = document.createElement('div');
+		this.msgBlock.classList.add('msg-block', 'close', 'showBlock');
 
-    this.closeBtn = document.createElement('button');
-    this.closeBtn.textContent = '[x]'
-    this.closeBtn.classList.add('close_msg_btn');
+		this.closeBtn = document.createElement('button');
+		this.closeBtn.textContent = '[x]';
+		this.closeBtn.classList.add('close_msg_btn');
 
-    this.msgDialog = document.createElement('div');
-    this.msgDialog.classList.add('msg_dialog');
+		this.msgDialog = document.createElement('div');
+		this.msgDialog.classList.add('msg_dialog');
 
-    this.inputMsgInput = document.createElement('textarea');
-    this.inputMsgInput.setAttribute('cols', 70);
-    this.inputMsgInput.setAttribute('wrap', 'hard');
-    this.inputMsgInput.setAttribute('name', 'input_msg');
-    this.btnMsgInput = document.createElement('button')
-    this.btnMsgInput.classList.add('send_msg_btn');
-    this.svgSend = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="25" height="25" x="0" y="0" viewBox="0 0 367.92 367.92" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g>
+		this.inputMsgInput = document.createElement('textarea');
+		this.inputMsgInput.setAttribute('cols', 70);
+		this.inputMsgInput.setAttribute('wrap', 'hard');
+		this.inputMsgInput.setAttribute('name', 'input_msg');
+		this.btnMsgInput = document.createElement('button');
+		this.btnMsgInput.classList.add('send_msg_btn');
+		this.svgSend = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="25" height="25" x="0" y="0" viewBox="0 0 367.92 367.92" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g>
     <g>
       <g>
         <g>
@@ -116,317 +116,317 @@ export const ViewMainPage = class {
     </g>
     <g>
     </g>
-    </g></svg>`
-    this.btnMsgInput.insertAdjacentHTML('afterbegin', this.svgSend)
-    this.banTextBlock = document.createElement('p')
-    this.banTextBlock.classList.add('ban_text')
-    if (ban) {
-      this.banTextBlock.textContent =  `Вы забанены до ${ban.slice(11, 19)}, 
+    </g></svg>`;
+		this.btnMsgInput.insertAdjacentHTML('afterbegin', this.svgSend);
+		this.banTextBlock = document.createElement('p');
+		this.banTextBlock.classList.add('ban_text');
+		if (ban) {
+			this.banTextBlock.textContent =  `Вы забанены до ${ban.slice(11, 19)}, 
       ${ban.slice(0, 10).split('-').reverse().join('-')} и не можете отправлять сообщения.`;
-      this.msgBlock.append(this.closeBtn, this.msgDialog, this.banTextBlock);
-    } else {
-      this.inputMsgInput.setAttribute('placeholder', 'Введите сообщение...');
-      this.msgBlock.append(this.closeBtn, this.msgDialog, this.inputMsgInput, this.btnMsgInput);
-    }
+			this.msgBlock.append(this.closeBtn, this.msgDialog, this.banTextBlock);
+		} else {
+			this.inputMsgInput.setAttribute('placeholder', 'Введите сообщение...');
+			this.msgBlock.append(this.closeBtn, this.msgDialog, this.inputMsgInput, this.btnMsgInput);
+		}
 
    
-    this.main.appendChild(this.msgBlock);
-  }
+		this.main.appendChild(this.msgBlock);
+	}
 
-  viewDialog(message, date_sent, type, send = 1) {
-    this.msgDialog = document.querySelector('.msg_dialog');
-    this.msgText = document.createElement('p');
-    this.msgText.classList.add('msg_text');
+	viewDialog(message, date_sent, type, send = 1) {
+		this.msgDialog = document.querySelector('.msg_dialog');
+		this.msgText = document.createElement('p');
+		this.msgText.classList.add('msg_text');
 
-    this.hr = document.createElement('hr')
-    let date = date_sent
-    this.msgText.textContent = message;
-    this.msgDate = document.createElement('span');
-  //  this.msgDate.textContent = `Отправлено ${date}`
-  if (date.toString().includes('GMT')) {
-    this.msgDate.textContent = `Отправлено ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} 
-      в ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`
-
-
-    if (send === 1) {
-      this.msgText.classList.add('to-msg_color')
-      this.msgDate.classList.add('to-msg')
-
-    } else {
-    this.msgText.classList.add('from-msg_color')
-    this.msgDate.classList.add('from-msg')
-    }
+		this.hr = document.createElement('hr');
+		let date = date_sent;
+		this.msgText.textContent = message;
+		this.msgDate = document.createElement('span');
+		//  this.msgDate.textContent = `Отправлено ${date}`
+		if (date.toString().includes('GMT')) {
+			this.msgDate.textContent = `Отправлено ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} 
+      в ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
 
 
+			if (send === 1) {
+				this.msgText.classList.add('to-msg_color');
+				this.msgDate.classList.add('to-msg');
 
-  } else {
-    this.msgDate.textContent = `Отправлено ${date.slice(0, 10).split('-').reverse().join('-')} в ${date_sent.slice(11, 19)}`
-
-    if (type === 1) {
-      this.msgText.classList.add('to-msg_color')
-      this.msgDate.classList.add('to-msg')
-
-    } else {
-    this.msgText.classList.add('from-msg_color')
-    this.msgDate.classList.add('from-msg')
-    }
-  }
+			} else {
+				this.msgText.classList.add('from-msg_color');
+				this.msgDate.classList.add('from-msg');
+			}
 
 
-     this.msgText.append(this.hr, this.msgDate);
-    this.msgDialog.appendChild(this.msgText);
-    document.querySelector('.msg_dialog').scrollTo(0, document.querySelector('.msg_dialog').scrollHeight)
 
-   }
+		} else {
+			this.msgDate.textContent = `Отправлено ${date.slice(0, 10).split('-').reverse().join('-')} в ${date_sent.slice(11, 19)}`;
 
-  viewFilterBlock() {
-    this.mainBlock = document.querySelector('.main_mp');
-    this.filterBlock = document.createElement('div');
-    this.filterBlock.classList.add('filter_table');
+			if (type === 1) {
+				this.msgText.classList.add('to-msg_color');
+				this.msgDate.classList.add('to-msg');
 
-    this.filterTitle = document.createElement('p');
-    this.filterTitle.classList.add('filter_tables_text');
-    this.filterTitle.textContent = 'Найти доски';
+			} else {
+				this.msgText.classList.add('from-msg_color');
+				this.msgDate.classList.add('from-msg');
+			}
+		}
 
-    this.filterValue = document.createElement('div');
-    this.filterValue.classList.add('filter_input');
 
-    this.labelName = document.createElement('label');
-    this.labelName.setAttribute('for', 'name_table');
-    this.labelName.textContent = 'Имя таблицы:';
+		this.msgText.append(this.hr, this.msgDate);
+		this.msgDialog.appendChild(this.msgText);
+		document.querySelector('.msg_dialog').scrollTo(0, document.querySelector('.msg_dialog').scrollHeight);
 
-    this.inputName = document.createElement('input');
-    this.inputName.setAttribute('type', 'text');
-    this.inputName.setAttribute('id', 'name_table');
-    this.inputName.setAttribute('placeholder', 'Введите имя/часть имени');
+	}
 
-    this.labelDate = document.createElement('label');
-    this.labelDate.setAttribute('for', 'date_create_first');
-    this.labelDate.textContent = 'Дата создания: ';
-    this.spanFrom = document.createElement('span');
-    this.spanFrom.textContent = 'с ';
-    this.inputFrom = document.createElement('input');
-    this.inputFrom.setAttribute('type', 'date');
-    this.inputFrom.setAttribute('id', 'date_create_first');
-    this.spanTo = document.createElement('span');
-    this.spanTo.textContent = 'по ';
-    this.inputTo = document.createElement('input');
-    this.inputTo.setAttribute('type', 'date');
-    this.inputTo.setAttribute('id', 'date_create_second');
+	viewFilterBlock() {
+		this.mainBlock = document.querySelector('.main_mp');
+		this.filterBlock = document.createElement('div');
+		this.filterBlock.classList.add('filter_table');
 
-    this.btnBlock = document.createElement('div');
-    this.btnSearch = document.createElement('button');
-    this.btnSearch.classList.add('filter_search');
-    this.btnSearch.textContent = 'Искать';
-    this.btnClear = document.createElement('button');
-    this.btnClear.classList.add('filter_clear');
-    this.btnClear.setAttribute('disabled', true);
-    this.btnClear.textContent = 'Показать все таблицы';
+		this.filterTitle = document.createElement('p');
+		this.filterTitle.classList.add('filter_tables_text');
+		this.filterTitle.textContent = 'Найти доски';
 
-    this.btnBlock.append(this.btnSearch, this.btnClear);
-    this.filterValue.append(this.labelName, this.inputName, this.labelDate, this.spanFrom, this.inputFrom, this.spanTo, this.inputTo);
-    this.filterBlock.append(this.filterTitle, this.filterValue, this.btnBlock);
-    this.mainBlock.appendChild(this.filterBlock);
-   // this.main.appendChild(this.mainBlock);
-  }
+		this.filterValue = document.createElement('div');
+		this.filterValue.classList.add('filter_input');
 
-  // viewCalcBlockAvg(value) {
-  //   this.calcBlock = document.querySelector('.calc_data');
-  //   this.calcBlock.innerHTML = '';
-  //   this.avg = document.createElement('p');
-  //   this.avg.classList.add('avg');
-  //   this.avg.textContent = 'Среднее число досок на одного пользователя: '
-  //   this.avgData = document.createElement('span');
-  //   this.avgData.textContent = value;
-  //   this.avgData.classList.add('avg_data');
-  //   this.hr = document.createElement('hr');
+		this.labelName = document.createElement('label');
+		this.labelName.setAttribute('for', 'name_table');
+		this.labelName.textContent = 'Имя таблицы:';
+
+		this.inputName = document.createElement('input');
+		this.inputName.setAttribute('type', 'text');
+		this.inputName.setAttribute('id', 'name_table');
+		this.inputName.setAttribute('placeholder', 'Введите имя/часть имени');
+
+		this.labelDate = document.createElement('label');
+		this.labelDate.setAttribute('for', 'date_create_first');
+		this.labelDate.textContent = 'Дата создания: ';
+		this.spanFrom = document.createElement('span');
+		this.spanFrom.textContent = 'с ';
+		this.inputFrom = document.createElement('input');
+		this.inputFrom.setAttribute('type', 'date');
+		this.inputFrom.setAttribute('id', 'date_create_first');
+		this.spanTo = document.createElement('span');
+		this.spanTo.textContent = 'по ';
+		this.inputTo = document.createElement('input');
+		this.inputTo.setAttribute('type', 'date');
+		this.inputTo.setAttribute('id', 'date_create_second');
+
+		this.btnBlock = document.createElement('div');
+		this.btnSearch = document.createElement('button');
+		this.btnSearch.classList.add('filter_search');
+		this.btnSearch.textContent = 'Искать';
+		this.btnClear = document.createElement('button');
+		this.btnClear.classList.add('filter_clear');
+		this.btnClear.setAttribute('disabled', true);
+		this.btnClear.textContent = 'Показать все таблицы';
+
+		this.btnBlock.append(this.btnSearch, this.btnClear);
+		this.filterValue.append(this.labelName, this.inputName, this.labelDate, this.spanFrom, this.inputFrom, this.spanTo, this.inputTo);
+		this.filterBlock.append(this.filterTitle, this.filterValue, this.btnBlock);
+		this.mainBlock.appendChild(this.filterBlock);
+		// this.main.appendChild(this.mainBlock);
+	}
+
+	// viewCalcBlockAvg(value) {
+	//   this.calcBlock = document.querySelector('.calc_data');
+	//   this.calcBlock.innerHTML = '';
+	//   this.avg = document.createElement('p');
+	//   this.avg.classList.add('avg');
+	//   this.avg.textContent = 'Среднее число досок на одного пользователя: '
+	//   this.avgData = document.createElement('span');
+	//   this.avgData.textContent = value;
+	//   this.avgData.classList.add('avg_data');
+	//   this.hr = document.createElement('hr');
     
-  //   this.avg.append(this.avgData);
-  //   this.calcBlock.append(this.avg, this.hr);
-  // }
+	//   this.avg.append(this.avgData);
+	//   this.calcBlock.append(this.avg, this.hr);
+	// }
 
-  // viewCalcBlockPercent(value) {
-  //   this.calcBlock = document.querySelector('.calc_data');
-  //   this.percent = document.createElement('p');
-  //   this.percent.classList.add('percent');
-  //   this.percentData = document.createElement('span');
-  //   this.percentData.classList.add('percent_data');
-  //   this.percent.textContent = 'Количество ваших досок от общего числа досок (в процентах): '
-  //   this.percentData.textContent = value;
+	// viewCalcBlockPercent(value) {
+	//   this.calcBlock = document.querySelector('.calc_data');
+	//   this.percent = document.createElement('p');
+	//   this.percent.classList.add('percent');
+	//   this.percentData = document.createElement('span');
+	//   this.percentData.classList.add('percent_data');
+	//   this.percent.textContent = 'Количество ваших досок от общего числа досок (в процентах): '
+	//   this.percentData.textContent = value;
 
-  //   this.percent.append(this.percentData);
-  //   this.calcBlock.append(this.percent)
-  // }
+	//   this.percent.append(this.percentData);
+	//   this.calcBlock.append(this.percent)
+	// }
 
-  viewTables(id_table, name_table, date_create, count_records, bg_image) {
-    this.tableBlock = document.querySelector('.table_block')
-    this.table = document.createElement('div');
-    this.table.classList.add('table');
-    this.table.setAttribute('data-id_table', id_table);
-    if (bg_image.includes('unsplash')) {     
-      this.table.style.background = `url("${bg_image}=&w=200)") 50%/cover`;
-    } else {
-      this.table.style.background = `${bg_image}`;
-    }
+	viewTables(id_table, name_table, date_create, count_records, bg_image) {
+		this.tableBlock = document.querySelector('.table_block');
+		this.table = document.createElement('div');
+		this.table.classList.add('table');
+		this.table.setAttribute('data-id_table', id_table);
+		if (bg_image.includes('unsplash')) {     
+			this.table.style.background = `url("${bg_image}=&w=200)") 50%/cover`;
+		} else {
+			this.table.style.background = `${bg_image}`;
+		}
 
-    this.nameTable = document.createElement('p');
-    this.nameTable.classList.add('name_table');
-    this.nameTable.textContent = name_table;
+		this.nameTable = document.createElement('p');
+		this.nameTable.classList.add('name_table');
+		this.nameTable.textContent = name_table;
 
-    this.dateCreate = document.createElement('p');
-   // this.titleDate = document.createElement('span');
-    this.dateCreate.textContent = `Дата создания: ${date_create.split('-').reverse().join('-')}`;
-    this.dateCreate.classList.add('date_create');
-   // this.titleDate.textContent = date_create.split('-').reverse().join('-');
+		this.dateCreate = document.createElement('p');
+		// this.titleDate = document.createElement('span');
+		this.dateCreate.textContent = `Дата создания: ${date_create.split('-').reverse().join('-')}`;
+		this.dateCreate.classList.add('date_create');
+		// this.titleDate.textContent = date_create.split('-').reverse().join('-');
     
-    this.countRecords = document.createElement('p');
-  //  this.titleCounts = document.createElement('span');
-    this.countRecords.textContent = `Кол-во записей: ${count_records}`;
-    this.countRecords.classList.add('number_records');
-  //  this.titleCounts.textContent = count_records;
+		this.countRecords = document.createElement('p');
+		//  this.titleCounts = document.createElement('span');
+		this.countRecords.textContent = `Кол-во записей: ${count_records}`;
+		this.countRecords.classList.add('number_records');
+		//  this.titleCounts.textContent = count_records;
 
-  //  this.dateCreate.appendChild(this.titleDate);
-  //  this.countRecords.appendChild(this.titleCounts);
-    this.table.append(this.nameTable, this.dateCreate, this.countRecords)
-    this.tableBlock.appendChild(this.table);
+		//  this.dateCreate.appendChild(this.titleDate);
+		//  this.countRecords.appendChild(this.titleCounts);
+		this.table.append(this.nameTable, this.dateCreate, this.countRecords);
+		this.tableBlock.appendChild(this.table);
     
-  }
+	}
 
-  viewTableBlock() {
-    this.mainBlock = document.querySelector('.main_mp');
-    this.tableBlock = document.createElement('div');
-    this.tableBlock.classList.add('table_block');
+	viewTableBlock() {
+		this.mainBlock = document.querySelector('.main_mp');
+		this.tableBlock = document.createElement('div');
+		this.tableBlock.classList.add('table_block');
 
-    this.newTable = document.createElement('div');
-    this.newTable.classList.add('table', 'new_table');
-    this.newTableText = document.createElement('p');
-    this.newTableText.classList.add('create_table_block');
-    this.newTableText.textContent = 'Создать доску';
+		this.newTable = document.createElement('div');
+		this.newTable.classList.add('table', 'new_table');
+		this.newTableText = document.createElement('p');
+		this.newTableText.classList.add('create_table_block');
+		this.newTableText.textContent = 'Создать доску';
 
-    this.calcBlock = document.createElement('div');
-    this.calcBlock.classList.add('calc_data');
-    this.newTable.appendChild(this.newTableText);
-    this.tableBlock.prepend(this.newTable);
-    this.mainBlock.append(this.calcBlock, this.tableBlock)
-  }
+		this.calcBlock = document.createElement('div');
+		this.calcBlock.classList.add('calc_data');
+		this.newTable.appendChild(this.newTableText);
+		this.tableBlock.prepend(this.newTable);
+		this.mainBlock.append(this.calcBlock, this.tableBlock);
+	}
 
-  viewCreateTable() {
-    this.main = document.querySelector('main');
-    this.createTabelBlock = document.createElement('div');
-    this.createTabelBlock.classList.add('create_table', 'filter_create');
+	viewCreateTable() {
+		this.main = document.querySelector('main');
+		this.createTabelBlock = document.createElement('div');
+		this.createTabelBlock.classList.add('create_table', 'filter_create');
 
-    this.createTabel = document.createElement('div');
-    this.createTabel.classList.add('create_new_table');
+		this.createTabel = document.createElement('div');
+		this.createTabel.classList.add('create_new_table');
 
-    this.labelCreateTable = document.createElement('label');
-    this.labelCreateTable.setAttribute('for', 'new_table');
-    this.labelCreateTable.textContent = 'Введите имя';
+		this.labelCreateTable = document.createElement('label');
+		this.labelCreateTable.setAttribute('for', 'new_table');
+		this.labelCreateTable.textContent = 'Введите имя';
 
-    this.inputCreateTable = document.createElement('input');
-    this.inputCreateTable.setAttribute('type', 'text');
-    this.inputCreateTable.setAttribute('id', 'new_table');
-    this.inputCreateTable.setAttribute('placeholder', 'имя доски');
-    this.inputCreateTable.setAttribute('maxLength', '50');
+		this.inputCreateTable = document.createElement('input');
+		this.inputCreateTable.setAttribute('type', 'text');
+		this.inputCreateTable.setAttribute('id', 'new_table');
+		this.inputCreateTable.setAttribute('placeholder', 'имя доски');
+		this.inputCreateTable.setAttribute('maxLength', '50');
 
-    this.btnCreateTable = document.createElement('button')
-    this.btnCreateTable.classList.add('create_tbl_btn');
-    this.btnCreateTable.textContent = 'Создать доску';
+		this.btnCreateTable = document.createElement('button');
+		this.btnCreateTable.classList.add('create_tbl_btn');
+		this.btnCreateTable.textContent = 'Создать доску';
 
-    this.createTabel.append(this.labelCreateTable, this.inputCreateTable, this.btnCreateTable);
-    this.createTabelBlock.appendChild(this.createTabel);
-    this.main.appendChild(this.createTabelBlock);
-  }
+		this.createTabel.append(this.labelCreateTable, this.inputCreateTable, this.btnCreateTable);
+		this.createTabelBlock.appendChild(this.createTabel);
+		this.main.appendChild(this.createTabelBlock);
+	}
 
-  viewRemoveTable() {
-    document.querySelectorAll('.table').forEach((e) => {
-      if (!e.classList.contains('new_table')) {
-        e.remove()
-      }
-    });
-  }
+	viewRemoveTable() {
+		document.querySelectorAll('.table').forEach((e) => {
+			if (!e.classList.contains('new_table')) {
+				e.remove();
+			}
+		});
+	}
 
-  viewProfile(value, all_days, sex) {
-    this.dataInput = {
-      for: ['password', 'password_check', 'b-day'],
-      type: ['password', 'password', 'date'],
-      id: ['password', 'password_check', 'b-day'],
-      text: ['Новый пароль', 'Повторите пароль', 'Измените дату рождения'],
-      value: ['', '', value, all_days],
-      sex,
-    }
+	viewProfile(value, all_days, sex) {
+		this.dataInput = {
+			for: ['password', 'password_check', 'b-day'],
+			type: ['password', 'password', 'date'],
+			id: ['password', 'password_check', 'b-day'],
+			text: ['Новый пароль', 'Повторите пароль', 'Измените дату рождения'],
+			value: ['', '', value, all_days],
+			sex,
+		};
 
-    this.header = document.querySelector('header');
-    this.headerClass = document.createElement('div');
-    this.headerClass.classList.add('header');
+		this.header = document.querySelector('header');
+		this.headerClass = document.createElement('div');
+		this.headerClass.classList.add('header');
 
-    this.overlay = document.createElement('div');
-    this.overlay.classList.add('filter_menu');
-    this.overlay.setAttribute('id', 'overlay');
+		this.overlay = document.createElement('div');
+		this.overlay.classList.add('filter_menu');
+		this.overlay.setAttribute('id', 'overlay');
 
-    this.profileSetting = document.createElement('div');
-    this.profileSetting.classList.add('profile_setting');
-    this.pHeader = document.createElement('p');
-    this.pHeader.classList.add('profile_header_text');
-    this.pHeader.textContent = 'О пользователе';
-    this.btnChange = document.createElement('button');
-    this.btnChange.classList.add('change_profile');
-    this.btnChange.textContent = 'Сохранить изменения';
-    this.btnClose = document.createElement('button');
-    this.btnClose.classList.add('close_profile');
-    this.btnClose.textContent = 'Закрыть';
+		this.profileSetting = document.createElement('div');
+		this.profileSetting.classList.add('profile_setting');
+		this.pHeader = document.createElement('p');
+		this.pHeader.classList.add('profile_header_text');
+		this.pHeader.textContent = 'О пользователе';
+		this.btnChange = document.createElement('button');
+		this.btnChange.classList.add('change_profile');
+		this.btnChange.textContent = 'Сохранить изменения';
+		this.btnClose = document.createElement('button');
+		this.btnClose.classList.add('close_profile');
+		this.btnClose.textContent = 'Закрыть';
 
-    this.allDays = document.createElement('p');
-    this.allDays.textContent = `Вы с нами ${all_days} дня(дней)`;    
+		this.allDays = document.createElement('p');
+		this.allDays.textContent = `Вы с нами ${all_days} дня(дней)`;    
 
-    for (let i = 0; i < 3; i++) {
-      this.pInput = document.createElement('p');
-      this.pInput.classList.add('form_in_mp');
-      this.label = document.createElement('label');
-      this.label.textContent = this.dataInput.text[i];
-      this.label.setAttribute('for', this.dataInput.for[i]);
+		for (let i = 0; i < 3; i++) {
+			this.pInput = document.createElement('p');
+			this.pInput.classList.add('form_in_mp');
+			this.label = document.createElement('label');
+			this.label.textContent = this.dataInput.text[i];
+			this.label.setAttribute('for', this.dataInput.for[i]);
 
-      this.input = document.createElement('input');
-      this.input.setAttribute('type', this.dataInput.type[i]);
-      this.input.setAttribute('id', this.dataInput.id[i]);
-      this.input.value = this.dataInput.value[i];
+			this.input = document.createElement('input');
+			this.input.setAttribute('type', this.dataInput.type[i]);
+			this.input.setAttribute('id', this.dataInput.id[i]);
+			this.input.value = this.dataInput.value[i];
 
-      this.errorPassword = document.createElement('p');
-      this.errorPassword.classList.add('error_password', this.dataInput.id[i]);
+			this.errorPassword = document.createElement('p');
+			this.errorPassword.classList.add('error_password', this.dataInput.id[i]);
      
-      this.pInput.append(this.label, this.input, this.errorPassword)
-      this.profileSetting.appendChild(this.pInput);
-    }
+			this.pInput.append(this.label, this.input, this.errorPassword);
+			this.profileSetting.appendChild(this.pInput);
+		}
 
-    this.pSex = document.createElement('p');
-    this.pSex.classList.add('form_in_mp', 'sex');
-    this.titleSex = document.createElement('span');
-    this.titleSex.textContent = 'Пол:';
+		this.pSex = document.createElement('p');
+		this.pSex.classList.add('form_in_mp', 'sex');
+		this.titleSex = document.createElement('span');
+		this.titleSex.textContent = 'Пол:';
 
-    this.inputFemale = document.createElement('input');
-    this.inputFemale.setAttribute('type', 'radio');
-    this.inputFemale.setAttribute('name', 'sex');
-    this.inputFemale.setAttribute('id', 'female');
-    this.inputFemale.setAttribute('value', 'female');
-    this.labelFemale = document.createElement('label');
-    this.labelFemale.setAttribute('for', 'female');
-    this.labelFemale.textContent = 'женский';
+		this.inputFemale = document.createElement('input');
+		this.inputFemale.setAttribute('type', 'radio');
+		this.inputFemale.setAttribute('name', 'sex');
+		this.inputFemale.setAttribute('id', 'female');
+		this.inputFemale.setAttribute('value', 'female');
+		this.labelFemale = document.createElement('label');
+		this.labelFemale.setAttribute('for', 'female');
+		this.labelFemale.textContent = 'женский';
 
-    this.inputMale = document.createElement('input');
-    this.inputMale.setAttribute('type', 'radio');
-    this.inputMale.setAttribute('name', 'sex');
-    this.inputMale.setAttribute('id', 'male');
-    this.inputMale.setAttribute('value', 'male');
-    this.labelMale = document.createElement('label');
-    this.labelMale.setAttribute('for', 'male');
-    this.labelMale.textContent = 'мужский';
+		this.inputMale = document.createElement('input');
+		this.inputMale.setAttribute('type', 'radio');
+		this.inputMale.setAttribute('name', 'sex');
+		this.inputMale.setAttribute('id', 'male');
+		this.inputMale.setAttribute('value', 'male');
+		this.labelMale = document.createElement('label');
+		this.labelMale.setAttribute('for', 'male');
+		this.labelMale.textContent = 'мужский';
 
-    this.dataInput.sex === 'female' ? this.inputFemale.checked = true : this.inputMale.checked = true;
+		this.dataInput.sex === 'female' ? this.inputFemale.checked = true : this.inputMale.checked = true;
 
-    this.pSex.append(this.titleSex, this.inputFemale, this.labelFemale,  this.inputMale, this.labelMale);
-    this.profileSetting.prepend(this.pHeader);
-    this.profileSetting.append(this.pSex, this.allDays, this.btnChange, this.btnClose);
-    this.overlay.appendChild(this.profileSetting);
-    this.headerClass.appendChild(this.overlay);
-    this.header.appendChild(this.headerClass);
-  }
-}
+		this.pSex.append(this.titleSex, this.inputFemale, this.labelFemale,  this.inputMale, this.labelMale);
+		this.profileSetting.prepend(this.pHeader);
+		this.profileSetting.append(this.pSex, this.allDays, this.btnChange, this.btnClose);
+		this.overlay.appendChild(this.profileSetting);
+		this.headerClass.appendChild(this.overlay);
+		this.header.appendChild(this.headerClass);
+	}
+};

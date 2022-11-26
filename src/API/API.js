@@ -188,7 +188,7 @@ export const APIClass = class {
         .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
         .join('&');
 
-      this.url = `http://127.0.0.8:8080/main/filter/${id_user}?${this.query}`;
+      this.url = `${this.path}/main/filter/${id_user}?${this.query}`;
       this.res = await fetch(this.url, {
         headers: {
           Authorization: "Bearer " + getLocalStorageData('token'),
@@ -209,6 +209,7 @@ export const APIClass = class {
     this.data = await this.res.json();
     return this.data
     } catch (error) {
+      
       console.log(error)
     }
     

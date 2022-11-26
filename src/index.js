@@ -68,7 +68,7 @@ document.body.addEventListener('click', ControllerTP.onDeleteTable);
 document.body.addEventListener('click', ControllerTP.onLogOutHandler);
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (getIdUser() !== 1) {
+  if (getIdUser() !== 1 && getIdUser()) {
     socket.on('connect', () => {
       console.log('connect')
       socket.emit('room', `${getIdUser()}`);
@@ -118,7 +118,9 @@ let dragStartVar = 0
 let dragEndVar = 0
 let id_record = 0
 function dragStart(e) {
-  e.dataTransfer.setData("text/plain",e.target.id);
+  e.dataTransfer.setData("text/html",e.target.id);
+  e.dataTransfer.effectAllowed = "move";
+  console.log(e)
   id_record = e.target.id
   dragStartVar =  e.target.closest('.column').dataset.id_sticker
 }
@@ -130,7 +132,7 @@ function dragEnter(e) {
 }
 
 function dragDrop(e) {
-  var data = e.dataTransfer.getData("text/plain");
+  var data = e.dataTransfer.getData("text/html");
   if (dragStartVar !== dragEndVar) {
      e.target.closest('.column_list').appendChild(document.getElementById(data));
      ModelTP.moveRecordFromSticker(dragEndVar, id_record)
@@ -140,6 +142,7 @@ function dragDrop(e) {
 
 function dragOver(e) {
   e.preventDefault();
+  e.dataTransfer.dropEffect = "move"
 }
 
 
