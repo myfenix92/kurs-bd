@@ -93,6 +93,22 @@ export const ModelTablePage = class {
     })
   }
 
+  filterByDone(id_sticker, i) {
+    API.getFilterRecordDone(id_sticker).then(data => {
+      data.forEach((e) => {
+        ViewTP.viewRecords(e.id_record, e.record, i, e.done);
+    })
+    })
+  }
+
+  filterByNotDone(id_sticker, i) {
+    API.getFilterRecordNotDone(id_sticker).then(data => {
+      data.forEach((e) => {
+        ViewTP.viewRecords(e.id_record, e.record, i, e.done);
+    })
+    })
+  }
+
   deleteSticker(id_sticker) {
     API.deleteSticker(id_sticker);
   }

@@ -49,7 +49,8 @@ export const ViewTablePage = class {
 
     this.aboutChanges = document.createElement('p');
     this.aboutChanges.classList.add('about_changes');
-    this.aboutChanges.textContent = `Для сохранения изменений использовать клавишу Enter. В записях для перехода на новую строку использовать сочетание клавиш Shift+Enter`;
+    this.aboutChanges.textContent = `Для сохранения изменений использовать клавишу Enter. 
+    В записях для перехода на новую строку использовать сочетание клавиш Shift+Enter`;
 
     this.headerTable.append(this.nameTableTitle, this.nameTableTitleInput, this.btnChangeName, this.btnChangeBgImage, this.btnDelete);
     this.headerBlock.append(this.headerTable, this.btnGetTables, this.btnCreateColumn, this.btnHistory, this.logout);
@@ -94,9 +95,10 @@ export const ViewTablePage = class {
     this.listPopMenu.classList.add('list_pop_menu');
 
     this.liArray = ['Сортировать по алфавиту', 
-    'Сортировать по дате создания (новые)', 'Сортировать по дате создания (старые)', 'Удалить стикер'];
+    'Сортировать по дате создания (новые)', 'Сортировать по дате создания (старые)',
+    'Сортировать по выполнению (выполненные)', 'Сортировать по выполнению (невыполненные)', 'Удалить стикер'];
     this.liArrayClass = ['sort_alphabet', 
-    'sort_new', 'sort_old', 'delete_sticker'];
+    'sort_new', 'sort_old', 'sort_done', 'sort_not_done', 'delete_sticker'];
 
     for (let i = 0; i < this.liArray.length; i++) {
       this.li = document.createElement('li');

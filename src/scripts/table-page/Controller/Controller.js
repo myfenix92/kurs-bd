@@ -188,6 +188,26 @@ export const ControllerTablePage = class {
       })
       ModelTP.filterByOld(this.id_sticker, this.id_stickers.indexOf(this.id_sticker))
     }
+
+    if (event.target.tagName === 'LI' && event.target.classList.contains('sort_done')) {
+      this.id_sticker = event.target.parentNode.parentNode.parentNode.getAttribute('data-id_sticker')
+      document.querySelectorAll('.column_list').forEach((e) => {
+        if (e.parentNode.getAttribute('data-id_sticker') === this.id_sticker) {
+          e.innerHTML = ''
+        }
+      })
+      ModelTP.filterByDone(this.id_sticker, this.id_stickers.indexOf(this.id_sticker))
+    }
+
+    if (event.target.tagName === 'LI' && event.target.classList.contains('sort_not_done')) {
+      this.id_sticker = event.target.parentNode.parentNode.parentNode.getAttribute('data-id_sticker')
+      document.querySelectorAll('.column_list').forEach((e) => {
+        if (e.parentNode.getAttribute('data-id_sticker') === this.id_sticker) {
+          e.innerHTML = ''
+        }
+      })
+      ModelTP.filterByNotDone(this.id_sticker, this.id_stickers.indexOf(this.id_sticker))
+    }
   }
 
   onDeleteStickerHandler(event) {
@@ -459,4 +479,6 @@ export const ControllerTablePage = class {
     API.changeBgTable(getLocalStorageData('id_table'), composed[0].style.background)
    }
   }
+
+  
 }

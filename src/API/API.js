@@ -409,6 +409,32 @@ export const APIClass = class {
     return this.data;
   }
 
+  async getFilterRecordDone(id_sticker) {
+    this.url = `${this.path}/table/sort/done/${id_sticker}`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+    return this.data;
+  }
+
+  async getFilterRecordNotDone(id_sticker) {
+    this.url = `${this.path}/table/sort/not_done/${id_sticker}`;
+    this.res = await fetch(this.url, {
+      method: 'GET',
+      headers: {
+        Authorization: "Bearer " + getLocalStorageData('token'),
+        'Content-Type': 'application/json',
+      }
+    });
+    this.data = await this.res.json();
+    return this.data;
+  }
+
   async deleteSticker(id_sticker) {
     this.url = `${this.path}/table/sticker/${id_sticker}`;
     this.res = await fetch(this.url, {
