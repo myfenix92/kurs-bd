@@ -7,7 +7,6 @@ import {ControllerTablePage} from './scripts/table-page/Controller/index';
 import {ModelMainPage} from './scripts/main_page/Model/index';
 import {ModelTablePage} from './scripts/table-page/Model/index';
 import {getLocalStorageData, getIdUser} from './LocalStorage';
-//import {socket} from 'socket.io-client'
 
 const ControllerAP = new ControllerAdminPage();
 const ControllerSP = new ControllerStartPage();
