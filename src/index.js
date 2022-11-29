@@ -71,7 +71,6 @@ document.body.addEventListener('mousedown', ControllerTP.mouseDownHandler);
 document.addEventListener('DOMContentLoaded', function () {
 	if (getIdUser() !== 1 && getIdUser()) {
 		socket.on('connect', () => {
-		//	console.log('connect');
 			socket.emit('room', `${getIdUser()}`);
 		});
 	}
@@ -89,11 +88,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 	if (!getLocalStorageData('token') && getLocalStorageData('id_table') === null) {
-		body.style.setProperty('--body-image', 'linear-gradient(#218aba, #162657)');
+		body.style.setProperty('--body-image', 'linear-gradient(#4B5ED7, #3F92D2, #5FD3B3)');
 		ModelSP.init();
 	}
 	if (getLocalStorageData('token') && getLocalStorageData('id_table') === undefined) {
-		body.style.setProperty('--body-image', 'linear-gradient(#218aba, #162657)');
+		body.style.setProperty('--body-image', 'linear-gradient(#4B5ED7, #3F92D2, #5FD3B3)');
 		ModelMP.init();
 	}
 	if (getLocalStorageData('token') && getLocalStorageData('id_table') !== undefined) {
@@ -106,46 +105,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 setTimeout(() =>{
 	document.querySelectorAll('.record_block').forEach((e) => {
-		e.addEventListener('dragstart', dragStart);
+		e.addEventListener('dragstart', ControllerTP.dragStart);
 	});
 	document.querySelectorAll('.column_list').forEach((e) => {
-		e.addEventListener('dragenter', dragEnter);
-		e.addEventListener('dragover', dragOver);
-		e.addEventListener('drop', dragDrop);
+		e.addEventListener('dragenter', ControllerTP.dragEnter);
+		e.addEventListener('dragover', ControllerTP.dragOver);
+		e.addEventListener('drop', ControllerTP.dragDrop);
 	});
 }, 1000);
-
-let dragStartVar = 0;
-let dragEndVar = 0;
-let id_record = 0;
-function dragStart(e) {
-	e.dataTransfer.setData('text/html',e.target.id);
-	e.dataTransfer.effectAllowed = 'move';
-	id_record = e.target.id;
-	dragStartVar =  e.target.closest('.column').dataset.id_sticker;
-}
-
-function dragEnter(e) {
-	e.preventDefault();
-	dragEndVar = e.target.closest('.column').dataset.id_sticker;
-	return true;
-}
-
-function dragDrop(e) {
-	var data = e.dataTransfer.getData('text/html');
-	if (dragStartVar !== dragEndVar) {
-		e.target.closest('.column_list').appendChild(document.getElementById(data));
-		ModelTP.moveRecordFromSticker(dragEndVar, id_record);
-	} 
-  
-}
-
-function dragOver(e) {
-	e.preventDefault();
-	e.dataTransfer.dropEffect = 'move';
-}
-
-
-
 
 export {socket};
