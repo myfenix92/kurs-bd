@@ -67,22 +67,21 @@ export const ViewStartPage = class {
           <p class="error_password login"></p>
         </p>
         <p class="form_in_input password">
-          <label for="password">Пароль</label>
+          <label for="password">Пароль <span class="error_password password"></span></label> 
           <input type="password" name="" id="password" placeholder="123456">
-          <p class="error_password password"></p>
+          
         </p>
         <p class="form_in_input form_in_password-check">
-          <label for="password_check">Повторите пароль</label>
+          <label for="password_check">Повторите пароль <span class="error_password password_check"></span></label> 
           <input type="password" name="" id="password_check" placeholder="123456">
-          <p class="error_password password_check"></p>
+          
         </p>
         <p class="form_in_input b-day">
-          <label for="b-day">Дата рождения</label>
+          <label for="b-day">Дата рождения <span class="error_password b_day"></span></label>
           <input type="date" name="" id="b-day">
-          <p class="error_password b_day"></p>
         </p>
         <p class="form_in_input sex">
-          <span>Пол:</span>
+				<label>Выберите пол:</label>
           <input type="radio" name="sex" id="female" value="female" checked>
           <label for="female">женский</label>
 
@@ -94,9 +93,8 @@ export const ViewStartPage = class {
 		} else if (value === 'login') {
 			this.main.innerHTML = `<div class="main_sp"><form class="form_in form_sp">
         <p class="form_in_input login">
-          <label for="login">Логин</label>
+          <label for="login">Логин <span class="error_password login"></span></label>
           <input type="text" name="" id="login" placeholder="ваш логин" maxLength="25">
-          <p class="error_password login"></p>
         </p>
         <p class="form_in_input password">
           <label for="password">Пароль</label>
