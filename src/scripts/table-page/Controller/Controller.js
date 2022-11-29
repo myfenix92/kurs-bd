@@ -16,6 +16,9 @@ const API = new APIClass();
 
 let numberPage = 1;
 let pos = { right: 0, left: 0, x: 0, y: 0 };
+let dragStartVar = 0;
+let dragEndVar = 0;
+let id_record = 0;
 export const ControllerTablePage = class {
 
 	onChangeNameTableHandler(event) {
@@ -882,7 +885,7 @@ export const ControllerTablePage = class {
 				ModelTP.deleteTable(getLocalStorageData('id_table'));
 				setLocalStorageData('id_table');
 				setLocalStorageData('name_table');
-				setLocalStorageData('bg_table', 'linear-gradient(#218aba, #162657)');
+				setLocalStorageData('bg_table', 'linear-gradient(#4B5ED7, #3F92D2, #5FD3B3)');
 				body
 					.style
 					.setProperty('--body-image', getLocalStorageData('bg_table'));
@@ -910,7 +913,7 @@ export const ControllerTablePage = class {
 				.querySelector('main')
 				.innerHTML = '';
 			var body = document.querySelector('body');
-			setLocalStorageData('bg_table', 'linear-gradient(#218aba, #162657)');
+			setLocalStorageData('bg_table', 'linear-gradient(#4B5ED7, #3F92D2, #5FD3B3)');
 			body
 				.style
 				.setProperty('--body-image', getLocalStorageData('bg_table'));
@@ -1014,38 +1017,66 @@ export const ControllerTablePage = class {
 	}
 
 	mouseDownHandler(event) {
-		console.log('down');
 		this.block_column = document.querySelector('.block_columns');
-		this.block_column.style.cursor = 'grabbing';
-		this.block_column.style.userSelect = 'none';
-		pos = {
-			left: this.block_column.scrollLeft,
-			right: this.block_column.scrollRight,
-			x: event.clientX,
-			y: event.clientY,
-		};
+		if (this.block_column) {
+			this.block_column.style.cursor = 'grabbing';
+			this.block_column.style.userSelect = 'none';
+			pos = {
+				left: this.block_column.scrollLeft,
+				right: this.block_column.scrollRight,
+				x: event.clientX,
+				y: event.clientY,
+			};
+		}
+
 		document.addEventListener('mousemove', (new ControllerTablePage).mouseMoveHandler);
 		document.addEventListener('mouseup', (new ControllerTablePage).mouseUpHandler);
 	}
 
 	mouseMoveHandler(e) {
-		console.log('move');
 		this.block_column = document.querySelector('.block_columns');
 		const dx = e.clientX - pos.x;
 		const dy = e.clientY - pos.y;
-
-		this.block_column.scrollRight = pos.right - dy;
-		this.block_column.scrollLeft = pos.left - dx;
+		if (this.block_column) {
+			this.block_column.scrollRight = pos.right - dy;
+			this.block_column.scrollLeft = pos.left - dx;
+		}
 	}
 
 	mouseUpHandler() {
-		console.log('up');
 		this.block_column = document.querySelector('.block_columns');
 		document.removeEventListener('mousemove', (new ControllerTablePage).mouseMoveHandler);
 		document.removeEventListener('mouseup', (new ControllerTablePage).mouseUpHandler);
-
-		this.block_column.style.cursor = 'grab';
-		this.block_column.style.removeProperty('user-select');
+		if (this.block_column) {
+			this.block_column.style.cursor = 'grab';
+			this.block_column.style.removeProperty('user-select');
+		}
 	}
 
+	dragStart(e) {
+		e.dataTransfer.setData('text/html',e.target.id);
+		e.dataTransfer.effectAllowed = 'move';
+		id_record = e.target.id;
+		dragStartVar =  e.target.closest('.column').dataset.id_sticker;
+	}
+
+	dragEnter(e) {
+		e.preventDefault();
+		dragEndVar = e.target.closest('.column').dataset.id_sticker;
+		return true;
+	}
+
+	dragDrop(e) {
+		var data = e.dataTransfer.getData('text/html');
+		if (dragStartVar !== dragEndVar) {
+			e.target.closest('.column_list').appendChild(document.getElementById(data));
+			ModelTP.moveRecordFromSticker(dragEndVar, id_record);
+		} 
+				
+	}
+
+	dragOver(e) {
+		e.preventDefault();
+		e.dataTransfer.dropEffect = 'move';
+	}
 };
