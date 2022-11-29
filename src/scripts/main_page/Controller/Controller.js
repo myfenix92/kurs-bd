@@ -15,9 +15,10 @@ const API = new APIClass();
 export const ControllerMainPage = class {
 
 	onCreateTable(event) {
-		if (event.target.classList.contains('new_table') && event.target.closest('div').classList.contains('new_table')) {
+		if (event.target.classList.contains('new_table') || event.target.closest('div').classList.contains('new_table')) {
 			ViewMP.viewCreateTable();
-		} else if (event.target.tagName === 'DIV' && event.target.classList.contains('filter_create') && !event.target.classList.contains('create_new_table') && document.querySelector('.header_text_login').textContent !== 'admin') {
+		} else if (event.target.tagName === 'DIV' && event.target.classList.contains('filter_create') 
+		&& !event.target.classList.contains('create_new_table') && document.querySelector('.header_text_login').textContent !== 'admin') {
 			document
 				.querySelector('.filter_create')
 				.remove();
