@@ -5,21 +5,21 @@ export const ViewAdminPage = class {
 		this
 			.main
 			.appendChild(this.adminTable);
-		this.headerTable = [
-			'id',
-			'login',
-			'sex',
-			'birth',
-			'registr',
-			'count',
-			'msg'
-		];
+		this.headerTable = {
+			'id': 'ID',
+			'login': 'Логин',
+			'sex': 'Пол',
+			'birth': 'Дата рождения',
+			'registr': 'Дата регистрации',
+			'count': 'Количество таблиц',
+			
+		};
 		this.thead = this
 			.adminTable
 			.createTHead();
-		for (let i = 0; i < this.headerTable.length; i++) {
+		for (var key in this.headerTable) {
 			this.th = document.createElement('th');
-			this.th.textContent = this.headerTable[i];
+			this.th.textContent = this.headerTable[key];
 			this
 				.thead
 				.appendChild(this.th);
