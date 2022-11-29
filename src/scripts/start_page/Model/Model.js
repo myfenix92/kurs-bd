@@ -11,7 +11,7 @@ export const ModelStartPage = class {
 		document
 			.querySelector('body')
 			.style
-			.setProperty('--body-image', 'linear-gradient(#218aba, #162657)');
+			.setProperty('--body-image', 'linear-gradient(#4B5ED7, #3F92D2, #5FD3B3)');
 		ViewSP.viewHeaderStartPage();
 	}
 
@@ -48,7 +48,7 @@ export const ModelStartPage = class {
 				if (data.loginStatus) {
 					localStorage.clear();
 					setLocalStorageData('token', data.loginToken);
-					setLocalStorageData('bg_table', 'linear-gradient(#218aba, #162657)');
+					setLocalStorageData('bg_table', 'linear-gradient(#4B5ED7, #3F92D2, #5FD3B3)');
 				} else {
 					ViewSP.onErrorValue('login-value');
 				}
