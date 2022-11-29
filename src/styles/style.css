@@ -342,7 +342,6 @@ button:disabled:hover {
 .msg-block .close_msg_btn {
   grid-area: close;
   border-radius: 50%;
-  position: absolute;
   margin: 0 0 0 2rem;
   padding: 0.2rem 0.5rem;
 }
