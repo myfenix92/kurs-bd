@@ -90,7 +90,7 @@ export const ViewMainPage = class {
 			.add('msg-block', 'close', 'showBlock');
 
 		this.closeBtn = document.createElement('button');
-		this.closeBtn.textContent = '[x]';
+		this.closeBtn.textContent = 'x';
 		this
 			.closeBtn
 			.classList
@@ -217,7 +217,6 @@ export const ViewMainPage = class {
 		let date = date_sent;
 		this.msgText.textContent = message;
 		this.msgDate = document.createElement('span');
-		//  this.msgDate.textContent = `Отправлено ${date}`
 		if (date.toString().includes('GMT')) {
 			this.msgDate.textContent = `Отправлено ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} 
       в ${String(
@@ -388,25 +387,7 @@ export const ViewMainPage = class {
 		this
 			.mainBlock
 			.appendChild(this.filterBlock);
-		// this.main.appendChild(this.mainBlock);
 	}
-
-	// viewCalcBlockAvg(value) {   this.calcBlock =
-	// document.querySelector('.calc_data');   this.calcBlock.innerHTML = '';
-	// this.avg = document.createElement('p');   this.avg.classList.add('avg');
-	// this.avg.textContent = 'Среднее число досок на одного пользователя: '
-	// this.avgData = document.createElement('span');   this.avgData.textContent =
-	// value;   this.avgData.classList.add('avg_data');   this.hr =
-	// document.createElement('hr');   this.avg.append(this.avgData);
-	// this.calcBlock.append(this.avg, this.hr); } viewCalcBlockPercent(value) {
-	// this.calcBlock = document.querySelector('.calc_data');   this.percent =
-	// document.createElement('p');   this.percent.classList.add('percent');
-	// this.percentData = document.createElement('span');
-	// this.percentData.classList.add('percent_data');   this.percent.textContent =
-	// 'Количество ваших досок от общего числа досок (в процентах): '
-	// this.percentData.textContent = value;
-	// this.percent.append(this.percentData);   this.calcBlock.append(this.percent)
-	// }
 
 	viewTables(id_table, name_table, date_create, count_records, bg_image) {
 		this.tableBlock = document.querySelector('.table_block');
@@ -432,7 +413,6 @@ export const ViewMainPage = class {
 		this.nameTable.textContent = name_table;
 
 		this.dateCreate = document.createElement('p');
-		// this.titleDate = document.createElement('span');
 		this.dateCreate.textContent = `Дата создания: ${date_create
 			.split('-')
 			.reverse()
@@ -441,18 +421,12 @@ export const ViewMainPage = class {
 			.dateCreate
 			.classList
 			.add('date_create');
-		// this.titleDate.textContent = date_create.split('-').reverse().join('-');
-
 		this.countRecords = document.createElement('p');
-		//  this.titleCounts = document.createElement('span');
 		this.countRecords.textContent = `Кол-во записей: ${count_records}`;
 		this
 			.countRecords
 			.classList
 			.add('number_records');
-		// this.titleCounts.textContent = count_records;
-		// this.dateCreate.appendChild(this.titleDate);
-		// this.countRecords.appendChild(this.titleCounts);
 		this
 			.table
 			.append(this.nameTable, this.dateCreate, this.countRecords);
@@ -642,15 +616,16 @@ export const ViewMainPage = class {
 				.dataInput
 				.value[i];
 
-			this.errorPassword = document.createElement('p');
+			this.errorPassword = document.createElement('span');
 			this
 				.errorPassword
 				.classList
 				.add('error_password', this.dataInput.id[i]);
 
+			this.label.append(this.errorPassword);
 			this
 				.pInput
-				.append(this.label, this.input, this.errorPassword);
+				.append(this.label, this.input);
 			this
 				.profileSetting
 				.appendChild(this.pInput);
@@ -661,8 +636,8 @@ export const ViewMainPage = class {
 			.pSex
 			.classList
 			.add('form_in_mp', 'sex');
-		this.titleSex = document.createElement('span');
-		this.titleSex.textContent = 'Пол:';
+		this.titleSex = document.createElement('label');
+		this.titleSex.textContent = 'Выберите пол:';
 
 		this.inputFemale = document.createElement('input');
 		this
