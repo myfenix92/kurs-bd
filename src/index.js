@@ -66,7 +66,7 @@ document.body.addEventListener('keyup', ControllerTP.onViewImageInputHandler);
 document.body.addEventListener('click', ControllerTP.onBackToTables);
 document.body.addEventListener('click', ControllerTP.onDeleteTable);
 document.body.addEventListener('click', ControllerTP.onLogOutHandler);
-document.body.addEventListener('mousedown', ControllerTP.mouseDownHandler);
+document.body.addEventListener('mousedown', mouseDownHandler());
 
 document.addEventListener('DOMContentLoaded', function () {
 	if (getIdUser() !== 1 && getIdUser()) {
@@ -105,13 +105,84 @@ document.addEventListener('DOMContentLoaded', function () {
 
 setTimeout(() =>{
 	document.querySelectorAll('.record_block').forEach((e) => {
-		e.addEventListener('dragstart', ControllerTP.dragStart);
+		e.addEventListener('dragstart', dragStart);
 	});
 	document.querySelectorAll('.column_list').forEach((e) => {
-		e.addEventListener('dragenter', ControllerTP.dragEnter);
-		e.addEventListener('dragover', ControllerTP.dragOver);
-		e.addEventListener('drop', ControllerTP.dragDrop);
+		e.addEventListener('dragenter', dragEnter);
+		e.addEventListener('dragover', dragOver);
+		e.addEventListener('drop', dragDrop);
 	});
 }, 1000);
+
+let pos = { right: 0, left: 0, x: 0, y: 0 };
+let dragStartVar = 0;
+let dragEndVar = 0;
+let id_record = 0;
+
+function mouseDownHandler(event) {
+	console.log('dwon');
+	let block_column = document.querySelector('.block_columns');
+	if (block_column) {
+		block_column.style.cursor = 'grabbing';
+		block_column.style.userSelect = 'none';
+		pos = {
+			left: block_column.scrollLeft,
+			right: block_column.scrollRight,
+			x: event.clientX,
+			y: event.clientY,
+		};
+	}
+
+	document.addEventListener('mousemove', mouseMoveHandler);
+	document.addEventListener('mouseup', mouseUpHandler);
+}
+
+function mouseMoveHandler(e) {
+	let block_column = document.querySelector('.block_columns');
+	const dx = e.clientX - pos.x;
+	const dy = e.clientY - pos.y;
+	if (block_column) {
+		block_column.scrollRight = pos.right - dy;
+		block_column.scrollLeft = pos.left - dx;
+	}
+}
+
+function mouseUpHandler() {
+	let block_column = document.querySelector('.block_columns');
+	document.removeEventListener('mousemove', mouseMoveHandler);
+	document.removeEventListener('mouseup', mouseUpHandler);
+	if (block_column) {
+		block_column.style.cursor = 'grab';
+		block_column.style.removeProperty('user-select');
+	}
+}
+
+function dragStart(e) {
+	document.removeEventListener('mousedown', mouseDownHandler);
+	e.dataTransfer.setData('id', e.target.id);
+	e.dataTransfer.effectAllowed = 'move';
+	id_record = e.target.id;
+	dragStartVar =  e.target.closest('.column').dataset.id_sticker;
+}
+
+function dragEnter(e) {
+	e.preventDefault();
+	dragEndVar = e.target.closest('.column').dataset.id_sticker;
+	return true;
+}
+
+function dragDrop(e) {
+	var data = e.dataTransfer.getData('id');
+	if (dragStartVar !== dragEndVar) {
+		e.target.closest('.column_list').appendChild(document.getElementById(data));
+		ModelTP.moveRecordFromSticker(dragEndVar, id_record);
+	} 
+			
+}
+
+function dragOver(e) {
+	e.preventDefault();
+	e.dataTransfer.dropEffect = 'move';
+}
 
 export {socket};

@@ -15,10 +15,7 @@ const ViewTP = new ViewTablePage();
 const API = new APIClass();
 
 let numberPage = 1;
-let pos = { right: 0, left: 0, x: 0, y: 0 };
-let dragStartVar = 0;
-let dragEndVar = 0;
-let id_record = 0;
+
 export const ControllerTablePage = class {
 
 	onChangeNameTableHandler(event) {
@@ -156,6 +153,7 @@ export const ControllerTablePage = class {
 								]
 								.setAttribute('id', data[data.length - 1].id_sticker);
 						});
+					location.reload();
 				}, 500);
 			} else {
 				this.name_sticker = document.querySelectorAll('.title_column_input')[
@@ -1016,67 +1014,5 @@ export const ControllerTablePage = class {
 		}
 	}
 
-	mouseDownHandler(event) {
-		this.block_column = document.querySelector('.block_columns');
-		if (this.block_column) {
-			this.block_column.style.cursor = 'grabbing';
-			this.block_column.style.userSelect = 'none';
-			pos = {
-				left: this.block_column.scrollLeft,
-				right: this.block_column.scrollRight,
-				x: event.clientX,
-				y: event.clientY,
-			};
-		}
-
-		document.addEventListener('mousemove', (new ControllerTablePage).mouseMoveHandler);
-		document.addEventListener('mouseup', (new ControllerTablePage).mouseUpHandler);
-	}
-
-	mouseMoveHandler(e) {
-		this.block_column = document.querySelector('.block_columns');
-		const dx = e.clientX - pos.x;
-		const dy = e.clientY - pos.y;
-		if (this.block_column) {
-			this.block_column.scrollRight = pos.right - dy;
-			this.block_column.scrollLeft = pos.left - dx;
-		}
-	}
-
-	mouseUpHandler() {
-		this.block_column = document.querySelector('.block_columns');
-		document.removeEventListener('mousemove', (new ControllerTablePage).mouseMoveHandler);
-		document.removeEventListener('mouseup', (new ControllerTablePage).mouseUpHandler);
-		if (this.block_column) {
-			this.block_column.style.cursor = 'grab';
-			this.block_column.style.removeProperty('user-select');
-		}
-	}
-
-	dragStart(e) {
-		e.dataTransfer.setData('text/html',e.target.id);
-		e.dataTransfer.effectAllowed = 'move';
-		id_record = e.target.id;
-		dragStartVar =  e.target.closest('.column').dataset.id_sticker;
-	}
-
-	dragEnter(e) {
-		e.preventDefault();
-		dragEndVar = e.target.closest('.column').dataset.id_sticker;
-		return true;
-	}
-
-	dragDrop(e) {
-		var data = e.dataTransfer.getData('text/html');
-		if (dragStartVar !== dragEndVar) {
-			e.target.closest('.column_list').appendChild(document.getElementById(data));
-			ModelTP.moveRecordFromSticker(dragEndVar, id_record);
-		} 
-				
-	}
-
-	dragOver(e) {
-		e.preventDefault();
-		e.dataTransfer.dropEffect = 'move';
-	}
+	
 };

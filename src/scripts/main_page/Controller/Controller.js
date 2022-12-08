@@ -215,6 +215,7 @@ export const ControllerMainPage = class {
 						getLocalStorageData('name_table')
 					);
 				}, 200);
+				location.reload();
 			}
 		}
 	}
