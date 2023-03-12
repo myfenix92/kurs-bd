@@ -62,7 +62,7 @@ export const ViewStartPage = class {
 		if (value === 'register') {
 			this.main.innerHTML = `<div class="main_sp"><form class="form_in form_sp">
         <p class="form_in_input login">
-          <label for="login">Логин</label>
+          <label for="login">Логин <span class="error_password login"></span></label>
           <input type="text" id="login" placeholder="ваш логин" maxLength="25">
           <p class="error_password login"></p>
         </p>

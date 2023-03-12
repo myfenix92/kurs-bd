@@ -36,7 +36,10 @@ export const ControllerStartPage = class {
 					.forEach((e) => {
 						e.textContent = '';
 					});
-				if (this.password.value === this.passwordCheck.value && (this.password.value.length < 6 || this.password.value.length > 20)) {
+				if (this.login.value === '') {
+					this.errorPassword = document.querySelector('.error_password.login');
+					this.errorPassword.textContent = 'Логин не может быть пустым';
+				} else if (this.password.value === this.passwordCheck.value && (this.password.value.length < 6 || this.password.value.length > 20)) {
 					this.errorPasswordCheck.textContent = '';
 					this.errorPassword.textContent = 'Длина меньше 6 или 20 символов';
 				} else if (this.password.value !== this.passwordCheck.value) {
