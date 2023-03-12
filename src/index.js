@@ -1,4 +1,10 @@
 import './styles/style.css';
+import './scripts/start_page/styles/style_sp.css';
+import './scripts/main_page/styles/style_mp.css';
+import './scripts/main_page/styles/style_mp_msg.css';
+import './scripts/table-page/styles/style_tp.css';
+import './scripts/admin_page/styles/style_ap.css';
+
 import {ControllerAdminPage} from './scripts/admin_page/Controller/index';
 import {ControllerStartPage} from './scripts/start_page/Controller/index';
 import {ModelStartPage} from './scripts/start_page/Model/index';
