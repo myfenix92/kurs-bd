@@ -60,6 +60,17 @@ export const ViewTablePage = class {
 			.add('delete_table');
 		this.btnDelete.textContent = 'Удалить доску';
 
+		this.btnHelp = document.createElement('button');
+		this
+			.btnHelp
+			.classList
+			.add('about_changes');
+		this
+			.btnHelp
+			.setAttribute('title', `Для сохранения изменений используйте клавишу Enter.
+В записях для перехода на новую строку используйте сочетание клавиш Shift+Enter`);
+		this.btnHelp.textContent = '?';
+
 		this.btnCreateColumn = document.createElement('button');
 		this
 			.btnCreateColumn
@@ -86,14 +97,6 @@ export const ViewTablePage = class {
 			.add('logout');
 		this.logout.textContent = 'Выйти';
 
-		this.aboutChanges = document.createElement('p');
-		this
-			.aboutChanges
-			.classList
-			.add('about_changes');
-		this.aboutChanges.textContent = `Для сохранения изменений использовать клавишу Enter. 
-    В записях для перехода на новую строку использовать сочетание клавиш Shift+Enter`;
-
 		this
 			.headerTable
 			.append(
@@ -101,7 +104,8 @@ export const ViewTablePage = class {
 				this.nameTableTitleInput,
 				this.btnChangeName,
 				this.btnChangeBgImage,
-				this.btnDelete
+				this.btnDelete,
+				this.btnHelp,
 			);
 		this
 			.headerBlock
@@ -117,7 +121,7 @@ export const ViewTablePage = class {
 			.append(this.headerBlock);
 		this
 			.main
-			.append(this.blockColumn, this.aboutChanges);
+			.append(this.blockColumn);
 	}
 
 	viewStickers(id_sticker, nameSticker) {
