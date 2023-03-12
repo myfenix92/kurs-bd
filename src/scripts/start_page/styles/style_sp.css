@@ -1,0 +1,57 @@
+.header_sp {
+  text-align: center;
+}
+.header_sp h1 {
+  font-size: 3rem;
+}
+.header_sp p {
+  text-align: center;
+  font-size: 1.5rem;
+}
+.header_sp button {
+  margin: 3rem 1.5rem;
+}
+
+.main_sp {
+  text-align: center;
+  padding: 1rem;
+  margin: 1.3rem;
+}
+.main_sp .form_sp {
+  background: #fff;
+  width: 25%;
+  margin: 0 auto;
+  padding: 0.8rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+}
+.main_sp .form_sp .form_in_input {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+.main_sp .form_sp label {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  text-align: left;
+}
+.main_sp .form_sp input {
+  padding: 0.2rem;
+  font-size: 1.2rem;
+}
+.main_sp .form_sp .sex {
+  display: inline-block;
+  padding-top: 1.5rem;
+}
+.main_sp .form_sp button {
+  margin-top: 1.3rem;
+}
+.main_sp .form_sp button:hover {
+  color: #000;
+}
+
+.error_password {
+  color: red;
+  font-size: 0.8rem;
+  padding-left: 1rem;
+}

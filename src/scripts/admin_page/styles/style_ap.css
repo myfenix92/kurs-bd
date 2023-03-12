@@ -1,0 +1,112 @@
+
+.msg_admin {
+  position: absolute;
+  background-color: #fff;
+  width: 40vw;
+  min-height: 40vw;
+  margin: 5rem auto;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 100;
+  display: grid;
+  grid-template-areas: "login login" "dialog dialog" "input  send";
+  align-content: space-between;
+  align-items: center;
+}
+.msg_admin .from-msg {
+  text-align: left;
+  background: rgba(128, 125, 125, 0.5);
+}
+.msg_admin .msg_text {
+  padding: 0.3rem;
+  margin: 0.2rem 0;
+  border-radius: 6px;
+  text-align: left;
+}
+.msg_admin .msg_login {
+  grid-area: login;
+  text-align: center;
+  margin-bottom: 0.6rem;
+  font-weight: bold;
+}
+.msg_admin hr {
+  border-top: 1px dotted rgb(0, 0, 0);
+}
+.msg_admin span {
+  font-size: 0.8em;
+  display: block;
+  margin: 0.2rem 0;
+  padding: 0.15rem;
+}
+.msg_admin .to-msg {
+  text-align: right;
+  background: rgba(128, 174, 204, 0.5);
+}
+.msg_admin .msg_dialog {
+  grid-area: dialog;
+  height: 30vw;
+  overflow-y: auto;
+  max-height: 30vw;
+}
+.msg_admin textarea {
+  grid-area: input;
+  width: 100%;
+  padding: 0.3rem;
+  resize: none;
+}
+.msg_admin .send_msg_btn {
+  grid-area: send;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  padding: 0.7rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+.msg_admin .send_msg_btn:hover {
+  transform: scale(1.4);
+  transition: transform 0.2s ease-in;
+}
+.msg_admin .from-user {
+  text-align: left;
+  padding: 0.2rem;
+}
+.msg_admin .from-admin {
+  text-align: right;
+  padding: 0.2rem;
+}
+
+table {
+  border: 1px solid #eee;
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 1rem;
+}
+
+table th {
+  font-weight: bold;
+  padding: 5px;
+  background: #ccc;
+  border: 1px solid #dddddd;
+}
+
+table td {
+  padding: 5px 10px;
+  border: 1px solid #eee;
+  text-align: center;
+}
+
+tbody:nth-child(odd) {
+  background: #3F92D2;
+}
+
+tbody:nth-child(even) {
+  background: #66A3D2;
+}

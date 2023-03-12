@@ -1,0 +1,205 @@
+.header_mp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.header_mp p {
+  font-size: 2rem;
+  padding: 1rem;
+}
+.header_mp .profile {
+  padding: 1rem;
+}
+.header_mp .profile ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+.header_mp .profile ul li {
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.filter_menu {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5333333333);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.profile_setting {
+  position: absolute;
+  cursor: auto;
+  background-color: #fff;
+  text-align: center;
+  width: 25%;
+  margin: 5rem auto;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 100;
+}
+.profile_setting .profile_header_text {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.profile_setting .form_in_mp {
+  margin: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.profile_setting .form_in_mp label {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  text-align: left;
+}
+.profile_setting .form_in_mp input {
+  padding: 0.2rem;
+  font-size: 1.2rem;
+}
+.profile_setting .sex {
+  display: inline-block;
+}
+.profile_setting button {
+  margin: 1rem;
+}
+.profile_setting button:hover {
+  color: #000;
+}
+
+.main_mp {
+  position: relative;
+  text-align: center;
+}
+.main_mp .table_block {
+  display: flex;
+  background: #fff;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70vw;
+  margin: 0 auto;
+  height: 25vw;
+  overflow-y: auto;
+  border-radius: 5px;
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+}
+.main_mp .table_block .table {
+  border-radius: 5px;
+  margin: 1rem;
+  padding: 0.5rem;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  height: 7vw;
+  cursor: pointer;
+  background-color: #2cabe6;
+  color: #fff;
+}
+.main_mp .table_block .table .name_table {
+  padding: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 32px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.main_mp .table_block .table .date_create,
+.main_mp .table_block .table .number_records {
+  font-size: 0.8em;
+  padding: 0.2rem;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.main_mp .table_block .table .create_table_block {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.main_mp .table_block .table:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+.main_mp .filter_table {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  margin: 3rem auto;
+  text-align: center;
+  align-items: center;
+}
+.main_mp .filter_table button {
+  margin: 1rem;
+}
+.main_mp .filter_table .filter_input label {
+  padding: 2rem 0.2rem 2rem 1rem;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+.main_mp .filter_table .filter_input span {
+  font-weight: 500;
+  padding: 0 0.5rem;
+  font-size: 1.1rem;
+}
+.main_mp .filter_table .filter_input input {
+  padding: 0.6rem 0.3rem;
+  font-size: 1.2rem;
+}
+.main_mp .filter_tables_text {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+.main_mp .calc_data {
+  position: absolute;
+  top: 20%;
+  left: 1%;
+  text-align: center;
+}
+.filter_create {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5333333333);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+  text-align: center;
+}
+.filter_create .create_new_table {
+  position: absolute;
+  cursor: auto;
+  background-color: #fff;
+  width: 40vw;
+  margin: 5rem auto;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  z-index: 100;
+}
+.filter_create .create_new_table label {
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 0 1rem;
+}
+.filter_create .create_new_table input {
+  height: 2rem;
+  width: 20rem;
+  padding: 0.2rem;
+}
+.filter_create .create_new_table button {
+  margin-left: 0.8rem;
+}
+.filter_create .create_new_table button:hover {
+  color: #000;
+}
