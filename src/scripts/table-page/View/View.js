@@ -626,7 +626,7 @@ export const ViewTablePage = class {
 			this.selected.style.outline = 'none';
 		}
 		this.selected = target;
-		this.selected.style.outline = 'dashed'; // подсветить новый td
+		this.selected.style.outline = 'dashed'; // подсветить
 	}
 
 	viewCreateHistoryChanges(

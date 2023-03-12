@@ -13,6 +13,7 @@ export const ModelTablePage = class {
 			.getBgTableData(id_table)
 			.then(data => {
 				var body = document.querySelector('body');
+				
 				setLocalStorageData('bg_table', data.bg_image);
 				if (data.bg_image.includes('unsplash')) {
 					body
@@ -193,7 +194,6 @@ export const ModelTablePage = class {
 								e.time_change
 							);
 						} else {
-							console.log('there');
 							ViewTP.viewCreateHistoryChanges(
 								e.changes,
 								e.old_value,
