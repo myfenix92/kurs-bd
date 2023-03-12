@@ -25,7 +25,7 @@ button {
   transition: all 150ms ease-in-out;
 }
 
-button:hover {
+button:hover:not(.about_changes) {
   color: #fff;
   box-shadow: 0 0 10px 0 #4B5ED7 inset, 0 0 10px 4px #5FD3B3;
   background-color: transparent;
