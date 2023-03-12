@@ -186,7 +186,7 @@ export const ControllerTablePage = class {
 				document
 					.querySelectorAll('.pop_menu_column')
 					.forEach((e) => {
-						if (!e.classList.contains('show') && e.getAttribute('id') === event.path[3].getAttribute('data-id_sticker')) {
+						if (!e.classList.contains('show') && e.getAttribute('id') === event.target.closest('.column').getAttribute('data-id_sticker')) {
 							e
 								.classList
 								.add('show');
