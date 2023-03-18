@@ -126,7 +126,6 @@ let dragEndVar = 0;
 let id_record = 0;
 
 function mouseDownHandler(event) {
-	console.log('dwon');
 	let block_column = document.querySelector('.block_columns');
 	if (block_column) {
 		block_column.style.cursor = 'grabbing';
