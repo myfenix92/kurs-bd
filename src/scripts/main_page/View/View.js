@@ -313,7 +313,7 @@ export const ViewMainPage = class {
 		this
 			.labelName
 			.setAttribute('for', 'name_table');
-		this.labelName.textContent = 'Имя таблицы:';
+		this.labelName.textContent = 'Имя доски:';
 
 		this.inputName = document.createElement('input');
 		this
@@ -365,7 +365,7 @@ export const ViewMainPage = class {
 		this
 			.btnClear
 			.setAttribute('disabled', true);
-		this.btnClear.textContent = 'Показать все таблицы';
+		this.btnClear.textContent = 'Показать все доски';
 
 		this
 			.btnBlock
