@@ -128,7 +128,6 @@ let id_record = 0;
 function mouseDownHandler(event) {
 	let block_column = document.querySelector('.block_columns');
 	if (block_column) {
-		block_column.style.cursor = 'grabbing';
 		block_column.style.userSelect = 'none';
 		pos = {
 			left: block_column.scrollLeft,
@@ -157,7 +156,6 @@ function mouseUpHandler() {
 	document.removeEventListener('mousemove', mouseMoveHandler);
 	document.removeEventListener('mouseup', mouseUpHandler);
 	if (block_column) {
-		block_column.style.cursor = 'grab';
 		block_column.style.removeProperty('user-select');
 	}
 }
