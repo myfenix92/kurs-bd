@@ -17,6 +17,7 @@
   grid-template-rows: 0.5fr 1fr 1fr;
   align-content: space-between;
   align-items: center;
+  justify-items: end;
 }
 @-webkit-keyframes show {
   0% {

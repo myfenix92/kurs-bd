@@ -5,7 +5,8 @@ import { getLocalStorageData } from '../LocalStorage/index';
 
 export const APIClass = class {
 	constructor() {
-		this.path = 'http://127.0.0.8:8080';
+		this.path = 'http://62.217.177.183:3000';
+	//	this.path = 'http://localhost:8080';
 	}
 
 	async createNewUser(login, password, date_birth, sex) {
@@ -15,8 +16,9 @@ export const APIClass = class {
 			date_birth,
 			sex
 		};
-
+		
 		this.url = `${this.path}/register`;
+		
 		this.res = await fetch(this.url, {
 			method: 'POST',
 			headers: {
@@ -35,6 +37,7 @@ export const APIClass = class {
 		};
 
 		this.url = `${this.path}/login`;
+		
 		this.res = await fetch(this.url, {
 			method: 'POST',
 			headers: {
@@ -43,6 +46,7 @@ export const APIClass = class {
 			body: JSON.stringify(this.bodyData)
 		});
 		this.data = await this.res.json();
+		
 		return this.data;
 	}
 
@@ -89,7 +93,6 @@ export const APIClass = class {
 			}
 		});
 		this.data = await this.res.json();
-		//    console.log(this.data.rows)
 		return this.data.rows;
 	}
 
@@ -117,7 +120,7 @@ export const APIClass = class {
 			this.data = await this.res.json();
 			return this.data.rows;
 		} catch (error) {
-			console.log(error);
+			54467651(error);
 		}
 	}
 
@@ -135,30 +138,39 @@ export const APIClass = class {
 	}
 
 	async getUserTables(id_user) {
-		this.url = `${this.path}/main/tables/${id_user}`;
-		this.res = await fetch(this.url, {
-			method: 'GET',
-			headers: {
-				'Authorization': 'Bearer ' + getLocalStorageData('token'),
-				'Content-Type': 'application/json',
+		try {
+			this.url = `${this.path}/main/tables/${id_user}`;
+			this.res = await fetch(this.url, {
+				method: 'GET',
+				headers: {
+					'Authorization': 'Bearer ' + getLocalStorageData('token'),
+					'Content-Type': 'application/json',
+				}
+			});
+			if(this.res.status >= 400 && this.res.status <= 599)  {
+				throw new Error(`Http exeption code: ${this.res.status}`);
 			}
-		});
-		this.data = await this.res.json();
-		return this.data;
+			this.data = await this.res.json();
+			return this.data;
+		} catch(error) {
+			localStorage.clear();
+			alert('Токен устарел, авторизуйтесь снова');
+			location.reload();
+		}
 	}
 
-	async getNumericData(id_user) {
-		this.url = `${this.path}/main/numeric/${id_user}`;
-		this.res = await fetch(this.url, {
-			method: 'GET',
-			headers: {
-				'Authorization': 'Bearer ' + getLocalStorageData('token'),
-				'Content-Type': 'application/json',
-			}
-		});
-		this.data = await this.res.json();
-		return this.data;
-	}
+	// async getNumericData(id_user) {
+	// 	this.url = `${this.path}/main/numeric/${id_user}`;
+	// 	this.res = await fetch(this.url, {
+	// 		method: 'GET',
+	// 		headers: {
+	// 			'Authorization': 'Bearer ' + getLocalStorageData('token'),
+	// 			'Content-Type': 'application/json',
+	// 		}
+	// 	});
+	// 	this.data = await this.res.json();
+	// 	return this.data;
+	// }
 
 	async createNewTable(id_user, nameTable) {
 		this.bodyData = {
@@ -186,7 +198,7 @@ export const APIClass = class {
 		};
 
 		this.query = Object.keys(params)
-			.map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+			.map(k => encodeURIComponent(k) +'='+ encodeURIComponent(params[k]))
 			.join('&');
 
 		this.url = `${this.path}/main/filter/${id_user}?${this.query}`;
@@ -250,15 +262,20 @@ export const APIClass = class {
 	}
 
 	async getBgTableData(id_table) {
-		this.url = `${this.path}/table/bg/${id_table}`;
-		this.res = await fetch(this.url, {
-			method: 'GET',
-			headers: {
-				Authorization: 'Bearer ' + getLocalStorageData('token'),
-				'Content-Type': 'application/json',
-			}
-		});
-		this.data = await this.res.json();
+		try {
+			this.url = `${this.path}/table/bg/${id_table}`;
+			this.res = await fetch(this.url, {
+				method: 'GET',
+				headers: {
+					Authorization: 'Bearer ' + getLocalStorageData('token'),
+					'Content-Type': 'application/json',
+				}
+			});
+			this.data = await this.res.json();
+			return this.data;
+		} catch (e) {
+			console.log(e);
+		}
 		return this.data;
 	}
 
@@ -307,6 +324,7 @@ export const APIClass = class {
 			id_table,
 			new_bg,
 		};
+		
 		this.url = `${this.path}/table/bg/${id_table}`;
 		this.res = await fetch(this.url, {
 			method: 'PUT',
@@ -383,7 +401,6 @@ export const APIClass = class {
 		return this.data;
 	}
 
-  
 	async getFilterRecordOld(id_sticker) {
 		this.url = `${this.path}/table/sort/old/${id_sticker}`;
 		this.res = await fetch(this.url, {
@@ -396,7 +413,6 @@ export const APIClass = class {
 		this.data = await this.res.json();
 		return this.data;
 	}
-
   
 	async getFilterRecordNew(id_sticker) {
 		this.url = `${this.path}/table/sort/new/${id_sticker}`;
@@ -480,7 +496,6 @@ export const APIClass = class {
 		//  return this.data
 	}
 
-  
 	async moveRecord(id_sticker, id_record) {
 		this.bodyData = {
 			id_sticker,
@@ -500,7 +515,7 @@ export const APIClass = class {
 		//  return this.data
 	}
 
-	async bannedUser(time_ban, id_user, ) {
+	async bannedUser(time_ban, id_user) {
 		this.bodyData = {
 			time_ban,
 			id_user, 
@@ -569,5 +584,4 @@ export const APIClass = class {
 		this.data = this.res.json();
 		return this.data;
 	}
-
 };

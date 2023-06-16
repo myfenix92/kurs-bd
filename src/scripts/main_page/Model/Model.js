@@ -3,6 +3,7 @@ import {ViewMainPage} from '../View/index';
 import {socket} from '../../../index';
 import {ModelAdminPage} from '../../admin_page/Model/index';
 import {ControllerAdminPage} from '../../admin_page/Controller/index';
+import {ViewStartPage} from '../../start_page/View/index';
 import {APIClass} from '../../../API/index';
 
 import {getLoginUser, getIdUser} from '../../../LocalStorage';
@@ -10,6 +11,7 @@ import {getLoginUser, getIdUser} from '../../../LocalStorage';
 const ViewMP = new ViewMainPage();
 const ModelAP = new ModelAdminPage();
 const ControllerAP = new ControllerAdminPage();
+const ViewSP = new ViewStartPage();
 const API = new APIClass();
 
 export const ModelMainPage = class {
@@ -39,19 +41,24 @@ export const ModelMainPage = class {
 	}
 
 	onGetTables(id_user) {
-		API
-			.getUserTables(id_user)
-			.then(data => {
-				data.forEach((el) => {
-					ViewMP.viewTables(
-						el.id_table,
-						el.name_table,
-						el.date_create.slice(0, 10),
-						el.count_records,
-						el.bg_image
-					);
+		if (id_user) {
+			API
+				.getUserTables(id_user)
+				.then(data => {
+					data.forEach((el) => {
+						ViewMP.viewTables(
+							el.id_table,
+							el.name_table,
+							el.date_create.slice(0, 10),
+							el.count_records,
+							el.bg_image
+						);
+					});
 				});
-			});
+		} else {
+
+			ViewSP.viewStartPage('login');
+		}
 	}
 
 	onGetDialogAdmin(id_user) {
@@ -117,7 +124,8 @@ export const ModelMainPage = class {
 		API
 			.getAboutUser(id_user)
 			.then(data => {
-				ViewMP.viewProfile(data.date_birth.slice(0, 10), data.all_days, data.sex);
+				ViewMP.viewProfile(data.date_birth.slice(0, 10), 
+					data.all_days, data.sex);
 			});
 	}
 

@@ -42,7 +42,6 @@ export const ControllerMainPage = class {
 
 	onShowMsgBlock(event) {
 		socket.on('connect', () => {
-			//	console.log('connect');
 			socket.emit('room', `${getIdUser()}`);
 		});
 		ModelMP.checkBanUser();
@@ -208,14 +207,16 @@ export const ControllerMainPage = class {
 					.innerHTML = '';
 				setLocalStorageData('id_table', + this.id_table);
 				setLocalStorageData('name_table', this.nameTable);
+				ModelTP.getBgTableData(getLocalStorageData('id_table'));
+				
+					
+				ModelTP.getStickers(
+					getLocalStorageData('id_table'),
+					getLocalStorageData('name_table')
+				);
 				setTimeout(() => {
-					ModelTP.getBgTableData(getLocalStorageData('id_table'));
-					ModelTP.getStickers(
-						getLocalStorageData('id_table'),
-						getLocalStorageData('name_table')
-					);
 					location.reload();
-				}, 200);
+				}, 500);
 				
 			}
 		}
@@ -238,7 +239,10 @@ export const ControllerMainPage = class {
 	}
 
 	sendMsg(e) {
-		if (document.querySelector('.send_msg_btn') && document.querySelector('textarea').value.trim() !== '' && e.target.closest('button') && e.target.closest('button').classList.contains('send_msg_btn') && document.querySelector('.header_text_login').textContent !== 'admin') {
+		if (document.querySelector('.send_msg_btn') && 
+		document.querySelector('textarea').value.trim() !== '' 
+		&& e.target.closest('button') && e.target.closest('button').classList.contains('send_msg_btn') 
+		&& document.querySelector('.header_text_login').textContent !== 'admin') {
 			socket.emit(
 				'chat message',
 				document.querySelector('textarea').value,

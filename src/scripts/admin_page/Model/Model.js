@@ -31,25 +31,25 @@ export const ModelAdminPage = class {
 				});
 			});
 
-		setTimeout(() => {
-			API
-				.getUsers()
-				.then(data => {
-					ViewAP.ViewCreateTable();
-					data.forEach((el) => {
-						ViewAP.viewAdminPage(
-							el.id_user,
-							el.login,
-							el.sex,
-							el.date_birth.slice(0, 10),
-							el.date_registr.slice(0, 10),
-							el.count_tables,
-							info_users.find(count_msg => count_msg.id_user === el.id_user).count_msg,
-							el.ban
-						);
-					});
+		//	setTimeout(() => {
+		API
+			.getUsers()
+			.then(data => {
+				ViewAP.ViewCreateTable();
+				data.forEach((el) => {
+					ViewAP.viewAdminPage(
+						el.id_user,
+						el.login,
+						el.sex,
+						el.date_birth.slice(0, 10),
+						el.date_registr.slice(0, 10),
+						el.count_tables,
+						info_users.find(count_msg => count_msg.id_user === el.id_user).count_msg,
+						el.ban
+					);
 				});
-		}, 200);
+			});
+	//	}, 200);
 	}
 
 	onGetDialogAdmin(id_user) {

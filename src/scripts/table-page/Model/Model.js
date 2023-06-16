@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {createApi} from 'unsplash-js';
 import {APIClass} from '../../../API/index';
 import {ViewTablePage} from '../View/index';
@@ -13,7 +12,6 @@ export const ModelTablePage = class {
 			.getBgTableData(id_table)
 			.then(data => {
 				var body = document.querySelector('body');
-				
 				setLocalStorageData('bg_table', data.bg_image);
 				if (data.bg_image.includes('unsplash')) {
 					body
@@ -167,7 +165,6 @@ export const ModelTablePage = class {
 						this.name_st_new = this
 							.name_sticker
 							.find(el => el.id_sticker === e.id_sticker);
-						console.log(this.name_st_new);
 						ViewTP.viewCreateHistoryChanges(
 							e.changes,
 							e.old_value,
@@ -176,7 +173,7 @@ export const ModelTablePage = class {
 							'',
 							e.new_rec,
 							e.date_change,
-							e.time_change
+						//	e.time_change
 						);
 					} else {
 						this.name_st = this
@@ -191,7 +188,7 @@ export const ModelTablePage = class {
 								'',
 								e.new_rec,
 								e.date_change,
-								e.time_change
+							//	e.time_change
 							);
 						} else {
 							ViewTP.viewCreateHistoryChanges(
@@ -202,7 +199,7 @@ export const ModelTablePage = class {
 								this.name_st.name_sticker,
 								e.new_rec,
 								e.date_change,
-								e.time_change
+							//	e.time_change
 							);
 						}
 					}

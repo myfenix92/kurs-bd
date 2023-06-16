@@ -203,3 +203,21 @@
 .filter_create .create_new_table button:hover {
   color: #000;
 }
+
+@media (min-width: 1200px) and (max-width: 1389px) {
+  .main_mp .table_block .table .create_table_block {
+    font-size: 1.5rem;
+  }
+
+  .main_mp .table_block .table {
+    height: 9vw;
+  }
+
+  .filter_create .create_new_table {
+    width: 52vw;
+  }
+
+  .main_mp .filter_table {
+    width: 85vw;
+  }
+}

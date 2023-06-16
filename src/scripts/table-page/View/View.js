@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 export const ViewTablePage = class {
 
 	viewTableData(nameTable) {
@@ -641,7 +640,7 @@ export const ViewTablePage = class {
 		id_sticker,
 		record,
 		date,
-		time
+	//	time
 	) {
 		this.historyList = document.querySelector('.history_list');
 		this.recordHistory = document.createElement('p');
@@ -649,7 +648,7 @@ export const ViewTablePage = class {
 			.recordHistory
 			.classList
 			.add('record_history');
-
+		date = new Date(date);
 		switch (changes) {
 		case 'создали доску':
 		case 'создали стикер':
@@ -660,8 +659,8 @@ export const ViewTablePage = class {
 					'afterbegin',
 					`Вы <span class="change">${changes}</span> ${old_value}
         <br>
-        <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
-        <span class="time_history">${time.slice(0, 8)}</span></small>`
+        <small><span class="date_history">${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}</span> в
+        <span class="time_history">${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}</span></small>`
 				);
 			break;
 		case 'переименовали доску':
@@ -671,8 +670,8 @@ export const ViewTablePage = class {
 					'afterbegin',
 					`Вы <span class="change">${changes}</span> ${old_value} <span class="change">на</span> ${table}
           <br>
-          <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
-          <span class="time_history">${time.slice(0, 8)}</span></small>`
+          <small><span class="date_history">${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}</span> в
+          <span class="time_history">${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}</span></small>`
 				);
 			break;
 		case 'переименовали стикер':
@@ -682,8 +681,8 @@ export const ViewTablePage = class {
 					'afterbegin',
 					`Вы <span class="change">${changes}</span> ${old_value} <span class="change">на</span> ${sticker}
           <br>
-          <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
-          <span class="time_history">${time.slice(0, 8)}</span></small>`
+          <small><span class="date_history">${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}</span> в
+          <span class="time_history">${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}</span></small>`
 				);
 			break;
 		case 'новую запись':
@@ -694,8 +693,8 @@ export const ViewTablePage = class {
 					`Вы добавили <span class="change">${changes}</span> ${old_value}
         <span class="sticker_value">в стикере <strong>${id_sticker}</strong></span>
         <br>
-        <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
-        <span class="time_history">${time.slice(0, 8)}</span></small>`
+        <small><span class="date_history">${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}</span> в
+        <span class="time_history">${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}</span></small>`
 				);
 			break;
 		case 'изменили запись':
@@ -706,13 +705,11 @@ export const ViewTablePage = class {
 					`Вы <span class="change">${changes}</span> ${old_value} <span class="change">на</span> ${record}
         <span class="sticker_value">в стикере <strong>${id_sticker}</strong></span>
         <br>
-        <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
-        <span class="time_history">${time.slice(0, 8)}</span></small>`
+        <small><span class="date_history">${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}</span> в
+        <span class="time_history">${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}</span></small>`
 				);
 			break;
 		case 'перенесли запись':
-			console.log(sticker);
-			console.log(id_sticker);
 			this
 				.recordHistory
 				.insertAdjacentHTML(
@@ -721,8 +718,8 @@ export const ViewTablePage = class {
 				из стикера <span class="sticker_value"> <strong>${old_value}</strong> 
 				в стикер <strong>${sticker}</strong></span>
         <br>
-        <small><span class="date_history">${date.slice(0, 10).split('-').reverse().join('-')}</span> в
-        <span class="time_history">${time.slice(0, 8)}</span></small>`
+        <small><span class="date_history">${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}</span> в
+        <span class="time_history">${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}</span></small>`
 				);
 			break;
 		default:

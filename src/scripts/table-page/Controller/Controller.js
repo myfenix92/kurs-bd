@@ -22,7 +22,8 @@ export const ControllerTablePage = class {
 		this.nameTableField = document.querySelector('.name_table');
 		this.nameTableFieldInput = document.querySelector('.name_table_input');
 		this.isFocus = document.activeElement === this.nameTableFieldInput;
-		if (event.target.tagName === 'BUTTON' && event.target.classList.contains('change_name_table')) {
+		if (event.target.tagName === 'BUTTON' && 
+		event.target.classList.contains('change_name_table')) {
 			this
 				.nameTableField
 				.classList
@@ -88,7 +89,8 @@ export const ControllerTablePage = class {
 	}
 
 	onChangeIsDoneRecord(event) {
-		if (event.target.tagName === 'INPUT' && event.target.parentNode.classList.contains('show')) {
+		if (event.target.tagName === 'INPUT' && 
+		event.target.parentNode.classList.contains('show')) {
 			this.id_record = event
 				.target
 				.parentNode
@@ -98,7 +100,8 @@ export const ControllerTablePage = class {
 	}
 
 	onCreateStickerHandler(event) {
-		if (event.target.tagName === 'BUTTON' && event.target.classList.contains('create_column')) {
+		if (event.target.tagName === 'BUTTON' && 
+		event.target.classList.contains('create_column')) {
 			if (document.querySelectorAll('.new_sticker').length < 1) {
 				ViewTP.viewCreateStickers();
 			}
@@ -168,7 +171,8 @@ export const ControllerTablePage = class {
 			}
 			// вот тут
 		}
-		if (!this.isFocus && document.querySelector('.new_sticker') !== null && !event.target.classList.contains('create_column')) {
+		if (!this.isFocus && document.querySelector('.new_sticker') !== null && 
+		!event.target.classList.contains('create_column')) {
 			document
 				.querySelectorAll('.column')[
 					document
@@ -186,7 +190,8 @@ export const ControllerTablePage = class {
 				document
 					.querySelectorAll('.pop_menu_column')
 					.forEach((e) => {
-						if (!e.classList.contains('show') && e.getAttribute('id') === event.target.closest('.column').getAttribute('data-id_sticker')) {
+						if (!e.classList.contains('show') && 
+						e.getAttribute('id') === event.target.closest('.column').getAttribute('data-id_sticker')) {
 							e
 								.classList
 								.add('show');
@@ -221,7 +226,10 @@ export const ControllerTablePage = class {
 		this.isFocus = document.activeElement === document.querySelector(
 			'.input_create'
 		);
-		if ((event.target.tagName === 'BUTTON' && event.target.classList.contains('add_record')) || (event.target.tagName === 'LI' && event.target.classList.contains('add_record_menu'))) {
+		if ((event.target.tagName === 'BUTTON' && 
+		event.target.classList.contains('add_record')) || 
+		(event.target.tagName === 'LI' && 
+		event.target.classList.contains('add_record_menu'))) {
 			this.id_sticker = event
 				.target
 				.parentNode
@@ -294,7 +302,8 @@ export const ControllerTablePage = class {
 					.push(e.getAttribute('data-id_sticker'));
 			});
 		this.id_sticker;
-		if (event.target.tagName === 'LI' && event.target.classList.contains('sort_alphabet')) {
+		if (event.target.tagName === 'LI' && 
+		event.target.classList.contains('sort_alphabet')) {
 			this.id_sticker = event
 				.target
 				.parentNode
@@ -314,7 +323,8 @@ export const ControllerTablePage = class {
 			);
 		}
 
-		if (event.target.tagName === 'LI' && event.target.classList.contains('sort_old')) {
+		if (event.target.tagName === 'LI' && 
+		event.target.classList.contains('sort_old')) {
 			this.id_sticker = event
 				.target
 				.parentNode
@@ -331,7 +341,8 @@ export const ControllerTablePage = class {
 			ModelTP.filterByNew(this.id_sticker, this.id_stickers.indexOf(this.id_sticker));
 		}
 
-		if (event.target.tagName === 'LI' && event.target.classList.contains('sort_new')) {
+		if (event.target.tagName === 'LI' && 
+		event.target.classList.contains('sort_new')) {
 			this.id_sticker = event
 				.target
 				.parentNode
@@ -348,7 +359,8 @@ export const ControllerTablePage = class {
 			ModelTP.filterByOld(this.id_sticker, this.id_stickers.indexOf(this.id_sticker));
 		}
 
-		if (event.target.tagName === 'LI' && event.target.classList.contains('sort_done')) {
+		if (event.target.tagName === 'LI' && 
+		event.target.classList.contains('sort_done')) {
 			this.id_sticker = event
 				.target
 				.parentNode
@@ -368,7 +380,8 @@ export const ControllerTablePage = class {
 			);
 		}
 
-		if (event.target.tagName === 'LI' && event.target.classList.contains('sort_not_done')) {
+		if (event.target.tagName === 'LI' && 
+		event.target.classList.contains('sort_not_done')) {
 			this.id_sticker = event
 				.target
 				.parentNode
@@ -399,7 +412,8 @@ export const ControllerTablePage = class {
 					.push(e.getAttribute('data-id_sticker'));
 			});
 
-		if (event.target.tagName === 'LI' && event.target.classList.contains('delete_sticker')) {
+		if (event.target.tagName === 'LI' && 
+		event.target.classList.contains('delete_sticker')) {
 			this.id_sticker = event
 				.target
 				.parentNode
@@ -435,7 +449,8 @@ export const ControllerTablePage = class {
 				.id_stickers
 				.indexOf(this.id_sticker)
 		];
-		if (event.target.tagName === 'SPAN' && event.target.classList.contains('title_column_span')) {
+		if (event.target.tagName === 'SPAN' && 
+		event.target.classList.contains('title_column_span')) {
 			this.id_sticker = event
 				.target
 				.parentNode
@@ -494,7 +509,8 @@ export const ControllerTablePage = class {
 					}
 				});
 		}
-		if (!this.isFocus && document.querySelector('.title_column_input.show') !== null) {
+		if (!this.isFocus && 
+			document.querySelector('.title_column_input.show') !== null) {
 			this
 				.nameStickerField[
 					this
@@ -667,7 +683,9 @@ export const ControllerTablePage = class {
 				: event
 					.target
 					.getAttribute('data-id_record');
-			if ((event.target.tagName === 'P' || event.target.tagName === 'SPAN') || event.target.parentNode.classList.contains('record')) {
+			if ((event.target.tagName === 'P' ||
+			event.target.tagName === 'SPAN') ||
+			event.target.parentNode.classList.contains('record')) {
 				this.isFocus = !this
 					.isFocus;
 				document
@@ -833,7 +851,8 @@ export const ControllerTablePage = class {
 	}
 
 	onHistoryChangesHandler(event) {
-		if (event.target.tagName === 'BUTTON' && event.target.classList.contains('history_btn')) {
+		if (event.target.tagName === 'BUTTON' &&
+		event.target.classList.contains('history_btn')) {
 			ModelTP.getHistoryChanges(getLocalStorageData('id_table'));
 		} else {
 			if (document.querySelector('.history_overlay') !== null) 
@@ -844,7 +863,8 @@ export const ControllerTablePage = class {
 	}
 
 	onviewBgImageChangesHandler(event) {
-		if (event.target.tagName === 'BUTTON' && event.target.classList.contains('change_bg_table')) {
+		if (event.target.tagName === 'BUTTON' &&
+		event.target.classList.contains('change_bg_table')) {
 			event.stopPropagation();
 			document
 				.querySelector('.bg_img_block')
@@ -876,7 +896,8 @@ export const ControllerTablePage = class {
 	}
 
 	onDeleteTable(event) {
-		if (event.target.tagName === 'BUTTON' && event.target.classList.contains('delete_table')) {
+		if (event.target.tagName === 'BUTTON' && 
+		event.target.classList.contains('delete_table')) {
 			this.isDeleteTable = confirm('Удалить таблицу?');
 			if (this.isDeleteTable) {
 				var body = document.querySelector('body');
@@ -901,7 +922,8 @@ export const ControllerTablePage = class {
 	}
 
 	onBackToTables(event) {
-		if (event.target.tagName === 'BUTTON' && event.target.classList.contains('get_tables')) {
+		if (event.target.tagName === 'BUTTON' && 
+		event.target.classList.contains('get_tables')) {
 			setLocalStorageData('id_table');
 			setLocalStorageData('name_table');
 			document
@@ -920,7 +942,8 @@ export const ControllerTablePage = class {
 	}
 
 	onLogOutHandler(event) {
-		if (event.target.classList.contains('logout') && event.target.tagName === 'P') {
+		if (event.target.classList.contains('logout') && 
+		event.target.tagName === 'P') {
 			localStorage.clear();
 			document
 				.querySelector('header')
@@ -933,7 +956,8 @@ export const ControllerTablePage = class {
 	}
 
 	onViewColorHandler(event) {
-		if (event.target.tagName === 'BUTTON' && event.target.classList.contains('btn_color')) {
+		if (event.target.tagName === 'BUTTON' && 
+		event.target.classList.contains('btn_color')) {
 			if (document.querySelector('.color') === null) {
 				ViewTP.viewColorBlock();
 			}
@@ -941,7 +965,8 @@ export const ControllerTablePage = class {
 	}
 
 	onViewImageHandler(event) {
-		if (event.target.tagName === 'BUTTON' && event.target.classList.contains('btn_img')) {
+		if (event.target.tagName === 'BUTTON' && 
+		event.target.classList.contains('btn_img')) {
 			if (document.querySelector('.image') === null) {
 				numberPage = 1;
 				ModelTP.getBgImage(numberPage);
@@ -950,12 +975,12 @@ export const ControllerTablePage = class {
 	}
 
 	onViewImageLoadMoreHandler(event) {
-		if (event.target.tagName === 'BUTTON' && event.target.classList.contains('btn_load_img')) {
+		if (event.target.tagName === 'BUTTON' && 
+		event.target.classList.contains('btn_load_img')) {
 			if (document.querySelector('.input_img').value === '') {
 				document
 					.querySelector('.input_img')
 					.value = 'morning';
-
 			}
 			ModelTP.getBgImage(++numberPage, document.querySelector('.input_img').value);
 

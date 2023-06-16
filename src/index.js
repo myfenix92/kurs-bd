@@ -23,7 +23,8 @@ const ControllerTP = new ControllerTablePage();
 const ModelTP = new ModelTablePage();
 
 // eslint-disable-next-line no-undef
-const socket = io('http://localhost:8080', {
+const socket = io('http://62.217.177.183:3000/', {
+// const socket = io('http://localhost:8080/', {
 	transportOptions: {
 		polling: {
 			extraHeaders: {
@@ -58,21 +59,32 @@ document.body.addEventListener('click', ControllerTP.onCreateRecord);
 document.body.addEventListener('keyup', ControllerTP.onCreateRecord);
 document.body.addEventListener('click', ControllerTP.onFilterHandler);
 document.body.addEventListener('click', ControllerTP.onDeleteStickerHandler);
+// eslint-disable-next-line max-len
 document.body.addEventListener('click', ControllerTP.onChangeNameStickerHandler);
+// eslint-disable-next-line max-len
 document.body.addEventListener('keyup', ControllerTP.onChangeNameStickerHandler);
 document.body.addEventListener('click', ControllerTP.onChangeRecordHandler);
 document.body.addEventListener('keyup', ControllerTP.onChangeRecordHandler);
 document.body.addEventListener('click', ControllerTP.onHistoryChangesHandler);
+// eslint-disable-next-line max-len
 document.body.addEventListener('click', ControllerTP.onviewBgImageChangesHandler);
 document.body.addEventListener('click', ControllerTP.onViewColorHandler);
 document.body.addEventListener('click', ControllerTP.onViewImageHandler);
+// eslint-disable-next-line max-len
 document.body.addEventListener('click', ControllerTP.onViewImageLoadMoreHandler);
 document.body.addEventListener('click', ControllerTP.onChangeBgTable);
-document.body.addEventListener('keyup', ControllerTP.onViewImageInputHandler);
+document.body.addEventListener('keyup', (event) => {
+	if (document.querySelector('.input_img')) {
+		if (event.code === 'Enter') {
+			ControllerTP.onViewImageInputHandler();
+		}
+	}
+});
 document.body.addEventListener('click', ControllerTP.onBackToTables);
 document.body.addEventListener('click', ControllerTP.onDeleteTable);
 document.body.addEventListener('click', ControllerTP.onLogOutHandler);
 document.body.addEventListener('mousedown', mouseDownHandler());
+
 
 document.addEventListener('DOMContentLoaded', function () {
 	if (getIdUser() !== 1 && getIdUser()) {
@@ -85,25 +97,33 @@ document.addEventListener('DOMContentLoaded', function () {
 	var body = document.querySelector('body');
 	if (getLocalStorageData('token')) {
 		if (getLocalStorageData('bg_table').includes('unsplash')) {     
-			body.style.setProperty('--body-image', `url("${getLocalStorageData('bg_table')}=&w=2400)") 50%/cover`);
+			body.style.setProperty('--body-image', 
+				`url("${getLocalStorageData('bg_table')}=&w=2400)") 50%/cover`);
 		} else {
-			body.style.setProperty('--body-image', `${getLocalStorageData('bg_table')}`);
+			body.style.setProperty('--body-image', 
+				`${getLocalStorageData('bg_table')}`);
 		}
 	}
 
 
 
-	if (!getLocalStorageData('token') && getLocalStorageData('id_table') === null) {
-		body.style.setProperty('--body-image', 'linear-gradient(#4B5ED7, #3F92D2, #5FD3B3)');
+	if (!getLocalStorageData('token') && 
+	getLocalStorageData('id_table') === null) {
+		body.style.setProperty('--body-image', 
+			'linear-gradient(#4B5ED7, #3F92D2, #5FD3B3)');
 		ModelSP.init();
 	}
-	if (getLocalStorageData('token') && getLocalStorageData('id_table') === undefined) {
-		body.style.setProperty('--body-image', 'linear-gradient(#4B5ED7, #3F92D2, #5FD3B3)');
+	if (getLocalStorageData('token') && 
+	getLocalStorageData('id_table') === undefined) {
+		body.style.setProperty('--body-image', 
+			'linear-gradient(#4B5ED7, #3F92D2, #5FD3B3)');
 		ModelMP.init();
 	}
-	if (getLocalStorageData('token') && getLocalStorageData('id_table') !== undefined) {
+	if (getLocalStorageData('token') && 
+	getLocalStorageData('id_table') !== undefined) {
 		setTimeout(() => {
-			ModelTP.getStickers(getLocalStorageData('id_table'), getLocalStorageData('name_table'));
+			ModelTP.getStickers(getLocalStorageData('id_table'), 
+				getLocalStorageData('name_table'));
 		}, 300);
 	}
 });
@@ -177,7 +197,10 @@ function dragEnter(e) {
 function dragDrop(e) {
 	var data = e.dataTransfer.getData('id');
 	if (dragStartVar !== dragEndVar) {
-		e.target.closest('.column_list').appendChild(document.getElementById(data));
+		e
+			.target
+			.closest('.column_list')
+			.appendChild(document.getElementById(data));
 		ModelTP.moveRecordFromSticker(dragEndVar, id_record);
 	} 
 			

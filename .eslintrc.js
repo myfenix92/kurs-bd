@@ -28,6 +28,18 @@ module.exports = {
 			'error',
 			'always'
 		],
-		'no-console': ['warn', { allow: ['warn', 'error'] }]
+		'max-len': [
+			'warn',
+			{
+				'code': 80,
+			}
+		]
+		,
+		'no-console': [
+			'warn', 
+			{ allow: [
+				'warn', 'error'
+			] }
+		]
 	}
 };
